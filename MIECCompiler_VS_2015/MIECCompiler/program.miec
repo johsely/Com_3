@@ -1,0 +1,43 @@
+PROGRAM myprog
+BEGIN_VAR
+	i : Integer;
+END_VAR
+
+BEGIN
+
+
+a1 := 1;
+test1 := (1 - 2);
+test := (test1 * 2);
+testLR := x + y * (2 - 4);
+
+IF i < 2 THEN
+	stat := 1;
+END
+
+IF i <= 3 THEN
+	asd := 2;
+END
+
+IF i <= 3 THEN
+	asd := 2;
+ELSE
+	asd := 3;
+END
+
+
+WHILE (i + 3) > 3 DO
+	asd := 3;
+END
+
+WHILE i < 3 DO
+	IF (i + 2) <= 3 THEN
+		asd := 2;
+	ELSE
+		asd := 3;
+	END
+END 
+
+print(2);
+
+END

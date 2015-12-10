@@ -1,0 +1,69 @@
+
+#include "..\SymbolTable.h"
+#include <string>
+
+
+COMPILER MIEC	
+ 
+
+CHARACTERS
+  letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".
+  digit = "0123456789".
+  cr  = '\r'.
+  lf  = '\n'.
+  tab = '\t'.
+
+TOKENS
+
+  
+  ident  = letter {letter | digit}.
+  number = digit {digit}.
+
+  
+    
+COMMENTS
+  FROM "(*" TO "*)" NESTED
+
+IGNORE cr + lf + tab
+
+
+
+
+PRODUCTIONS
+
+Ident<std::string name> = ident (. 
+	std::wstring wStr = std::wstring(coco_string_create(t->val));  
+	name = std::string(wStr.begin(), wStr.end()); .)
+.
+
+MIEC = "PROGRAM" ident
+	[VarDecl]
+	"BEGIN"
+		Statements
+	"END".
+
+VarDecl (. std::string name; Type type; .)
+		= "BEGIN_VAR" 
+		Ident<name> ":" "Integer" ";" (. 
+			
+			SymbolTable::GetInstance()->AddSymbol(Symbol(3, name, BaseType(Integer, 2))) 
+		.) 
+		{Ident<name> ":" "Integer" ";"}
+		"END_VAR".
+
+Statements = Stat {Stat}.
+Stat = ident ":=" Expr ";" 
+	| "print(" Expr ")" ";"
+	| "WHILE" Condition "DO" Statements "END"
+	| "IF" Condition "THEN" Statements ("END"
+	| "ELSE" Statements "END").
+
+Expr = Term {("+" | "-") Term}.
+Term = Fact {("*" | "/") Fact}.
+Fact = ident | number | "(" Expr ")".
+
+Condition = Expr Relop Expr.
+Relop = "=" | "!=" | "<" | ">" | "<=" | ">=". 
+
+
+END MIEC .
