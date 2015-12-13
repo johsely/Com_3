@@ -4,6 +4,7 @@
 #define COCO_PARSER_H__
 
 #include "..\SymbolTable.h"
+#include "..\SymbolFactory.h"
 #include <string>
 
 
@@ -58,7 +59,7 @@ public:
 	~Parser();
 	void SemErr(const wchar_t* msg);
 
-	void Ident(std::string name);
+	void Ident(std::string &name);
 	void MIEC();
 	void VarDecl();
 	void Statements();

@@ -19,6 +19,8 @@ public:
 	bool AddSymbol(Symbol* symbol);
 	Symbol* Find(std::string str);
 
+	void PrintTable() const;
+
 private:
 	SymbolTable();
 	SymbolTable(SymbolTable const& obj) = delete;

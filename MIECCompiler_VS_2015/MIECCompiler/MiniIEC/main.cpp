@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "../SymbolTable.h"
 
 using namespace std;
 
@@ -32,6 +33,8 @@ int main(int argc, char* argv[])
 				/*parser->gen = new MIEC::CodeGenerator();*/
 				parser->Parse();
 				
+				SymbolTable::GetInstance()->PrintTable();
+
 				fileStream << fileNameStr;
 				if (parser->errors->count == 0) {
 					fileStream << ": OK" << endl;

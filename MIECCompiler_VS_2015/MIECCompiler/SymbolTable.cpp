@@ -1,10 +1,13 @@
 #include "SymbolTable.h"
 #include "TypeSymbol.h"
 #include "BaseType.h"
+#include <string>
+#include <iostream>
 
 SymbolTable* SymbolTable::symbolTable_instance = NULL;
 
-SymbolTable::SymbolTable() {
+SymbolTable::SymbolTable() {	
+	// add Integer as type
 	Symbol* type = new TypeSymbol("Integer", BaseType(Integer, 2));
 	mMap.insert(std::pair<std::string, Symbol*>(type->GetName(), type));
 }
@@ -20,4 +23,13 @@ Symbol* SymbolTable::Find(std::string str) {
 		return 0;
 	}
 	return iter->second;
+}
+
+
+
+void SymbolTable::PrintTable() const{
+	for (auto x : mMap) {
+		x.second->Print(std::cout);
+		std::cout << std::endl;
+	}
 }

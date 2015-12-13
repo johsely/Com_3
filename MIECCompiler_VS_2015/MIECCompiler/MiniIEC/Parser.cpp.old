@@ -62,7 +62,7 @@ bool Parser::WeakSeparator(int n, int syFol, int repFol) {
 	}
 }
 
-void Parser::Ident(std::string name) {
+void Parser::Ident(std::string &name) {
 		Expect(1);
 		std::wstring wStr = std::wstring(coco_string_create(t->val));  
 		name = std::string(wStr.begin(), wStr.end()); 
@@ -71,6 +71,7 @@ void Parser::Ident(std::string name) {
 void Parser::MIEC() {
 		Expect(3);
 		Expect(1);
+		SymbolFactory symbolFactory; 
 		if (la->kind == 6) {
 			VarDecl();
 		}
@@ -80,18 +81,23 @@ void Parser::MIEC() {
 }
 
 void Parser::VarDecl() {
-		std::string name; Type type; 
+		std::string name; size_t offset = 0; 
 		Expect(6);
 		Ident(name);
 		Expect(7);
 		Expect(8);
 		Expect(9);
-		SymbolTable::GetInstance()->AddSymbol(Symbol(3, name, BaseType(Integer, 2))) 
+		auto symbol = SymbolFactory::GetInstance()->CreateIntegerVariable(offset, name);
+		SymbolTable::GetInstance()->AddSymbol(symbol);
+		
 		while (la->kind == 1) {
 			Ident(name);
 			Expect(7);
 			Expect(8);
 			Expect(9);
+			auto symbol = SymbolFactory::GetInstance()->CreateIntegerVariable(offset, name);
+			SymbolTable::GetInstance()->AddSymbol(symbol);
+			
 		}
 		Expect(10);
 }
