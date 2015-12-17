@@ -9,19 +9,18 @@
 class Symbol : public Object {
 public:
 	std::string GetName() { return mName; }
+	Type* GetType() { return mType; }
 	virtual void Print(std::ostream &ost) const {
 		ost << "name: " << mName << " ";
-		ost << "size: " << mType.GetSize();
+		ost << "size: " << mType->GetSize();		
 	};
 protected:
-	Symbol(std::string name, Type type) : mName(name), mType(type) {}
+	Symbol(std::string name, Type* type) : mName(name), mType(type) {}
 	
 private:
 	Symbol();
 	std::string mName;
-	Type mType;
+	Type* mType;
 };
-
-
 
 #endif

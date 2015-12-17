@@ -19,7 +19,9 @@ public:
 	bool AddSymbol(Symbol* symbol);
 	Symbol* Find(std::string str);
 
+#ifdef _DEBUG
 	void PrintTable() const;
+#endif
 
 private:
 	SymbolTable();

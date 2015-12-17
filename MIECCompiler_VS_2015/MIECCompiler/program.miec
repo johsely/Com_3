@@ -3,6 +3,7 @@ BEGIN_VAR
 	i : Integer;
 	x : Integer;
 	variable2 : Integer;
+	variable2 : Integer;
 END_VAR
 
 BEGIN
@@ -29,7 +30,7 @@ END
 
 
 WHILE (i + 3) > 3 DO
-	asd := 3;
+	asd := 30;
 END
 
 WHILE i < 3 DO

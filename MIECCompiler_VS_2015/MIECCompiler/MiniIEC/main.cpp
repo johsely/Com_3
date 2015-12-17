@@ -26,15 +26,20 @@ int main(int argc, char* argv[])
 		for (int i = 0; i < argc - 1; i++) {
 			std::string fileNameStr(argv[i+1]);
 			if (fileNameStr.substr(fileNameStr.find_last_of(".") + 1) == "miec") {
+				try{
+				
 				wchar_t *fileName = coco_string_create(fileNameStr.c_str());
 				MIEC::Scanner *scanner = new MIEC::Scanner(fileName);
 				MIEC::Parser *parser = new MIEC::Parser(scanner);
 				//parser->tab = new MIEC::SymbolTable(parser);
 				/*parser->gen = new MIEC::CodeGenerator();*/
-				parser->Parse();
+				
+			
+					parser->Parse();				
+				
 				
 				SymbolTable::GetInstance()->PrintTable();
-
+				
 				fileStream << fileNameStr;
 				if (parser->errors->count == 0) {
 					fileStream << ": OK" << endl;
@@ -54,6 +59,13 @@ int main(int argc, char* argv[])
 				delete parser->tab;*/
 				delete parser;
 				delete scanner;
+				}
+				catch (std::exception ex) {
+					cout << ex.what() << endl;
+				}
+				catch (std::string exStr){
+					cout << exStr << endl;
+				}
 
 			}
 			else {

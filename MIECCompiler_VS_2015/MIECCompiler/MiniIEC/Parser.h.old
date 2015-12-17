@@ -6,6 +6,7 @@
 #include "..\SymbolTable.h"
 #include "..\SymbolFactory.h"
 #include <string>
+#include <iostream>
 
 
 #include "Scanner.h"
@@ -60,6 +61,7 @@ public:
 	void SemErr(const wchar_t* msg);
 
 	void Ident(std::string &name);
+	void Number();
 	void MIEC();
 	void VarDecl();
 	void Statements();

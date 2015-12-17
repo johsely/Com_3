@@ -68,6 +68,17 @@ void Parser::Ident(std::string &name) {
 		name = std::string(wStr.begin(), wStr.end()); 
 }
 
+void Parser::Number() {
+		Expect(2);
+		std::wstring wStr = std::wstring(coco_string_create(t->val));  
+		std::string name = std::string(wStr.begin(), wStr.end());
+		
+		int value = std::stoi(name); 
+		auto symbol = SymbolFactory::GetInstance()->CreateConstIntSymbol(value);
+		SymbolTable::GetInstance()->AddSymbol(symbol);
+		
+}
+
 void Parser::MIEC() {
 		Expect(3);
 		Expect(1);
@@ -88,7 +99,9 @@ void Parser::VarDecl() {
 		Expect(8);
 		Expect(9);
 		auto symbol = SymbolFactory::GetInstance()->CreateIntegerVariable(offset, name);
-		SymbolTable::GetInstance()->AddSymbol(symbol);
+		if (!SymbolTable::GetInstance()->AddSymbol(symbol)) {
+			std::cout << std::string("variable " + name + " already declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
+		}
 		
 		while (la->kind == 1) {
 			Ident(name);
@@ -96,7 +109,9 @@ void Parser::VarDecl() {
 			Expect(8);
 			Expect(9);
 			auto symbol = SymbolFactory::GetInstance()->CreateIntegerVariable(offset, name);
-			SymbolTable::GetInstance()->AddSymbol(symbol);
+			if(!SymbolTable::GetInstance()->AddSymbol(symbol)) {
+				std::cout << std::string("variable " + name + " already declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
+			}
 			
 		}
 		Expect(10);
@@ -110,11 +125,14 @@ void Parser::Statements() {
 }
 
 void Parser::Stat() {
+		std::string name; 
 		if (la->kind == 1) {
-			Get();
+			Ident(name);
 			Expect(11);
 			Expr();
 			Expect(9);
+			auto symbol = SymbolTable::GetInstance()->Find(name);					 
+			if (symbol == 0) {std::cout << std::string("variable " + name + " not declared") << " Line: " << t->line << " Column: " << t->col << std::endl;} 
 		} else if (la->kind == 12) {
 			Get();
 			Expr();
@@ -172,10 +190,16 @@ void Parser::Term() {
 }
 
 void Parser::Fact() {
+		std::string name; 
 		if (la->kind == 1) {
-			Get();
+			Ident(name);
+			auto symbol = SymbolTable::GetInstance()->Find(name); 
+			if (symbol == 0) {
+				std::cout << std::string("variable " + name + " not declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
+			} 	
+			
 		} else if (la->kind == 2) {
-			Get();
+			Number();
 		} else if (la->kind == 23) {
 			Get();
 			Expr();

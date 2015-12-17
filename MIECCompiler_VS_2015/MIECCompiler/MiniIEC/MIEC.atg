@@ -2,6 +2,7 @@
 #include "..\SymbolTable.h"
 #include "..\SymbolFactory.h"
 #include <string>
+#include <iostream>
 
 
 COMPILER MIEC	
@@ -37,6 +38,17 @@ Ident<std::string &name> = ident (.
 	name = std::string(wStr.begin(), wStr.end()); .)
 .
 
+Number = number (. 
+	std::wstring wStr = std::wstring(coco_string_create(t->val));  
+	std::string name = std::string(wStr.begin(), wStr.end());
+	
+	int value = std::stoi(name); 
+	auto symbol = SymbolFactory::GetInstance()->CreateConstIntSymbol(value);
+	SymbolTable::GetInstance()->AddSymbol(symbol);
+	.)
+.
+
+
 MIEC = "PROGRAM" ident
 	(. SymbolFactory symbolFactory; .)		
 	[VarDecl]
@@ -48,18 +60,24 @@ VarDecl (. std::string name; size_t offset = 0; .)
 		= "BEGIN_VAR" 
 		Ident<name> ":" "Integer" ";" (. 		
 			auto symbol = SymbolFactory::GetInstance()->CreateIntegerVariable(offset, name);
-			SymbolTable::GetInstance()->AddSymbol(symbol);
+			if (!SymbolTable::GetInstance()->AddSymbol(symbol)) {
+				std::cout << std::string("variable " + name + " already declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
+			}
 		.) 
 		{Ident<name> ":" "Integer" ";"
 			(. 
 				auto symbol = SymbolFactory::GetInstance()->CreateIntegerVariable(offset, name);
-				SymbolTable::GetInstance()->AddSymbol(symbol);
+				if(!SymbolTable::GetInstance()->AddSymbol(symbol)) {
+					std::cout << std::string("variable " + name + " already declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
+				}
 			.)
 		}
 		"END_VAR".
 
 Statements = Stat {Stat}.
-Stat = ident ":=" Expr ";" 
+Stat (. std::string name; .) 
+	= Ident<name> ":=" Expr ";" (. auto symbol = SymbolTable::GetInstance()->Find(name);					 
+					if (symbol == 0) {std::cout << std::string("variable " + name + " not declared") << " Line: " << t->line << " Column: " << t->col << std::endl;} .) 
 	| "print(" Expr ")" ";"
 	| "WHILE" Condition "DO" Statements "END"
 	| "IF" Condition "THEN" Statements ("END"
@@ -67,7 +85,14 @@ Stat = ident ":=" Expr ";"
 
 Expr = Term {("+" | "-") Term}.
 Term = Fact {("*" | "/") Fact}.
-Fact = ident | number | "(" Expr ")".
+Fact (. std::string name; .)
+=	Ident<name>  (. auto symbol = SymbolTable::GetInstance()->Find(name); 
+					if (symbol == 0) {
+						std::cout << std::string("variable " + name + " not declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
+					} 	
+				.)
+
+ | Number | "(" Expr ")".
 
 Condition = Expr Relop Expr.
 Relop = "=" | "!=" | "<" | ">" | "<=" | ">=". 

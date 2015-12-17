@@ -8,12 +8,14 @@ SymbolTable* SymbolTable::symbolTable_instance = NULL;
 
 SymbolTable::SymbolTable() {	
 	// add Integer as type
-	Symbol* type = new TypeSymbol("Integer", BaseType(Integer, 2));
+	auto intType = new BaseType(Integer, 2);
+	Symbol* type = new TypeSymbol("Integer", intType);
 	mMap.insert(std::pair<std::string, Symbol*>(type->GetName(), type));
 }
 
 
 bool SymbolTable::AddSymbol(Symbol* symbol){
+	if (symbol == 0) { return 0; }
 	return mMap.insert(std::pair<std::string, Symbol*>(symbol->GetName(), symbol)).second;
 }
 
