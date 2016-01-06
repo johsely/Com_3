@@ -27,7 +27,12 @@ Symbol* SymbolTable::Find(std::string str) {
 	return iter->second;
 }
 
-
+// Delete the entries in the table
+void SymbolTable::Clear() {
+	for (auto x : mMap) {
+		delete(x.second);
+	}
+}
 
 void SymbolTable::PrintTable() const{
 	for (auto x : mMap) {

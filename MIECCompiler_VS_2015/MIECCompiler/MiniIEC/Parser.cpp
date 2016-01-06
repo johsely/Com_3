@@ -64,25 +64,38 @@ bool Parser::WeakSeparator(int n, int syFol, int repFol) {
 
 void Parser::Ident(std::string &name) {
 		Expect(1);
-		std::wstring wStr = std::wstring(coco_string_create(t->val));  
+		wchar_t* wCharStr = coco_string_create(t->val);
+		std::wstring wStr = std::wstring(wCharStr);  
+		coco_string_delete(wCharStr); // avoid memleak
 		name = std::string(wStr.begin(), wStr.end()); 
 }
 
-void Parser::Number() {
+void Parser::Number(IDACEntry* &dacEntry) {
 		Expect(2);
-		std::wstring wStr = std::wstring(coco_string_create(t->val));  
+		Symbol* symbol = reinterpret_cast<Symbol*>(dacEntry);
+		wchar_t* wCharStr = coco_string_create(t->val);
+		std::wstring wStr = std::wstring(wCharStr);  
+		coco_string_delete(wCharStr); // avoid memleak
 		std::string name = std::string(wStr.begin(), wStr.end());
-		
-		int value = std::stoi(name); 
-		auto symbol = SymbolFactory::GetInstance()->CreateConstIntSymbol(value);
-		SymbolTable::GetInstance()->AddSymbol(symbol);
+			
+		// try to find constant in table
+		std::string tmpStr(name); 
+		tmpStr.insert(0, "const"); // this because of naming	
+		symbol = SymbolTable::GetInstance()->Find(tmpStr);
+		if (symbol == 0) {
+			int value = std::stoi(name); 
+			symbol = SymbolFactory::GetInstance()->CreateConstIntSymbol(value);	
+			SymbolTable::GetInstance()->AddSymbol(symbol);
+		}	
+		dacEntry = symbol;
 		
 }
 
 void Parser::MIEC() {
 		Expect(3);
 		Expect(1);
-		SymbolFactory symbolFactory; 
+		SymbolFactory symbolFactory; 		
+		
 		if (la->kind == 6) {
 			VarDecl();
 		}
@@ -101,6 +114,7 @@ void Parser::VarDecl() {
 		auto symbol = SymbolFactory::GetInstance()->CreateIntegerVariable(offset, name);
 		if (!SymbolTable::GetInstance()->AddSymbol(symbol)) {
 			std::cout << std::string("variable " + name + " already declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
+			delete symbol;
 		}
 		
 		while (la->kind == 1) {
@@ -111,6 +125,7 @@ void Parser::VarDecl() {
 			auto symbol = SymbolFactory::GetInstance()->CreateIntegerVariable(offset, name);
 			if(!SymbolTable::GetInstance()->AddSymbol(symbol)) {
 				std::cout << std::string("variable " + name + " already declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
+				delete symbol;
 			}
 			
 		}
@@ -125,17 +140,17 @@ void Parser::Statements() {
 }
 
 void Parser::Stat() {
-		std::string name; 
+		std::string name; IDACEntry* result; 
 		if (la->kind == 1) {
 			Ident(name);
 			Expect(11);
-			Expr();
+			Expr(result);
 			Expect(9);
 			auto symbol = SymbolTable::GetInstance()->Find(name);					 
 			if (symbol == 0) {std::cout << std::string("variable " + name + " not declared") << " Line: " << t->line << " Column: " << t->col << std::endl;} 
 		} else if (la->kind == 12) {
 			Get();
-			Expr();
+			Expr(result);
 			Expect(13);
 			Expect(9);
 		} else if (la->kind == 14) {
@@ -159,50 +174,62 @@ void Parser::Stat() {
 		} else SynErr(32);
 }
 
-void Parser::Expr() {
-		Term();
+void Parser::Expr(IDACEntry* &result) {
+		IDACEntry* tmpDACEntry1 = 0; IDACEntry* tmpDACEntry2 = 0; OpKind opKind; 
+		Term(tmpDACEntry1);
 		while (la->kind == 19 || la->kind == 20) {
 			if (la->kind == 19) {
 				Get();
+				opKind = eAdd; 
 			} else {
 				Get();
+				opKind = eSubtract; 
 			}
-			Term();
+			Term(tmpDACEntry2);
+			tmpDACEntry1 = DACGenerator::GetInstance()->AddStatement(opKind, tmpDACEntry1, tmpDACEntry2); 
 		}
+		result = tmpDACEntry1; 
 }
 
 void Parser::Condition() {
-		Expr();
+		IDACEntry* dacEntry1 = 0; IDACEntry* dacEntry2 = 0; 
+		Expr(dacEntry1);
 		Relop();
-		Expr();
+		Expr(dacEntry2);
 }
 
-void Parser::Term() {
-		Fact();
+void Parser::Term(IDACEntry* &result) {
+		IDACEntry* tmpDACEntry1 = 0; IDACEntry* tmpDACEntry2 = 0; OpKind opKind; 
+		Fact(tmpDACEntry1);
+		
 		while (la->kind == 21 || la->kind == 22) {
 			if (la->kind == 21) {
 				Get();
+				opKind = eMultiply; 
 			} else {
 				Get();
+				opKind = eDivide; 
 			}
-			Fact();
+			Fact(tmpDACEntry2);
+			tmpDACEntry1 = DACGenerator::GetInstance()->AddStatement(opKind, tmpDACEntry1, tmpDACEntry2); 
 		}
+		result = tmpDACEntry1; 
 }
 
-void Parser::Fact() {
+void Parser::Fact(IDACEntry* &result) {
 		std::string name; 
 		if (la->kind == 1) {
 			Ident(name);
-			auto symbol = SymbolTable::GetInstance()->Find(name); 
-			if (symbol == 0) {
+			result = SymbolTable::GetInstance()->Find(name); 
+			if (result == 0) {
 				std::cout << std::string("variable " + name + " not declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
 			} 	
 			
 		} else if (la->kind == 2) {
-			Number();
+			Number(result);
 		} else if (la->kind == 23) {
 			Get();
-			Expr();
+			Expr(result);
 			Expect(13);
 		} else SynErr(33);
 }

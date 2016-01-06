@@ -16,8 +16,16 @@ public:
 		return symbolTable_instance;
 	}
 
+	static void Delete() {
+		if (symbolTable_instance){
+			delete symbolTable_instance;
+		}
+	}
+
 	bool AddSymbol(Symbol* symbol);
 	Symbol* Find(std::string str);
+	void Clear();
+
 
 #ifdef _DEBUG
 	void PrintTable() const;

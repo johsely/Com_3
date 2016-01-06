@@ -10,6 +10,8 @@
 #include <string>
 #include <fstream>
 #include "../SymbolTable.h"
+#include "../DACGenerator.h"
+#include "vld.h"
 
 using namespace std;
 
@@ -37,8 +39,9 @@ int main(int argc, char* argv[])
 			
 					parser->Parse();				
 				
-				
+
 				SymbolTable::GetInstance()->PrintTable();
+				DACGenerator::GetInstance()->Print(std::cout);
 				
 				fileStream << fileNameStr;
 				if (parser->errors->count == 0) {
@@ -52,7 +55,9 @@ int main(int argc, char* argv[])
 				}
 				std::cout << parser->errors->count << std::endl;
 
-				
+
+				SymbolTable::GetInstance()->Clear();
+				DACGenerator::GetInstance()->Clear();
 
 				coco_string_delete(fileName);
 				/*delete parser->gen;
@@ -73,6 +78,9 @@ int main(int argc, char* argv[])
 			}
 		}	
 
+		SymbolTable::Delete();
+		DACGenerator::Delete();
+		SymbolFactory::Delete();
 		fileStream.close();
 	}
 	else {

@@ -5,8 +5,9 @@
 #include <ios>
 #include "Type.h"
 #include "Object.h"
+#include "IDACEntry.h"
 
-class Symbol : public Object {
+class Symbol : public IDACEntry {
 public:
 	std::string GetName() { return mName; }
 	Type* GetType() { return mType; }
@@ -16,11 +17,11 @@ public:
 	};
 protected:
 	Symbol(std::string name, Type* type) : mName(name), mType(type) {}
-	
-private:
-	Symbol();
 	std::string mName;
 	Type* mType;
+private:
+	Symbol();
+	
 };
 
 #endif

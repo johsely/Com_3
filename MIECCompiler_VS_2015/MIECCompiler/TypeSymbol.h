@@ -9,6 +9,9 @@ public:
 	void Print(std::ostream &ost) const {
 		Symbol::Print(ost);
 	}
+	~TypeSymbol() {
+		delete mType;
+	}
 private:
 
 };

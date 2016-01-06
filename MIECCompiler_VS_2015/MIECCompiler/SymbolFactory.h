@@ -16,10 +16,17 @@ public:
 		return symbolFactory_instance;
 	}
 	
-	
+	static void Delete() {
+		if (symbolFactory_instance) {
+			delete symbolFactory_instance;
+		}
+	}
+
 	// offset is added to next level
 	Symbol* CreateIntegerVariable(size_t &offset, std::string name);
 	Symbol* CreateConstIntSymbol(int value);
+
+
 private:
 	static SymbolFactory* symbolFactory_instance;
 };

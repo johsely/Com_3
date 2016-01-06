@@ -1,7 +1,9 @@
 #ifndef MIEC_TYPE_H
 #define MIEC_TYPE_H
 
-class Type {
+#include "Object.h"
+
+class Type : public Object {
 public:
 	size_t GetSize() const { return mSize; }
 protected:

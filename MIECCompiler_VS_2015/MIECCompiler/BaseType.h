@@ -9,6 +9,7 @@ class BaseType : public Type {
 public:
 	BaseType(eType type, size_t size) : mType(type), Type(size) {}
 	eType GetType(){ return mType; }
+
 private:
 	eType mType;
 };

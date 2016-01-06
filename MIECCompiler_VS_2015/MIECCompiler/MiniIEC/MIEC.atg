@@ -1,6 +1,7 @@
 
 #include "..\SymbolTable.h"
 #include "..\SymbolFactory.h"
+#include "..\DACGenerator.h"
 #include <string>
 #include <iostream>
 
@@ -34,23 +35,36 @@ IGNORE cr + lf + tab
 PRODUCTIONS
 
 Ident<std::string &name> = ident (. 
-	std::wstring wStr = std::wstring(coco_string_create(t->val));  
+	wchar_t* wCharStr = coco_string_create(t->val);
+	std::wstring wStr = std::wstring(wCharStr);  
+	coco_string_delete(wCharStr); // avoid memleak
 	name = std::string(wStr.begin(), wStr.end()); .)
 .
 
-Number = number (. 
-	std::wstring wStr = std::wstring(coco_string_create(t->val));  
+Number<IDACEntry* &dacEntry> = number (. 
+	Symbol* symbol = reinterpret_cast<Symbol*>(dacEntry);
+	wchar_t* wCharStr = coco_string_create(t->val);
+	std::wstring wStr = std::wstring(wCharStr);  
+	coco_string_delete(wCharStr); // avoid memleak
 	std::string name = std::string(wStr.begin(), wStr.end());
-	
-	int value = std::stoi(name); 
-	auto symbol = SymbolFactory::GetInstance()->CreateConstIntSymbol(value);
-	SymbolTable::GetInstance()->AddSymbol(symbol);
+		
+	// try to find constant in table
+	std::string tmpStr(name); 
+	tmpStr.insert(0, "const"); // this because of naming	
+	symbol = SymbolTable::GetInstance()->Find(tmpStr);
+	if (symbol == 0) {
+		int value = std::stoi(name); 
+		symbol = SymbolFactory::GetInstance()->CreateConstIntSymbol(value);	
+		SymbolTable::GetInstance()->AddSymbol(symbol);
+	}	
+	dacEntry = symbol;
 	.)
 .
 
 
 MIEC = "PROGRAM" ident
-	(. SymbolFactory symbolFactory; .)		
+	(. SymbolFactory symbolFactory; 		
+	.)		
 	[VarDecl]
 	"BEGIN"
 		Statements
@@ -62,6 +76,7 @@ VarDecl (. std::string name; size_t offset = 0; .)
 			auto symbol = SymbolFactory::GetInstance()->CreateIntegerVariable(offset, name);
 			if (!SymbolTable::GetInstance()->AddSymbol(symbol)) {
 				std::cout << std::string("variable " + name + " already declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
+				delete symbol;
 			}
 		.) 
 		{Ident<name> ":" "Integer" ";"
@@ -69,32 +84,46 @@ VarDecl (. std::string name; size_t offset = 0; .)
 				auto symbol = SymbolFactory::GetInstance()->CreateIntegerVariable(offset, name);
 				if(!SymbolTable::GetInstance()->AddSymbol(symbol)) {
 					std::cout << std::string("variable " + name + " already declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
+					delete symbol;
 				}
 			.)
 		}
 		"END_VAR".
 
 Statements = Stat {Stat}.
-Stat (. std::string name; .) 
-	= Ident<name> ":=" Expr ";" (. auto symbol = SymbolTable::GetInstance()->Find(name);					 
+Stat (. std::string name; IDACEntry* result; .) 
+	= Ident<name> ":=" Expr<result> ";" (. auto symbol = SymbolTable::GetInstance()->Find(name);					 
 					if (symbol == 0) {std::cout << std::string("variable " + name + " not declared") << " Line: " << t->line << " Column: " << t->col << std::endl;} .) 
-	| "print(" Expr ")" ";"
+	| "print(" Expr<result> ")" ";"
 	| "WHILE" Condition "DO" Statements "END"
 	| "IF" Condition "THEN" Statements ("END"
 	| "ELSE" Statements "END").
 
-Expr = Term {("+" | "-") Term}.
-Term = Fact {("*" | "/") Fact}.
-Fact (. std::string name; .)
-=	Ident<name>  (. auto symbol = SymbolTable::GetInstance()->Find(name); 
-					if (symbol == 0) {
+Expr<IDACEntry* &result> (. IDACEntry* tmpDACEntry1 = 0; IDACEntry* tmpDACEntry2 = 0; OpKind opKind; .)
+= Term<tmpDACEntry1>
+{("+" (. opKind = eAdd; .) | "-" (. opKind = eSubtract; .)) Term<tmpDACEntry2> (. tmpDACEntry1 = DACGenerator::GetInstance()->AddStatement(opKind, tmpDACEntry1, tmpDACEntry2); .)    }
+(. result = tmpDACEntry1; .)
+.
+
+
+Term<IDACEntry* &result> (. IDACEntry* tmpDACEntry1 = 0; IDACEntry* tmpDACEntry2 = 0; OpKind opKind; .)
+= Fact<tmpDACEntry1> (.  .)
+{("*" (. opKind = eMultiply; .) | "/" (. opKind = eDivide; .)) Fact<tmpDACEntry2> (. tmpDACEntry1 = DACGenerator::GetInstance()->AddStatement(opKind, tmpDACEntry1, tmpDACEntry2); .)  }
+(. result = tmpDACEntry1; .)
+.
+
+Fact<IDACEntry* &result> (. std::string name; .) 
+=	Ident<name>  (. result = SymbolTable::GetInstance()->Find(name); 
+					if (result == 0) {
 						std::cout << std::string("variable " + name + " not declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
 					} 	
 				.)
 
- | Number | "(" Expr ")".
+ | Number<result> 
+ | "(" Expr<result> ")".
 
-Condition = Expr Relop Expr.
+Condition (. IDACEntry* dacEntry1 = 0; IDACEntry* dacEntry2 = 0; .)
+= Expr<dacEntry1> Relop Expr<dacEntry2>.
 Relop = "=" | "!=" | "<" | ">" | "<=" | ">=". 
 
 

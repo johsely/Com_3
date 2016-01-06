@@ -5,6 +5,7 @@
 
 #include "..\SymbolTable.h"
 #include "..\SymbolFactory.h"
+#include "..\DACGenerator.h"
 #include <string>
 #include <iostream>
 
@@ -61,15 +62,15 @@ public:
 	void SemErr(const wchar_t* msg);
 
 	void Ident(std::string &name);
-	void Number();
+	void Number(IDACEntry* &dacEntry);
 	void MIEC();
 	void VarDecl();
 	void Statements();
 	void Stat();
-	void Expr();
+	void Expr(IDACEntry* &result);
 	void Condition();
-	void Term();
-	void Fact();
+	void Term(IDACEntry* &result);
+	void Fact(IDACEntry* &result);
 	void Relop();
 
 	void Parse();

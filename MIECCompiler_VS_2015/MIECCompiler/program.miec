@@ -4,16 +4,22 @@ BEGIN_VAR
 	x : Integer;
 	variable2 : Integer;
 	variable2 : Integer;
+	y : Integer;
+	asd : Integer;
+	stat : Integer;
+	testLR : Integer;
+
 END_VAR
 
 BEGIN
 
 
-a1 := 1;
-test1 := (1 - 2);
-test := (test1 * 2);
-testLR := x + y * (2 - 4);
+(* a1 := 1*2*3; *)
+x := 2;
+i := x * 2;
+testLR :=  x + y * (2 - 4);
 
+(* 
 IF i < 2 THEN
 	stat := 1;
 END
@@ -42,5 +48,6 @@ WHILE i < 3 DO
 END 
 
 print(2);
+*)
 
 END
