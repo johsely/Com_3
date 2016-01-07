@@ -25,6 +25,7 @@ public:
 	
 	IDACEntry* AddStatement(OpKind opKind, IDACEntry* sym1);
 	IDACEntry* AddStatement(OpKind opKind, IDACEntry* sym1, IDACEntry* sym2);
+	IDACEntry* GetNext();
 
 	void Clear();
 
@@ -33,12 +34,14 @@ public:
 #endif
 
 private:
-	DACGenerator() {};
+	DACGenerator() { mLastEmptyStatement = false; };
 	DACGenerator(DACGenerator const& obj) = delete;
 	void operator=(DACGenerator const& obj) = delete;
 
+	bool mLastEmptyStatement;
+
 	static DACGenerator* DACGenerator_instance;
-	std::list<DACEntry> mStatements;
+	std::list<DACEntry*> mStatements;
 };
 
 

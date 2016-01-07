@@ -67,7 +67,8 @@ MIEC = "PROGRAM" ident
 	.)		
 	[VarDecl]
 	"BEGIN"
-		Statements
+		(. IDACEntry* dummy; .)
+		Statements<dummy>
 	"END".
 
 VarDecl (. std::string name; size_t offset = 0; .)
@@ -90,14 +91,25 @@ VarDecl (. std::string name; size_t offset = 0; .)
 		}
 		"END_VAR".
 
-Statements = Stat {Stat}.
-Stat (. std::string name; IDACEntry* result; .) 
+Statements<IDACEntry* &retIDACEntry> (. IDACEntry* dummy; .)
+= Stat<retIDACEntry> {Stat<dummy>}. // retIDACEntry the first here
+
+Stat<IDACEntry* &retIDACEntry> (. std::string name; IDACEntry* result; IDACEntry* condResult; IDACEntry* startElse; IDACEntry* dummy;  .) 
 	= Ident<name> ":=" Expr<result> ";" (. auto symbol = SymbolTable::GetInstance()->Find(name);					 
-					if (symbol == 0) {std::cout << std::string("variable " + name + " not declared") << " Line: " << t->line << " Column: " << t->col << std::endl;} .) 
-	| "print(" Expr<result> ")" ";"
-	| "WHILE" Condition "DO" Statements "END"
-	| "IF" Condition "THEN" Statements ("END"
-	| "ELSE" Statements "END").
+					if (symbol == 0) {std::cout << std::string("variable " + name + " not declared") << " Line: " << t->line << " Column: " << t->col << std::endl;} 
+					retIDACEntry = DACGenerator::GetInstance()->AddStatement(eAssign, symbol, result);
+					.) 
+	| "print(" Expr<result> ")" ";" (. retIDACEntry = DACGenerator::GetInstance()->AddStatement(ePrint, result); .)
+	| "WHILE" Condition<condResult> "DO" Statements<dummy> "END"
+	| "IF" Condition<condResult> (. retIDACEntry = DACGenerator::GetInstance()->AddStatement(eIfFalseJump, condResult, 0); .)
+	"THEN" Statements<dummy> 
+	
+	
+	
+	("END" (. ((DACEntry*)retIDACEntry)->ChangeArg2(DACGenerator::GetInstance()->GetNext()); .)
+	| "ELSE" (. DACGenerator::GetInstance()->AddStatement(eJump, 0); .)
+	 Statements<startElse> "END"  (.  .) ) 
+.
 
 Expr<IDACEntry* &result> (. IDACEntry* tmpDACEntry1 = 0; IDACEntry* tmpDACEntry2 = 0; OpKind opKind; .)
 = Term<tmpDACEntry1>
@@ -122,9 +134,18 @@ Fact<IDACEntry* &result> (. std::string name; .)
  | Number<result> 
  | "(" Expr<result> ")".
 
-Condition (. IDACEntry* dacEntry1 = 0; IDACEntry* dacEntry2 = 0; .)
-= Expr<dacEntry1> Relop Expr<dacEntry2>.
-Relop = "=" | "!=" | "<" | ">" | "<=" | ">=". 
+Condition<IDACEntry* &result> (. IDACEntry* dacEntry1 = 0; IDACEntry* dacEntry2 = 0; OpKind opKind; .)
+= Expr<dacEntry1> Relop<opKind> Expr<dacEntry2> (. result = DACGenerator::GetInstance()->AddStatement(opKind, dacEntry1, dacEntry2); .)
+.
+
+Relop<OpKind & opKind>
+ = "="  (. opKind = eIsEqual; .)
+ | "!=" (. opKind = eIsNotEqual; .)
+ | "<"  (. opKind = eIsLess; .)
+ | ">"  (. opKind = eIsGreater; .)
+ | "<=" (. opKind = eIsLessEqual; .)
+ | ">=" (. opKind = eIsGreaterEqual; .)
+ . 
 
 
 END MIEC .

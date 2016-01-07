@@ -14,16 +14,19 @@ END_VAR
 BEGIN
 
 
-(* a1 := 1*2*3; *)
+(* a1 := 1*2*3; 
 x := 2;
 i := x * 2;
 testLR :=  x + y * (2 - 4);
-
-(* 
+*)
+ 
 IF i < 2 THEN
 	stat := 1;
 END
 
+x:=2;
+
+(*
 IF i <= 3 THEN
 	asd := 2;
 END

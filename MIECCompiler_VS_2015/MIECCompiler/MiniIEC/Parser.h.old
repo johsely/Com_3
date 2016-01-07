@@ -65,13 +65,13 @@ public:
 	void Number(IDACEntry* &dacEntry);
 	void MIEC();
 	void VarDecl();
-	void Statements();
-	void Stat();
+	void Statements(IDACEntry* &retIDACEntry);
+	void Stat(IDACEntry* &retIDACEntry);
 	void Expr(IDACEntry* &result);
-	void Condition();
+	void Condition(IDACEntry* &result);
 	void Term(IDACEntry* &result);
 	void Fact(IDACEntry* &result);
-	void Relop();
+	void Relop(OpKind & opKind);
 
 	void Parse();
 

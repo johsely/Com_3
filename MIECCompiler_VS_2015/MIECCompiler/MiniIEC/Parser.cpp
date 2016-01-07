@@ -100,7 +100,8 @@ void Parser::MIEC() {
 			VarDecl();
 		}
 		Expect(4);
-		Statements();
+		IDACEntry* dummy; 
+		Statements(dummy);
 		Expect(5);
 }
 
@@ -132,15 +133,16 @@ void Parser::VarDecl() {
 		Expect(10);
 }
 
-void Parser::Statements() {
-		Stat();
+void Parser::Statements(IDACEntry* &retIDACEntry) {
+		IDACEntry* dummy; 
+		Stat(retIDACEntry);
 		while (StartOf(1)) {
-			Stat();
+			Stat(dummy);
 		}
 }
 
-void Parser::Stat() {
-		std::string name; IDACEntry* result; 
+void Parser::Stat(IDACEntry* &retIDACEntry) {
+		std::string name; IDACEntry* result; IDACEntry* condResult; IDACEntry* startElse; IDACEntry* dummy;  
 		if (la->kind == 1) {
 			Ident(name);
 			Expect(11);
@@ -148,28 +150,35 @@ void Parser::Stat() {
 			Expect(9);
 			auto symbol = SymbolTable::GetInstance()->Find(name);					 
 			if (symbol == 0) {std::cout << std::string("variable " + name + " not declared") << " Line: " << t->line << " Column: " << t->col << std::endl;} 
+			retIDACEntry = DACGenerator::GetInstance()->AddStatement(eAssign, symbol, result);
+			
 		} else if (la->kind == 12) {
 			Get();
 			Expr(result);
 			Expect(13);
 			Expect(9);
+			retIDACEntry = DACGenerator::GetInstance()->AddStatement(ePrint, result); 
 		} else if (la->kind == 14) {
 			Get();
-			Condition();
+			Condition(condResult);
 			Expect(15);
-			Statements();
+			Statements(dummy);
 			Expect(5);
 		} else if (la->kind == 16) {
 			Get();
-			Condition();
+			Condition(condResult);
+			retIDACEntry = DACGenerator::GetInstance()->AddStatement(eIfFalseJump, condResult, 0); 
 			Expect(17);
-			Statements();
+			Statements(dummy);
 			if (la->kind == 5) {
 				Get();
+				((DACEntry*)retIDACEntry)->ChangeArg2(DACGenerator::GetInstance()->GetNext()); 
 			} else if (la->kind == 18) {
 				Get();
-				Statements();
+				DACGenerator::GetInstance()->AddStatement(eJump, 0); 
+				Statements(startElse);
 				Expect(5);
+				
 			} else SynErr(31);
 		} else SynErr(32);
 }
@@ -191,11 +200,12 @@ void Parser::Expr(IDACEntry* &result) {
 		result = tmpDACEntry1; 
 }
 
-void Parser::Condition() {
-		IDACEntry* dacEntry1 = 0; IDACEntry* dacEntry2 = 0; 
+void Parser::Condition(IDACEntry* &result) {
+		IDACEntry* dacEntry1 = 0; IDACEntry* dacEntry2 = 0; OpKind opKind; 
 		Expr(dacEntry1);
-		Relop();
+		Relop(opKind);
 		Expr(dacEntry2);
+		result = DACGenerator::GetInstance()->AddStatement(opKind, dacEntry1, dacEntry2); 
 }
 
 void Parser::Term(IDACEntry* &result) {
@@ -234,30 +244,36 @@ void Parser::Fact(IDACEntry* &result) {
 		} else SynErr(33);
 }
 
-void Parser::Relop() {
+void Parser::Relop(OpKind & opKind) {
 		switch (la->kind) {
 		case 24: {
 			Get();
+			opKind = eIsEqual; 
 			break;
 		}
 		case 25: {
 			Get();
+			opKind = eIsNotEqual; 
 			break;
 		}
 		case 26: {
 			Get();
+			opKind = eIsLess; 
 			break;
 		}
 		case 27: {
 			Get();
+			opKind = eIsGreater; 
 			break;
 		}
 		case 28: {
 			Get();
+			opKind = eIsLessEqual; 
 			break;
 		}
 		case 29: {
 			Get();
+			opKind = eIsGreaterEqual; 
 			break;
 		}
 		default: SynErr(34); break;

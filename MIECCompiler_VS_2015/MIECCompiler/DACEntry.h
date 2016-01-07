@@ -15,6 +15,9 @@ enum OpKind {
 class DACEntry : public IDACEntry {
 public:
 	DACEntry(OpKind opKind, IDACEntry* arg1, IDACEntry* arg2) : mOpKind(opKind), mArg1(arg1), mArg2(arg2) {}
+	void ChangeArg1(IDACEntry* arg1) { mArg1 = arg1; }
+	void ChangeArg2(IDACEntry* arg2) { mArg2 = arg2; }
+
 
 #ifdef _DEBUG
 	void Print(std::ostream &out) const;
