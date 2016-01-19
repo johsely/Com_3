@@ -24,8 +24,6 @@ IF i < 2 THEN
 	stat := 1;
 END
 
-x:=2;
-
 (*
 IF i <= 3 THEN
 	asd := 2;

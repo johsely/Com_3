@@ -103,6 +103,7 @@ void Parser::MIEC() {
 		IDACEntry* dummy; 
 		Statements(dummy);
 		Expect(5);
+		DACGenerator::GetInstance()->AddStatement(eExit, 0, 0); 
 }
 
 void Parser::VarDecl() {
@@ -175,10 +176,10 @@ void Parser::Stat(IDACEntry* &retIDACEntry) {
 				((DACEntry*)retIDACEntry)->ChangeArg2(DACGenerator::GetInstance()->GetNext()); 
 			} else if (la->kind == 18) {
 				Get();
-				DACGenerator::GetInstance()->AddStatement(eJump, 0); 
+				DACEntry* jmpStatement = (DACEntry*)DACGenerator::GetInstance()->AddStatement(eJump, 0, 0); /* we dont know where to jump yet, -> to statement after end*/ 
 				Statements(startElse);
 				Expect(5);
-				
+				((DACEntry*)retIDACEntry)->ChangeArg2(startElse); jmpStatement->ChangeArg1(DACGenerator::GetInstance()->GetNext()); 
 			} else SynErr(31);
 		} else SynErr(32);
 }

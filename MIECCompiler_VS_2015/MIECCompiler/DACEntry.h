@@ -4,6 +4,7 @@
 
 #include "IDACEntry.h"
 #include <iostream>
+#include <string>
 
 enum OpKind {
 	eAdd, eSubtract, eMultiply, eDivide, eIsEqual, eIsLessEqual, eIsGreaterEqual,
@@ -11,12 +12,14 @@ enum OpKind {
 	eExit
 };
 
+
 #include "Object.h"
 class DACEntry : public IDACEntry {
 public:
 	DACEntry(OpKind opKind, IDACEntry* arg1, IDACEntry* arg2) : mOpKind(opKind), mArg1(arg1), mArg2(arg2) {}
 	void ChangeArg1(IDACEntry* arg1) { mArg1 = arg1; }
 	void ChangeArg2(IDACEntry* arg2) { mArg2 = arg2; }
+	void ChangeOpKind(OpKind op) { mOpKind = op; }
 
 
 #ifdef _DEBUG

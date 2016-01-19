@@ -69,7 +69,7 @@ MIEC = "PROGRAM" ident
 	"BEGIN"
 		(. IDACEntry* dummy; .)
 		Statements<dummy>
-	"END".
+	"END" (. DACGenerator::GetInstance()->AddStatement(eExit, 0, 0); .).
 
 VarDecl (. std::string name; size_t offset = 0; .)
 		= "BEGIN_VAR" 
@@ -107,8 +107,8 @@ Stat<IDACEntry* &retIDACEntry> (. std::string name; IDACEntry* result; IDACEntry
 	
 	
 	("END" (. ((DACEntry*)retIDACEntry)->ChangeArg2(DACGenerator::GetInstance()->GetNext()); .)
-	| "ELSE" (. DACGenerator::GetInstance()->AddStatement(eJump, 0); .)
-	 Statements<startElse> "END"  (.  .) ) 
+	| "ELSE" (. DACEntry* jmpStatement = (DACEntry*)DACGenerator::GetInstance()->AddStatement(eJump, 0, 0); /* we dont know where to jump yet, -> to statement after end*/ .)
+	 Statements<startElse> "END"  (. ((DACEntry*)retIDACEntry)->ChangeArg2(startElse); jmpStatement->ChangeArg1(DACGenerator::GetInstance()->GetNext()); .) ) 
 .
 
 Expr<IDACEntry* &result> (. IDACEntry* tmpDACEntry1 = 0; IDACEntry* tmpDACEntry2 = 0; OpKind opKind; .)
@@ -147,5 +147,5 @@ Relop<OpKind & opKind>
  | ">=" (. opKind = eIsGreaterEqual; .)
  . 
 
-
-END MIEC .
+ 
+END MIEC .  

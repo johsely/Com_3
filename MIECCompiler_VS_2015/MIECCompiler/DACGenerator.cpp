@@ -15,12 +15,15 @@ IDACEntry* DACGenerator::AddStatement(OpKind opKind, IDACEntry* sym1) {
 }
 
 IDACEntry* DACGenerator::AddStatement(OpKind opKind, IDACEntry* sym1, IDACEntry* sym2) {
-	auto dacEntry = new DACEntry(opKind, sym1, sym2);
+	
 	if (mLastEmptyStatement) {
-		delete mStatements.back();
-		mStatements.back() = dacEntry;
+		
+		mStatements.back()->ChangeArg1(sym1);
+		mStatements.back()->ChangeArg2(sym2);
+		mStatements.back()->ChangeOpKind(opKind);
 	}
 	else {
+		auto dacEntry = new DACEntry(opKind, sym1, sym2);
 		mStatements.push_back(dacEntry);
 	}	
 	return mStatements.back();
@@ -33,7 +36,7 @@ void DACGenerator::Clear() {
 }
 
 IDACEntry* DACGenerator::GetNext(){
-	mStatements.push_back(0);
+	mStatements.push_back(new DACEntry(eExit,0,0));
 	mLastEmptyStatement = true;
 	return mStatements.back();
 }
