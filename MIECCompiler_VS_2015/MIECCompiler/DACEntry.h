@@ -20,7 +20,9 @@ public:
 	void ChangeArg1(IDACEntry* arg1) { mArg1 = arg1; }
 	void ChangeArg2(IDACEntry* arg2) { mArg2 = arg2; }
 	void ChangeOpKind(OpKind op) { mOpKind = op; }
-
+	IDACEntry* GetArg1() { return mArg1; }
+	IDACEntry* GetArg2() { return mArg2; }
+	OpKind GetOpKind() { return mOpKind; }
 
 #ifdef _DEBUG
 	void Print(std::ostream &out) const;

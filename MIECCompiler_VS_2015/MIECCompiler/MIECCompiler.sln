@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MIECCompiler", "MIECCompiler.vcxproj", "{5CBD77A7-D6A4-468A-808E-25BC8CF15BE0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestSymbolTable", "..\TestSymbolTable\TestSymbolTable.vcxproj", "{1B2E05A4-F0E4-420D-AFEE-D892501804CB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MIECCompilerTest", "..\DACEntryTest\DACEntryTest.vcxproj", "{ADC62015-839A-49E3-87EE-DEC142B33D6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{5CBD77A7-D6A4-468A-808E-25BC8CF15BE0}.Debug|Win32.Build.0 = Debug|Win32
 		{5CBD77A7-D6A4-468A-808E-25BC8CF15BE0}.Release|Win32.ActiveCfg = Release|Win32
 		{5CBD77A7-D6A4-468A-808E-25BC8CF15BE0}.Release|Win32.Build.0 = Release|Win32
-		{1B2E05A4-F0E4-420D-AFEE-D892501804CB}.Debug|Win32.ActiveCfg = Debug|Win32
-		{1B2E05A4-F0E4-420D-AFEE-D892501804CB}.Debug|Win32.Build.0 = Debug|Win32
-		{1B2E05A4-F0E4-420D-AFEE-D892501804CB}.Release|Win32.ActiveCfg = Release|Win32
-		{1B2E05A4-F0E4-420D-AFEE-D892501804CB}.Release|Win32.Build.0 = Release|Win32
+		{ADC62015-839A-49E3-87EE-DEC142B33D6A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ADC62015-839A-49E3-87EE-DEC142B33D6A}.Debug|Win32.Build.0 = Debug|Win32
+		{ADC62015-839A-49E3-87EE-DEC142B33D6A}.Release|Win32.ActiveCfg = Release|Win32
+		{ADC62015-839A-49E3-87EE-DEC142B33D6A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

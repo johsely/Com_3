@@ -13,17 +13,24 @@ END_VAR
 
 BEGIN
 
+WHILE x < 2 DO
+	IF i > 2 THEN
+		x := 2;
+	END
+END
+
+i := 10;
 
 (* a1 := 1*2*3; 
 x := 2;
 i := x * 2;
 testLR :=  x + y * (2 - 4);
-*)
- 
-IF i < 2 THEN
-	stat := 1;
-END
 
+ 
+WHILE x < 2 DO
+	x := 1;
+END
+*)
 (*
 IF i <= 3 THEN
 	asd := 2;

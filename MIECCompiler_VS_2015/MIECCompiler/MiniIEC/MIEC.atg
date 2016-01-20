@@ -69,7 +69,7 @@ MIEC = "PROGRAM" ident
 	"BEGIN"
 		(. IDACEntry* dummy; .)
 		Statements<dummy>
-	"END" (. DACGenerator::GetInstance()->AddStatement(eExit, 0, 0); .).
+	"END" (. DACGenerator::GetInstance()->AddStatement(eExit, 0, 0); DACGenerator::GetInstance()->Finish(); .).
 
 VarDecl (. std::string name; size_t offset = 0; .)
 		= "BEGIN_VAR" 
@@ -100,7 +100,11 @@ Stat<IDACEntry* &retIDACEntry> (. std::string name; IDACEntry* result; IDACEntry
 					retIDACEntry = DACGenerator::GetInstance()->AddStatement(eAssign, symbol, result);
 					.) 
 	| "print(" Expr<result> ")" ";" (. retIDACEntry = DACGenerator::GetInstance()->AddStatement(ePrint, result); .)
-	| "WHILE" Condition<condResult> "DO" Statements<dummy> "END"
+	| "WHILE" Condition<condResult> "DO" (. retIDACEntry = DACGenerator::GetInstance()->AddStatement(eIfFalseJump, condResult, 0); .)
+	
+	Statements<dummy> (. DACGenerator::GetInstance()->AddStatement(eJump, condResult, 0); .)
+	"END" (. ((DACEntry*)retIDACEntry)->ChangeArg2(DACGenerator::GetInstance()->GetNext()); .)
+	
 	| "IF" Condition<condResult> (. retIDACEntry = DACGenerator::GetInstance()->AddStatement(eIfFalseJump, condResult, 0); .)
 	"THEN" Statements<dummy> 
 	

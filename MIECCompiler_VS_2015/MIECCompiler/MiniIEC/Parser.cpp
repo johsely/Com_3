@@ -103,7 +103,7 @@ void Parser::MIEC() {
 		IDACEntry* dummy; 
 		Statements(dummy);
 		Expect(5);
-		DACGenerator::GetInstance()->AddStatement(eExit, 0, 0); 
+		DACGenerator::GetInstance()->AddStatement(eExit, 0, 0); DACGenerator::GetInstance()->Finish(); 
 }
 
 void Parser::VarDecl() {
@@ -163,8 +163,11 @@ void Parser::Stat(IDACEntry* &retIDACEntry) {
 			Get();
 			Condition(condResult);
 			Expect(15);
+			retIDACEntry = DACGenerator::GetInstance()->AddStatement(eIfFalseJump, condResult, 0); 
 			Statements(dummy);
+			DACGenerator::GetInstance()->AddStatement(eJump, condResult, 0); 
 			Expect(5);
+			((DACEntry*)retIDACEntry)->ChangeArg2(DACGenerator::GetInstance()->GetNext()); 
 		} else if (la->kind == 16) {
 			Get();
 			Condition(condResult);
