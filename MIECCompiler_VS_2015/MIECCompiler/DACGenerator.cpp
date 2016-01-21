@@ -44,12 +44,8 @@ IDACEntry* DACGenerator::GetNext(){
 	return mStatements.back();
 }
 
-// Puts DACGenerator in valid state
-void DACGenerator::Finish() {
-	if (mLastEmptyStatement) {
-		// remove last statement
-		//delete mStatements.back();
-	}
+std::list<DACEntry*> DACGenerator::GetStatements() {
+	return mStatements;
 }
 
 

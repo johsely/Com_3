@@ -26,9 +26,9 @@ public:
 	IDACEntry* AddStatement(OpKind opKind, IDACEntry* sym1);
 	IDACEntry* AddStatement(OpKind opKind, IDACEntry* sym1, IDACEntry* sym2);
 	IDACEntry* GetNext();
-	void Finish();
-
+		
 	void Clear();
+	std::list<DACEntry*> GetStatements();
 
 #ifdef _DEBUG
 	void Print(std::ostream& out);

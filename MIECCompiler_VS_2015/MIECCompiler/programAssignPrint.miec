@@ -1,0 +1,10 @@
+PROGRAM myprog
+BEGIN_VAR
+	x : Integer;
+END_VAR
+
+BEGIN
+	x := 3;
+	print(x);
+END
+

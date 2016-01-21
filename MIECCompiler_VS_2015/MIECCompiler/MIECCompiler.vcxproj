@@ -80,6 +80,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CodeGenerator.cpp" />
+    <ClCompile Include="CodeGenProl16.cpp" />
     <ClCompile Include="DACEntry.cpp" />
     <ClCompile Include="DACGenerator.cpp" />
     <ClCompile Include="MiniIEC\main.cpp" />
@@ -98,13 +100,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseType.h" />
+    <ClInclude Include="CodeGenerator.h" />
+    <ClInclude Include="CodeGenProl16.h" />
     <ClInclude Include="ConstIntSymbol.h" />
     <ClInclude Include="DACEntry.h" />
     <ClInclude Include="DACGenerator.h" />
+    <ClInclude Include="GlobalDef.h" />
     <ClInclude Include="IDACEntry.h" />
     <ClInclude Include="MiniIEC\Parser.h" />
     <ClInclude Include="MiniIEC\Scanner.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="RegisterAdmin.h" />
     <ClInclude Include="Symbol.h" />
     <ClInclude Include="SymbolFactory.h" />
     <ClInclude Include="SymbolTable.h" />
@@ -114,6 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="program.miec" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="programAssignPrint.miec" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

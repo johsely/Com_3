@@ -80,5 +80,8 @@
     <ClCompile Include="..\MIECCompiler\SymbolTable.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="RegisterAdminTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

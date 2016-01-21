@@ -108,6 +108,8 @@ void Parser::MIEC() {
 
 void Parser::VarDecl() {
 		std::string name; size_t offset = 0; 
+		Symbol* symbol = SymbolFactory::GetInstance()->CreateConstIntSymbol(0);
+		SymbolTable::GetInstance()->AddSymbol(symbol);	  /* add constant 0 to initialize Integers*/ 
 		Expect(6);
 		Ident(name);
 		Expect(7);
@@ -117,6 +119,10 @@ void Parser::VarDecl() {
 		if (!SymbolTable::GetInstance()->AddSymbol(symbol)) {
 			std::cout << std::string("variable " + name + " already declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
 			delete symbol;
+		}
+		else {
+			auto constNull = SymbolTable::GetInstance()->Find("const0");
+			DACGenerator::GetInstance()->AddStatement(eAssign, symbol , constNull);
 		}
 		
 		while (la->kind == 1) {

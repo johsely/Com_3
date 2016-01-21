@@ -12,6 +12,7 @@
 #include "../SymbolTable.h"
 #include "../DACGenerator.h"
 #include "vld.h"
+#include "../CodeGenerator.h"
 
 using namespace std;
 
@@ -43,6 +44,16 @@ int main(int argc, char* argv[])
 				SymbolTable::GetInstance()->PrintTable();
 				DACGenerator::GetInstance()->Print(std::cout);
 				
+				
+				// GenerateCode and write to hex file
+				auto dacList = DACGenerator::GetInstance()->GetStatements();
+				CodeGenerator codeGen(dacList);
+					
+				ofstream hexFile(fileNameStr.substr(0, fileNameStr.rfind(".")) +".iex");
+				codeGen.GenerateCode(hexFile);
+
+
+
 				fileStream << fileNameStr;
 				if (parser->errors->count == 0) {
 					fileStream << ": OK" << endl;

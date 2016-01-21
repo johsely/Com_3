@@ -39,6 +39,12 @@
     <ClCompile Include="DACGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CodeGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeGenProl16.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniIEC\Parser.h">
@@ -83,6 +89,18 @@
     <ClInclude Include="IDACEntry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RegisterAdmin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeGenProl16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalDef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="MiniIEC\MIEC.atg">
@@ -93,5 +111,10 @@
     <Text Include="program.miec">
       <Filter>Resource Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="programAssignPrint.miec">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

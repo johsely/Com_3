@@ -103,11 +103,13 @@ void Parser::MIEC() {
 		IDACEntry* dummy; 
 		Statements(dummy);
 		Expect(5);
-		DACGenerator::GetInstance()->AddStatement(eExit, 0, 0); DACGenerator::GetInstance()->Finish(); 
+		DACGenerator::GetInstance()->AddStatement(eExit, 0, 0); 
 }
 
 void Parser::VarDecl() {
 		std::string name; size_t offset = 0; 
+		auto constInt0 = SymbolFactory::GetInstance()->CreateConstIntSymbol(0);
+		SymbolTable::GetInstance()->AddSymbol(constInt0);	  /* add constant 0 to initialize Integers*/ 
 		Expect(6);
 		Ident(name);
 		Expect(7);
@@ -117,6 +119,10 @@ void Parser::VarDecl() {
 		if (!SymbolTable::GetInstance()->AddSymbol(symbol)) {
 			std::cout << std::string("variable " + name + " already declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
 			delete symbol;
+		}
+		else {
+			auto constNull = SymbolTable::GetInstance()->Find("const0");
+			DACGenerator::GetInstance()->AddStatement(eAssign, symbol , constNull);
 		}
 		
 		while (la->kind == 1) {

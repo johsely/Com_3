@@ -69,15 +69,22 @@ MIEC = "PROGRAM" ident
 	"BEGIN"
 		(. IDACEntry* dummy; .)
 		Statements<dummy>
-	"END" (. DACGenerator::GetInstance()->AddStatement(eExit, 0, 0); DACGenerator::GetInstance()->Finish(); .).
+	"END" (. DACGenerator::GetInstance()->AddStatement(eExit, 0, 0); .).
 
-VarDecl (. std::string name; size_t offset = 0; .)
+VarDecl (. std::string name; size_t offset = 0; 
+		auto constInt0 = SymbolFactory::GetInstance()->CreateConstIntSymbol(0);
+		SymbolTable::GetInstance()->AddSymbol(constInt0);	  /* add constant 0 to initialize Integers*/ .)
+		
 		= "BEGIN_VAR" 
 		Ident<name> ":" "Integer" ";" (. 		
 			auto symbol = SymbolFactory::GetInstance()->CreateIntegerVariable(offset, name);
 			if (!SymbolTable::GetInstance()->AddSymbol(symbol)) {
 				std::cout << std::string("variable " + name + " already declared") << " Line: " << t->line << " Column: " << t->col << std::endl;
 				delete symbol;
+			}
+			else {
+				auto constNull = SymbolTable::GetInstance()->Find("const0");
+				DACGenerator::GetInstance()->AddStatement(eAssign, symbol , constNull);
 			}
 		.) 
 		{Ident<name> ":" "Integer" ";"
