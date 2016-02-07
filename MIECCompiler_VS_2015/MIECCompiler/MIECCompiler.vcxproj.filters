@@ -45,6 +45,9 @@
     <ClCompile Include="CodeGenProl16.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RegisterAdmin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniIEC\Parser.h">
@@ -101,6 +104,12 @@
     <ClInclude Include="GlobalDef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Register.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TempSymbol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="MiniIEC\MIEC.atg">
@@ -114,6 +123,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="programAssignPrint.miec">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="programSimple.miec">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

@@ -108,8 +108,8 @@ void Parser::MIEC() {
 
 void Parser::VarDecl() {
 		std::string name; size_t offset = 0; 
-		Symbol* symbol = SymbolFactory::GetInstance()->CreateConstIntSymbol(0);
-		SymbolTable::GetInstance()->AddSymbol(symbol);	  /* add constant 0 to initialize Integers*/ 
+		auto constInt0 = SymbolFactory::GetInstance()->CreateConstIntSymbol(0);
+		SymbolTable::GetInstance()->AddSymbol(constInt0);	  /* add constant 0 to initialize Integers*/ 
 		Expect(6);
 		Ident(name);
 		Expect(7);

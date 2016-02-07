@@ -24,11 +24,16 @@ public:
 	IDACEntry* GetArg2() { return mArg2; }
 	OpKind GetOpKind() { return mOpKind; }
 
+	void SetTmpResult(int reg) { indexTmpResult = reg;}
+	int GetTmpResult() { return indexTmpResult; }
+
+
 #ifdef _DEBUG
 	void Print(std::ostream &out) const;
 #endif
 
 private:
+	int indexTmpResult;
 	OpKind mOpKind;
 	IDACEntry* mArg1;
 	IDACEntry* mArg2;

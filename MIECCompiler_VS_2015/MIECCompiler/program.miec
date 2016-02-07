@@ -3,7 +3,6 @@ BEGIN_VAR
 	i : Integer;
 	x : Integer;
 	variable2 : Integer;
-	variable2 : Integer;
 	y : Integer;
 	asd : Integer;
 	stat : Integer;
@@ -13,6 +12,9 @@ END_VAR
 
 BEGIN
 
+x := 3 + 2;
+
+(*
 WHILE x < 2 DO
 	IF i > 2 THEN
 		x := 2;
@@ -21,7 +23,7 @@ END
 
 i := 10;
 
-(* a1 := 1*2*3; 
+ a1 := 1*2*3; 
 x := 2;
 i := x * 2;
 testLR :=  x + y * (2 - 4);
