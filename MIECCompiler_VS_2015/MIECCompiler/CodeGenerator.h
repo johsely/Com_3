@@ -1,4 +1,11 @@
-
+/**
+* @file   CodeGenerator.h
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  machine code generation. creates machine code from a list of Dac entries by using CodeGenProl16.
+*
+*
+*/
 
 
 #include "Object.h"

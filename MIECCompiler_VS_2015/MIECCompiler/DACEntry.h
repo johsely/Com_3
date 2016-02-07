@@ -1,3 +1,11 @@
+/**
+* @file   DACEntry.h
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  DacEntry class, used for one DAC operation. 
+*
+*
+*/
 #ifndef MIEC_DAC_ENTRY_H
 #define MIEC_DAC_ENTRY_H
 

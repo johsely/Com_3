@@ -1,3 +1,11 @@
+/**
+* @file   Main.cpp
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  Main entry point
+*
+*
+*/
 #include "Stdio.h"
 
 //#include "SymbolTable.h"

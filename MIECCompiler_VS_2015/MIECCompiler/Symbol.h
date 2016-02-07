@@ -1,3 +1,11 @@
+/**
+* @file   Symbol.h
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  Specialization of IDACEntry and Baseclass for other symbols
+*
+*
+*/
 #ifndef MIEC_SYMBOL_H
 #define MIEC_SYMBOL_H
 

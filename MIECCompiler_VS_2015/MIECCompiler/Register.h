@@ -1,3 +1,11 @@
+/**
+* @file   Register.h
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  Register class
+*
+*
+*/
 #ifndef MIEC_REGISTER_H
 #define MIEC_REGISTER_H
 

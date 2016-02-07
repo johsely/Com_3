@@ -1,8 +1,17 @@
+/**
+* @file   DACEntry.h
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  DACEntry Implementation
+*
+*
+*/
 #include "DACEntry.h"
 #include <utility>
 
 using namespace std;
 
+/** Transform Opkind enum into string */
 std::string GetOpKindStr(OpKind opKind) {
 	switch (opKind)
 	{

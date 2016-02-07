@@ -1,3 +1,11 @@
+/**
+* @file   CodeGenerator.cpp
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  Implementation of CodeGenerator Class. 
+*
+*
+*/
 #include "CodeGenerator.h"
 #include <cassert>
 #include "Symbol.h"
@@ -7,7 +15,7 @@
 #include <iostream>
 
 using namespace std;
-
+/** initialize Register admin and copy daclist */
 CodeGenerator::CodeGenerator(TDACList dacList)
 {
 	mpGenProl16 = new MIEC::CodeGenProl16();
@@ -15,11 +23,11 @@ CodeGenerator::CodeGenerator(TDACList dacList)
 	mpRegAdmin = std::make_unique<RegisterAdmin>(RegisterAdmin());
 	copy(dacList.begin(), dacList.end(), back_inserter(mDACList));
 }
-
+/** mandatory cleanup */
 CodeGenerator::~CodeGenerator(){
 	delete mpGenProl16;
 }
-
+/** loops through all DacEntries and Creates machineCode for each operation */
 void CodeGenerator::GenerateCode(std::ostream& os) {		
 	for (auto x : mDACList){
 		auto opKind = x->GetOpKind();
@@ -70,7 +78,7 @@ void CodeGenerator::GenerateCode(std::ostream& os) {
 
 }
 
-// returns the register number, where the result is stored
+/** returns the register number, where the result is stored */
 int EvaluateArgument(IDACEntry* dacEntry) {
 	
 
@@ -78,7 +86,7 @@ int EvaluateArgument(IDACEntry* dacEntry) {
 	return 1;
 
 }
-
+/** creates code for assign operation */
 void CodeGenerator::OperationAssign(DACEntry* apDacEntry) {
 	assert(apDacEntry->GetOpKind() == eAssign);
 	
@@ -86,19 +94,19 @@ void CodeGenerator::OperationAssign(DACEntry* apDacEntry) {
 	int regAddress = -1;
 	int regResult = -1;
 
-	// get left side, must be variable!
+	/** get left side, must be variable! */
 	auto left = dynamic_cast<VarSymbol*>(apDacEntry->GetArg1());
 	if (left == nullptr){
 		throw std::string("arg1 of assign is no variable");
 	}
 	else {
-		// get the variable from a register or have to load it?
-		regAddress = mpRegAdmin->AssignRegister(left); // maybe just getregister
+		/** get the variable from a register or have to load it? */
+		regAddress = mpRegAdmin->AssignRegister(left); /** maybe just getregister */
 		size_t address = left->GetOffset();
 		mpGenProl16->LoadI(regAddress, address);
 	}
 
-	// get the right side, we need a register where the calculated value is inside
+	/** get the right side, we need a register where the calculated value is inside */
 
 
 	auto rightVar = dynamic_cast<VarSymbol*>(apDacEntry->GetArg2());
@@ -106,15 +114,15 @@ void CodeGenerator::OperationAssign(DACEntry* apDacEntry) {
 	auto rightDAC = dynamic_cast<DACEntry*>(apDacEntry->GetArg2());
 	
 	if (rightVar != nullptr){
-		// load variable
+		/** load variable */
 
 
 	}
 	else if (rightIntConst != nullptr) {
-		// load immediate in register
+		/** load immediate in register */
 	}
 	else if (rightDAC != nullptr) {
-		// get the register where the result is stored
+		/** get the register where the result is stored */
 		regResult = rightDAC->GetTmpResult();
 		
 		mpGenProl16->Store(regResult,regAddress);
@@ -127,7 +135,7 @@ void CodeGenerator::OperationAssign(DACEntry* apDacEntry) {
 
 }
 
-
+/** creates code for print operation */
 void CodeGenerator::OperationPrint(DACEntry* apDacEntry) {
 	assert(apDacEntry->GetOpKind() == ePrint);
 	WORD adress = 0;
@@ -140,7 +148,7 @@ void CodeGenerator::OperationPrint(DACEntry* apDacEntry) {
 
 }
 
-
+/** creates code for add operation */
 void CodeGenerator::OperationAdd(DACEntry* apDacEntry) {
 	auto constInt1 = dynamic_cast<ConstIntSymbol*>(apDacEntry->GetArg1());
 	auto constInt2 = dynamic_cast<ConstIntSymbol*>(apDacEntry->GetArg2());
@@ -170,3 +178,119 @@ void CodeGenerator::OperationAdd(DACEntry* apDacEntry) {
 
 
 }
+
+/** creates code for sub operation */
+void CodeGenerator::OperationSubtract(DACEntry* apDacEntry) {
+	auto constInt1 = dynamic_cast<ConstIntSymbol*>(apDacEntry->GetArg1());
+	auto constInt2 = dynamic_cast<ConstIntSymbol*>(apDacEntry->GetArg2());
+
+	if (constInt1 != nullptr && constInt2 != nullptr) {
+		int reg1 = mpRegAdmin->GetRegister();
+		int reg2 = mpRegAdmin->GetRegister();
+		int regResult = -1;
+
+		// load const int symbols
+		// add stuff
+		mpGenProl16->LoadI(reg1, constInt1->GetValue());
+		mpGenProl16->LoadI(reg2, constInt2->GetValue());
+		mpGenProl16->Sub(reg1, reg2);
+
+
+
+		// there is a reg where the result is in
+		regResult = mpRegAdmin->AssignRegister(apDacEntry);
+		mpGenProl16->Move(regResult, reg1);
+		apDacEntry->SetTmpResult(regResult);
+
+	}
+	else {
+		cout << "error sub" << endl;
+	}
+}
+ 
+
+/** creates code for mult operation */
+/*void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
+ {
+	 int regA = mpRegAdmin->GetRegister(apDacEntry->GetArg1()); // multiplicand
+	 int regB = mpRegAdmin->GetRegister(apDacEntry->GetArg2()); // multiplier
+	 int regJmp = mpRegAdmin->GetRegister(); // used for jumps
+	 int regResult = mpRegAdmin->GetRegister(); // will contain result
+	 mpGenProl16->LoadI(regResult, 0); //init
+	 WORD codePosStart = mpGenProl16->GetCodePosition(); //start of loop begin
+	 int helpReg = mpRegAdmin->GetRegister();
+	 mpGenProl16->LoadI(helpReg, 0);
+	 mpGenProl16->Comp(regB, helpReg); //compare: multiplier != 0
+	 WORD jumpData1 = mpGenProl16->LoadI(regJmp, 0); //stores jump address of while-statement
+	 mpGenProl16->JumpZ(regJmp); //jump if zero bit is set (multiplier = 0)
+	 mpGenProl16->ShR(regB); //multiplier = mulitiplier >> 1
+	
+	 WORD jumpData2 = mpGenProl16->LoadI(regJmp, 0); //stores jump address of if-statement
+	
+		 //jump if carry bit is set ( multiplier = 3 -> 011 >> 1 = 001 (carry bit = 1) )
+		 mpGenProl16->JumpC(regJmp);
+	 mpGenProl16->ShL(regA); //multiplicand = multiplicand << 1
+	 mpGenProl16->LoadI(regJmp, codePosStart); //prepeare jump address
+	 mpGenProl16->Jump(regJmp); //jump to begin of while-statement
+	 //sets jump address for if-statement
+	 mpGenProl16->SetAddress(jumpData2, mpGenProl16->GetCodePosition());
+	 mpGenProl16->Add(regResult, regA); //adds multiplicand to result register
+	
+	 mpGenProl16->ShL(regA); //multiplicand = multiplicand << 1
+	 mpGenProl16->LoadI(regJmp, codePosStart); //prepeare jump address
+	 mpGenProl16->Jump(regJmp); //jump to begin of while-statement
+	
+	 //sets jump address for end of while-statement
+	 mpGenProl16->SetAddress(jumpData1, mpGenProl16->GetCodePosition());
+	
+	 // regResult contains result of multiplication -> assign to DAC-Entry
+	 mpRegAdmin->AssignRegister(apDacEntry);
+	
+	 // free all other registers
+	 mpRegAdmin->FreeRegister(regA);
+	 mpRegAdmin->FreeRegister(regB);
+	 mpRegAdmin->FreeRegister(regJmp);
+	 mpRegAdmin->FreeRegister(helpReg);
+
+}void CodeGenerator::OperationDivide(DACEntry* apDacEntry)
+ {
+ int regA = mpRegAdmin->GetRegister(apDacEntry->GetArg1()); // dividend
+ int regB = mpRegAdmin->GetRegister(apDacEntry->GetArg2()); // divisor
+ int regJmp = mpRegAdmin->GetRegister(); // used for jumps
+ int regRemainder = mpRegAdmin->GetRegister(); // remainder
+ mpGenProl16->LoadI(regRemainder, 0);
+ int regBits = mpRegAdmin->GetRegister(); // bit counter
+ mpGenProl16->LoadI(regBits, 16);
+ WORD codePosStart = mpGenProl16->GetCodePosition();
+ mpGenProl16->ShL(regA);
+ mpGenProl16->ShLC(regRemainder);
+ WORD jumpData1 = mpGenProl16->LoadI(regJmp, 0);
+ mpGenProl16->JumpC(regJmp);
+ mpGenProl16->Comp(regB, regRemainder);
+ mpGenProl16->JumpC(regJmp);
+ mpGenProl16->JumpZ(regJmp);
+ WORD jumpData2 = mpGenProl16->LoadI(regJmp, 0);
+ mpGenProl16->Jump(regJmp);
+ mpGenProl16->SetAddress(jumpData1, mpGenProl16->GetCodePosition());
+ mpGenProl16->Sub(regRemainder, regB);
+ RegNr helpReg = mpRegAdmin->GetRegister();
+ mpGenProl16->LoadI(helpReg, 1);
+ mpGenProl16->Or(regA, helpReg);
+ mpGenProl16->SetAddress(jumpData2, mpGenProl16->GetCodePosition());
+ mpGenProl16->Dec(regBits);
+ WORD jumpData3 = mpGenProl16->LoadI(regJmp, 0);
+ mpGenProl16->JumpZ(regJmp);
+ mpGenProl16->LoadI(regJmp, codePosStart);
+ mpGenProl16->Jump(regJmp);
+ mpGenProl16->SetAddress(jumpData3, mpGenProl16->GetCodePosition());
+
+ // regA contains result of division -> assign to DAC-Entry
+ mpRegAdmin->AssignRegister(apDacEntry);
+
+ // free all other registers
+ mpRegAdmin->FreeRegister(regB);
+ mpRegAdmin->FreeRegister(regJmp);
+ mpRegAdmin->FreeRegister(regRemainder);
+ mpRegAdmin->FreeRegister(regBits);
+ mpRegAdmin->FreeRegister(helpReg);
+}*/

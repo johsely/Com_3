@@ -1,3 +1,11 @@
+/**
+* @file   RegisterAdmin.h
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  Register Admin header
+*
+*
+*/
 #ifndef MIEC_REGISTER_ADMIN
 #define MIEC_REGISTER_ADMIN
 

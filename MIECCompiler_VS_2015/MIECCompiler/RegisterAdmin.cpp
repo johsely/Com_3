@@ -1,3 +1,11 @@
+/**
+* @file   RegisterAdmin.cpp
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  Register Admin implementation
+*
+*
+*/
 #include "RegisterAdmin.h"
 
 

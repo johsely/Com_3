@@ -1,3 +1,11 @@
+/**
+* @file   VarSymbol.h
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  Varsymbol class
+*
+*
+*/
 #ifndef MIEC_VARSYMBOL_H
 #define MIEC_VARSYMBOL_H
 

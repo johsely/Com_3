@@ -1,3 +1,11 @@
+/**
+* @file   DACGenerator.h
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  DAC Generator: creates a list of DACEntries with all statements from the code
+*
+*
+*/
 #ifndef MIEC_DAC_GENERATOR
 #define MIEC_DAC_GENERATOR
 

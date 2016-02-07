@@ -1,3 +1,11 @@
+/**
+* @file   SymbolTable.h
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  Symbol Table class
+*
+*
+*/
 #ifndef MIEC_SYMBOL_TABLE_H
 #define MIEC_SYMBOL_TABLE_H
 

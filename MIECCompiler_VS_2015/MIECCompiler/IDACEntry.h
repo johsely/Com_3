@@ -1,3 +1,11 @@
+/**
+* @file   IDACEntry.h
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  IDACEntry base class for DAC and Symbols
+*
+*
+*/
 #ifndef MIEC_IDACENTRY_H
 #define MIEC_IDACENTRY_H
 
