@@ -58,6 +58,7 @@ void CodeGenerator::GenerateCode(std::ostream& os) {
 		{
 		case eAdd:
 			OperationAdd(x);
+			break;
 		case eSubtract:
 			OperationSubtract(x);
 			break;
@@ -296,7 +297,10 @@ void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
 	 mpRegAdmin->FreeRegister(helpReg);
 	 apDacEntry->SetTmpResult(regResult);
 
-}void CodeGenerator::OperationDivide(DACEntry* apDacEntry)
+}
+
+
+void CodeGenerator::OperationDivide(DACEntry* apDacEntry)
  {
 	WORD codePos = mpGenProl16->GetCodePosition();
 	apDacEntry->SetAdress(codePos);
@@ -345,7 +349,9 @@ void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
 	 mpRegAdmin->FreeRegister(helpReg);
 
 	 
-}
+}
+
+
 void CodeGenerator::OperationJump(DACEntry* apDacEntry, TUnresolvedJumps& arUnresolvedJumps){
 
 	auto jumpDest = dynamic_cast<DACEntry*>(apDacEntry->GetArg1());
@@ -368,9 +374,9 @@ void CodeGenerator::OperationConditionalJump(DACEntry*	apDacEntry, TUnresolvedJu
 	mpGenProl16->LoadI(regJumpAdress, jumpDst->GetAdress());
 
 	if (apDacEntry->GetOpKind() == eIfJump) {
-		
-		
-		
+
+
+
 		auto condOp = dynamic_cast<DACEntry*>(apDacEntry->GetArg1()); // what conditional Operation
 		auto opKindCond = condOp->GetOpKind();
 		switch (opKindCond)
