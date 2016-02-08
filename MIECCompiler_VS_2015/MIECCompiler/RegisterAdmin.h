@@ -31,7 +31,7 @@ public:
 	* <param name="codeGen">   Register Admin needs the codegen for getRegister. </param>
 
 	*/
-	RegisterAdmin(MIEC::CodeGenProl16 &codeGen);
+	RegisterAdmin(MIEC::CodeGenProl16 *codeGen);
 	
 	/**
 	* <summary>  Get Register without Dac Entry mostly internally used . </summary>
@@ -62,7 +62,7 @@ public:
 private:
 	TRegister mRegisters[PROL16_REGNUM];
 
-	MIEC::CodeGenProl16 & mpGenProl16;
+	MIEC::CodeGenProl16 * mpGenProl16;
 	//std::map<Register, Symbol*> mRegisters;
 
 };

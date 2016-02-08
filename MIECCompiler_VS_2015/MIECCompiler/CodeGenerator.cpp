@@ -20,7 +20,7 @@ CodeGenerator::CodeGenerator(TDACList dacList)
 {
 	mpGenProl16 = new MIEC::CodeGenProl16();
 	//mpGenProl16 = std::make_unique<MIEC::CodeGenProl16>(MIEC::CodeGenProl16()); // Does not work with unique pointer
-	RegisterAdmin regadmin(*mpGenProl16);
+	RegisterAdmin regadmin(mpGenProl16);
 	mpRegAdmin = std::make_unique<RegisterAdmin>(regadmin);
 	copy(dacList.begin(), dacList.end(), back_inserter(mDACList));
 }
@@ -124,6 +124,8 @@ int EvaluateArgument(IDACEntry* dacEntry) {
 }
 /** creates code for assign operation */
 void CodeGenerator::OperationAssign(DACEntry* apDacEntry) {
+
+
 	assert(apDacEntry->GetOpKind() == eAssign);
 	
 	WORD codePos = mpGenProl16->GetCodePosition();
@@ -184,7 +186,7 @@ void CodeGenerator::OperationAssign(DACEntry* apDacEntry) {
 
 	mpRegAdmin->FreeRegister(regAddress);
 	
-
+	
 
 }
 

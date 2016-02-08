@@ -13,7 +13,7 @@
 
 
 /**constructor*/
-RegisterAdmin::RegisterAdmin(MIEC::CodeGenProl16 & codeGen) : mpGenProl16(codeGen) {
+RegisterAdmin::RegisterAdmin(MIEC::CodeGenProl16 * codeGen) : mpGenProl16(codeGen) {
 
 	// fill map with register and pointers to zero
 	//for (int i = 0; i < PROL16_REGNUM; i++) {
@@ -31,7 +31,7 @@ int RegisterAdmin::GetRegister() {
 			return i;
 		}
 	}
-
+	return -1;
 }
 /** getregister with DACEntry */
 int RegisterAdmin::GetRegister(IDACEntry* dacEntry) {
@@ -44,7 +44,8 @@ int RegisterAdmin::GetRegister(IDACEntry* dacEntry) {
 	int reg = GetRegister();
 
 	if (constInt != nullptr) {
-		mpGenProl16.LoadI(reg, constInt->GetValue());
+		mpGenProl16->LoadI(reg, constInt->GetValue());
+		mRegisters[reg].connected = dacEntry;
 		return reg;
 
 	}
@@ -54,9 +55,10 @@ int RegisterAdmin::GetRegister(IDACEntry* dacEntry) {
 	if (Var1 != nullptr) {
 		
 		int destination_reg = GetRegister();
-		mpGenProl16.LoadI(destination_reg, Var1->GetOffset());
-		mpGenProl16.Load(reg, destination_reg);
+		mpGenProl16->LoadI(destination_reg, Var1->GetOffset());
+		mpGenProl16->Load(reg, destination_reg);
 		FreeRegister(destination_reg);
+		mRegisters[reg].connected = dacEntry;
 		return reg;
 	}
 	/**try dacEntry cast*/
@@ -65,6 +67,8 @@ int RegisterAdmin::GetRegister(IDACEntry* dacEntry) {
 
 		return DAC1->GetTmpResult();
 	}
+
+	
 
 
 	std::cout << "ERROR in RegAdmin GetRegister: incorrect IDAC"<<std::endl;

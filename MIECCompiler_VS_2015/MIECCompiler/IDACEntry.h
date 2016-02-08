@@ -15,6 +15,8 @@
 /** <summary>  The base class for DAC entries and Symbols. </summary> */
 class IDACEntry : public Object {
 public:
+	virtual ~IDACEntry() {}
+
 	/**
 	* <summary>  Print function no implementation -->virtual. </summary>
 	*
