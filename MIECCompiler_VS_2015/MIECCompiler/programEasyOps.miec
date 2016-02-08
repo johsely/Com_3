@@ -5,9 +5,8 @@ BEGIN_VAR
 END_VAR
 
 BEGIN
-	x :=  3 + y;
-	y :=  3 - y;
-	
+	x :=  10 + y - x;
+	y :=  10 - x;
 	print(x);
 END
 

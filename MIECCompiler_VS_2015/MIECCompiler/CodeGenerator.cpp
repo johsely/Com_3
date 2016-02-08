@@ -37,8 +37,10 @@ void CodeGenerator::GenerateCode(std::ostream& os) {
 		case eAdd:
 			OperationAdd(x);
 		case eSubtract:
+			OperationSubtract(x);
 			break;
 		case eMultiply:
+			OperationMultiply(x);
 			break;
 		case eDivide:
 			break;
@@ -162,6 +164,9 @@ void CodeGenerator::OperationAdd(DACEntry* apDacEntry) {
 	regResult = mpRegAdmin->AssignRegister(apDacEntry);
 	mpGenProl16->Move(regResult, reg1);		
 	apDacEntry->SetTmpResult(regResult);
+	mpRegAdmin->FreeRegister(reg1);
+	mpRegAdmin->FreeRegister(reg2);
+
 }
 
 /** creates code for sub operation */
@@ -176,6 +181,8 @@ void CodeGenerator::OperationSubtract(DACEntry* apDacEntry) {
 	regResult = mpRegAdmin->AssignRegister(apDacEntry);
 	mpGenProl16->Move(regResult, reg1);
 	apDacEntry->SetTmpResult(regResult);
+	mpRegAdmin->FreeRegister(reg1);
+	mpRegAdmin->FreeRegister(reg2);
 
 }
  
@@ -222,6 +229,7 @@ void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
 	 mpRegAdmin->FreeRegister(regB);
 	 mpRegAdmin->FreeRegister(regJmp);
 	 mpRegAdmin->FreeRegister(helpReg);
+	 apDacEntry->SetTmpResult(regResult);
 
 }void CodeGenerator::OperationDivide(DACEntry* apDacEntry)
  {
@@ -264,6 +272,8 @@ void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
 	 mpRegAdmin->FreeRegister(regRemainder);
 	 mpRegAdmin->FreeRegister(regBits);
 	 mpRegAdmin->FreeRegister(helpReg);
+	 apDacEntry->SetTmpResult(regA);
+	 
 }
 void CodeGenerator::OperationJump(DACEntry* apDacEntry, TUnresolvedJumps& arUnresolvedJumps){
 
