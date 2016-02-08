@@ -43,6 +43,7 @@ void CodeGenerator::GenerateCode(std::ostream& os) {
 			OperationMultiply(x);
 			break;
 		case eDivide:
+			OperationDivide(x);
 			break;
 		case eIsEqual:
 			break;
@@ -193,7 +194,8 @@ void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
 	 int regA = mpRegAdmin->GetRegister(apDacEntry->GetArg1()); // multiplicand
 	 int regB = mpRegAdmin->GetRegister(apDacEntry->GetArg2()); // multiplier
 	 int regJmp = mpRegAdmin->GetRegister(); // used for jumps
-	 int regResult = mpRegAdmin->GetRegister(); // will contain result
+	 // regResult contains result of multiplication -> assign to DAC-Entry
+	 int regResult = mpRegAdmin->AssignRegister(apDacEntry); // will contain result
 	 mpGenProl16->LoadI(regResult, 0); //init
 	 WORD codePosStart = mpGenProl16->GetCodePosition(); //start of loop begin
 	 int helpReg = mpRegAdmin->GetRegister();
@@ -206,7 +208,7 @@ void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
 	 WORD jumpData2 = mpGenProl16->LoadI(regJmp, 0); //stores jump address of if-statement
 	
 		 //jump if carry bit is set ( multiplier = 3 -> 011 >> 1 = 001 (carry bit = 1) )
-		 mpGenProl16->JumpC(regJmp);
+	 mpGenProl16->JumpC(regJmp);
 	 mpGenProl16->ShL(regA); //multiplicand = multiplicand << 1
 	 mpGenProl16->LoadI(regJmp, codePosStart); //prepeare jump address
 	 mpGenProl16->Jump(regJmp); //jump to begin of while-statement
@@ -220,9 +222,6 @@ void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
 	
 	 //sets jump address for end of while-statement
 	 mpGenProl16->SetAddress(jumpData1, mpGenProl16->GetCodePosition());
-	
-	 // regResult contains result of multiplication -> assign to DAC-Entry
-	 mpRegAdmin->AssignRegister(apDacEntry);
 	
 	 // free all other registers
 	 mpRegAdmin->FreeRegister(regA);
@@ -264,15 +263,18 @@ void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
 	 mpGenProl16->SetAddress(jumpData3, mpGenProl16->GetCodePosition());
 
 	 // regA contains result of division -> assign to DAC-Entry
-	 mpRegAdmin->AssignRegister(apDacEntry);
+	int regResult = mpRegAdmin->AssignRegister(apDacEntry);
+	mpGenProl16->Move(regResult, regA);
+	apDacEntry->SetTmpResult(regResult);
 
 	 // free all other registers
 	 mpRegAdmin->FreeRegister(regB);
+	 mpRegAdmin->FreeRegister(regA);
 	 mpRegAdmin->FreeRegister(regJmp);
 	 mpRegAdmin->FreeRegister(regRemainder);
 	 mpRegAdmin->FreeRegister(regBits);
 	 mpRegAdmin->FreeRegister(helpReg);
-	 apDacEntry->SetTmpResult(regA);
+
 	 
 }
 void CodeGenerator::OperationJump(DACEntry* apDacEntry, TUnresolvedJumps& arUnresolvedJumps){

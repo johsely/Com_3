@@ -9,6 +9,7 @@
 #include "RegisterAdmin.h"
 #include "ConstIntSymbol.h"
 #include "VarSymbol.h"
+#include "DACEntry.h"
 
 
 /**constructor*/
@@ -44,22 +45,30 @@ int RegisterAdmin::GetRegister(IDACEntry* dacEntry) {
 
 	if (constInt != nullptr) {
 		mpGenProl16.LoadI(reg, constInt->GetValue());
+		return reg;
 
 	}
-	else {
-		/**try variable cast*/
-		auto Var1 = dynamic_cast<VarSymbol*>(dacEntry);
-		if (Var1 == nullptr){
-			std::cout << "RegAdmin: Error in GetRegister: no correct operand!";
-			return -1;
-		}
+
+	/**try variable cast*/
+	auto Var1 = dynamic_cast<VarSymbol*>(dacEntry);
+	if (Var1 != nullptr) {
+		
 		int destination_reg = GetRegister();
 		mpGenProl16.LoadI(destination_reg, Var1->GetOffset());
 		mpGenProl16.Load(reg, destination_reg);
 		FreeRegister(destination_reg);
+		return reg;
+	}
+	/**try dacEntry cast*/
+	auto DAC1 = dynamic_cast<DACEntry*>(dacEntry);
+	if (DAC1 != nullptr) {
+
+		return DAC1->GetTmpResult();
 	}
 
-	return reg;
+
+	std::cout << "ERROR in RegAdmin GetRegister: incorrect IDAC"<<std::endl;
+	return -1;
 
 }
 
