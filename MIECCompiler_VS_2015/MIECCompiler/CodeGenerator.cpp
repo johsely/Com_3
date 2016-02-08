@@ -195,7 +195,7 @@ void CodeGenerator::OperationPrint(DACEntry* apDacEntry) {
 	WORD codePos = mpGenProl16->GetCodePosition();
 	apDacEntry->SetAdress(codePos);
 	
-	auto var = dynamic_cast<VarSymbol*>(apDacEntry);
+	auto var = dynamic_cast<VarSymbol*>(apDacEntry->GetArg1());
 	if (var == nullptr) { throw std::string("print can only varSymbol"); }
 
 	WORD adress = var->GetOffset();
@@ -406,7 +406,9 @@ void CodeGenerator::OperationConditionalJump(DACEntry*	apDacEntry, TUnresolvedJu
 		switch (opKindCond)
 		{
 		case eIsEqual:
-			mpGenProl16->JumpZ(regJumpAdress);
+			mpGenProl16->JumpC(regJumpAdress);
+			CompareInverse(condOp);
+			mpGenProl16->JumpC(regJumpAdress);
 			break;
 		case eIsLessEqual:
 			mpGenProl16->JumpC(regJumpAdress);
@@ -414,11 +416,18 @@ void CodeGenerator::OperationConditionalJump(DACEntry*	apDacEntry, TUnresolvedJu
 		case eIsGreaterEqual:
 			break;
 		case eIsNotEqual:
+			
+			
 			mpGenProl16->JumpZ(regJumpAdress);
+			
+			
+			
 			break;
 		case eIsLess:
+			mpGenProl16->JumpC(regJumpAdress);
 			break;
 		case eIsGreater:
+			mpGenProl16->JumpC(regJumpAdress);
 			break;
 		default:
 			throw std::string("error in conditional jump, default switch");

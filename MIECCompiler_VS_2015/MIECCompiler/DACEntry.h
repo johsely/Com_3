@@ -14,6 +14,7 @@
 #include "IDACEntry.h"
 #include <iostream>
 #include <string>
+#include <minmax.h>
 
 enum OpKind {
 	eAdd, eSubtract, eMultiply, eDivide, eIsEqual, eIsLessEqual, eIsGreaterEqual,
