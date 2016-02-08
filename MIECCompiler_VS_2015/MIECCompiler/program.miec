@@ -6,11 +6,21 @@ END_VAR
 
 BEGIN
 
-IF 1 = 2 THEN
+IF 1 != 2 THEN
+	x := 1;
+	print(x);
+END
+
+IF 2 != 2 THEN
 	x := 3;
 	print(x);
 END
 
+
+IF 3 != 2 THEN
+	x := 3;
+	print(x);
+END
 
 (*
 WHILE x != 2 DO

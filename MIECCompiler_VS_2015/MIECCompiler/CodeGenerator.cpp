@@ -54,6 +54,14 @@ void CodeGenerator::GenerateCode(std::ostream& os) {
 	TUnresolvedJumps unresolvedJumps;
 	for (auto x : mDACList){
 		auto opKind = x->GetOpKind();
+		WORD codePos;
+		codePos = mpGenProl16->GetCodePosition();
+		for (auto unResJmp : unresolvedJumps) {
+			if (unResJmp.second == x) {
+				mpGenProl16->SetAddress(unResJmp.first * 2, codePos);
+			}
+		}
+
 		switch (opKind)
 		{
 		case eAdd:
@@ -75,7 +83,7 @@ void CodeGenerator::GenerateCode(std::ostream& os) {
 			Compare(x);
 			break;
 		case eIsGreaterEqual:
-			CompareInverse(x);
+			Compare(x);
 			break;
 		case eIsNotEqual:
 			CompareInverse(x);
@@ -102,6 +110,8 @@ void CodeGenerator::GenerateCode(std::ostream& os) {
 			OperationPrint(x);
 			break;
 		case eExit:
+		
+			
 			mpGenProl16->Sleep();
 			break;
 		default:
@@ -353,6 +363,9 @@ void CodeGenerator::OperationDivide(DACEntry* apDacEntry)
 
 
 void CodeGenerator::OperationJump(DACEntry* apDacEntry, TUnresolvedJumps& arUnresolvedJumps){
+	WORD codePos = mpGenProl16->GetCodePosition();
+	apDacEntry->SetAdress(codePos);
+
 
 	auto jumpDest = dynamic_cast<DACEntry*>(apDacEntry->GetArg1());
 	if (jumpDest == nullptr) { throw std::string("operationJump error, no dac entry"); }
@@ -368,8 +381,14 @@ void CodeGenerator::OperationJump(DACEntry* apDacEntry, TUnresolvedJumps& arUnre
 void CodeGenerator::OperationConditionalJump(DACEntry*	apDacEntry, TUnresolvedJumps& arUnresolvedJumps) {
 	assert(apDacEntry->GetOpKind() == eIfJump || apDacEntry->GetOpKind() == eIfFalseJump);
 
+	WORD codePos = mpGenProl16->GetCodePosition();
+	apDacEntry->SetAdress(codePos);
+	
+	
+	
 	// load jump adress into register
 	auto jumpDst = dynamic_cast<DACEntry*>(apDacEntry->GetArg2());
+
 	int regJumpAdress = mpRegAdmin->GetRegister();
 	mpGenProl16->LoadI(regJumpAdress, jumpDst->GetAdress());
 
@@ -383,6 +402,10 @@ void CodeGenerator::OperationConditionalJump(DACEntry*	apDacEntry, TUnresolvedJu
 		{
 		case eIsEqual:
 			mpGenProl16->JumpZ(regJumpAdress);
+
+
+
+
 			break;
 		case eIsLessEqual:
 			break;
@@ -414,14 +437,14 @@ void CodeGenerator::OperationConditionalJump(DACEntry*	apDacEntry, TUnresolvedJu
 			mpGenProl16->JumpC(regJumpAdress);
 			break;
 		case eIsGreaterEqual:
+			mpGenProl16->JumpC(regJumpAdress);
 			break;
-		case eIsNotEqual:
-			
-			
-			mpGenProl16->JumpZ(regJumpAdress);
-			
-			
-			
+		case eIsNotEqual:						
+			mpGenProl16->JumpZ(regJumpAdress);	
+			if (!jumpDst->IsAdressSet()) {
+				arUnresolvedJumps.push_back(std::pair<WORD, DACEntry* const>(codePos+1, jumpDst));
+			}
+
 			break;
 		case eIsLess:
 			mpGenProl16->JumpC(regJumpAdress);
