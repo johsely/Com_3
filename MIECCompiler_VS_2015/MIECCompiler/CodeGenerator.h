@@ -81,6 +81,9 @@ private:
 
 
 
+	void Compare(DACEntry* dacEntry);
+	void CompareInverse(DACEntry* dacEntry);
+
 	MIEC::CodeGenProl16* mpGenProl16;
 	std::unique_ptr<RegisterAdmin> mpRegAdmin;
 	TDACList mDACList;

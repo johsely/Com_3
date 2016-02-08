@@ -1,21 +1,19 @@
 PROGRAM myprog
 BEGIN_VAR
-	i : Integer;
 	x : Integer;
-	variable2 : Integer;
-	y : Integer;
-	asd : Integer;
-	stat : Integer;
-	testLR : Integer;
 
 END_VAR
 
 BEGIN
 
-x := 3 + 2;
+IF 1 != 2 THEN
+	x := 3;
+	print(x);
+END
+
 
 (*
-WHILE x < 2 DO
+WHILE x != 2 DO
 	IF i > 2 THEN
 		x := 2;
 	END

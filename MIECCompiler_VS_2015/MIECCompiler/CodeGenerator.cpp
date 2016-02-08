@@ -28,6 +28,26 @@ CodeGenerator::CodeGenerator(TDACList dacList)
 CodeGenerator::~CodeGenerator(){
 	delete mpGenProl16;
 }
+
+void CodeGenerator::Compare(DACEntry* dacEntry) {
+	int reg1 = mpRegAdmin->GetRegister(dacEntry->GetArg1());
+	int reg2 = mpRegAdmin->GetRegister(dacEntry->GetArg2());
+	
+	mpGenProl16->Comp(reg1, reg2);
+	mpRegAdmin->FreeRegister(reg1);
+	mpRegAdmin->FreeRegister(reg2);
+}
+
+void CodeGenerator::CompareInverse(DACEntry* dacEntry) {
+	int reg1 = mpRegAdmin->GetRegister(dacEntry->GetArg1());
+	int reg2 = mpRegAdmin->GetRegister(dacEntry->GetArg2());
+
+	mpGenProl16->Comp(reg2, reg1);
+	mpRegAdmin->FreeRegister(reg1);
+	mpRegAdmin->FreeRegister(reg2);
+}
+
+
 /** loops through all DacEntries and Creates machineCode for each operation */
 void CodeGenerator::GenerateCode(std::ostream& os) {		
 	
@@ -48,16 +68,22 @@ void CodeGenerator::GenerateCode(std::ostream& os) {
 			OperationDivide(x);
 			break;
 		case eIsEqual:
+			Compare(x);
 			break;
 		case eIsLessEqual:
+			Compare(x);
 			break;
 		case eIsGreaterEqual:
+			CompareInverse(x);
 			break;
 		case eIsNotEqual:
+			CompareInverse(x);
 			break;
 		case eIsLess:
+			Compare(x);
 			break;
 		case eIsGreater:
+			Compare(x);
 			break;
 		case eAssign:
 			OperationAssign(x);
@@ -69,6 +95,7 @@ void CodeGenerator::GenerateCode(std::ostream& os) {
 			OperationConditionalJump(x, unresolvedJumps);
 			break;
 		case eIfFalseJump:
+			OperationConditionalJump(x, unresolvedJumps);
 			break;
 		case ePrint:
 			OperationPrint(x);
@@ -167,14 +194,18 @@ void CodeGenerator::OperationPrint(DACEntry* apDacEntry) {
 	WORD codePos = mpGenProl16->GetCodePosition();
 	apDacEntry->SetAdress(codePos);
 	
-	WORD adress = 0;
-	BYTE reg1 = 0;
+	auto var = dynamic_cast<VarSymbol*>(apDacEntry);
+	if (var == nullptr) { throw std::string("print can only varSymbol"); }
+
+	WORD adress = var->GetOffset();
+	BYTE reg1 = mpRegAdmin->GetRegister();
 
 	// load variable from adress and then print it
 	mpGenProl16->LoadI(reg1, adress);	
 	mpGenProl16->Load(reg1, reg1);
 	mpGenProl16->PrintInt(reg1);
 
+	mpRegAdmin->FreeRegister(reg1);
 }
 
 /** creates code for add operation */
@@ -331,16 +362,63 @@ void CodeGenerator::OperationJump(DACEntry* apDacEntry, TUnresolvedJumps& arUnre
 void CodeGenerator::OperationConditionalJump(DACEntry*	apDacEntry, TUnresolvedJumps& arUnresolvedJumps) {
 	assert(apDacEntry->GetOpKind() == eIfJump || apDacEntry->GetOpKind() == eIfFalseJump);
 
-	auto ifJump = dynamic_cast<DACEntry*>(apDacEntry);
+	// load jump adress into register
+	auto jumpDst = dynamic_cast<DACEntry*>(apDacEntry->GetArg2());
+	int regJumpAdress = mpRegAdmin->GetRegister();
+	mpGenProl16->LoadI(regJumpAdress, jumpDst->GetAdress());
 
 	if (apDacEntry->GetOpKind() == eIfJump) {
-		//ifJump->GetArg1();
+		
+		
+		
+		auto condOp = dynamic_cast<DACEntry*>(apDacEntry->GetArg1()); // what conditional Operation
+		auto opKindCond = condOp->GetOpKind();
+		switch (opKindCond)
+		{
+		case eIsEqual:
+			mpGenProl16->JumpZ(regJumpAdress);
+			break;
+		case eIsLessEqual:
+			break;
+		case eIsGreaterEqual:
+			break;
+		case eIsNotEqual:
 
-
-
-
+			break;
+		case eIsLess:
+			break;
+		case eIsGreater:
+			break;
+		default:
+			throw std::string("error in conditional jump, default switch");
+			break;
+		}
 	}
 	else {
+		auto condOp = dynamic_cast<DACEntry*>(apDacEntry->GetArg1()); // what conditional Operation
+		auto opKindCond = condOp->GetOpKind();
+		switch (opKindCond)
+		{
+		case eIsEqual:
+			mpGenProl16->JumpZ(regJumpAdress);
+			break;
+		case eIsLessEqual:
+			mpGenProl16->JumpC(regJumpAdress);
+			break;
+		case eIsGreaterEqual:
+			break;
+		case eIsNotEqual:
+			mpGenProl16->JumpZ(regJumpAdress);
+			break;
+		case eIsLess:
+			break;
+		case eIsGreater:
+			break;
+		default:
+			throw std::string("error in conditional jump, default switch");
+			break;
+		}
+
 
 	}
 
