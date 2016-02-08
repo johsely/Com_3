@@ -17,7 +17,20 @@ enum eType {Integer};
 
 class BaseType : public Type {
 public:
+
+	/**
+	* <summary>  Constructor. </summary>
+	*
+	* <param name="type">   eType. </param>
+	* <param name="size">  Size of the type basically 2. </param>
+	*/
 	BaseType(eType type, size_t size) : mType(type), Type(size) {}
+
+	/**
+	* <summary>  get access to private mType. </summary>
+	*
+	* <param name="mType">   eType. </param>
+	*/
 	eType GetType(){ return mType; }
 
 private:

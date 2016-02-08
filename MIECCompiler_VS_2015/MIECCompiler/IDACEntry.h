@@ -15,7 +15,11 @@
 /** <summary>  The base class for DAC entries and Symbols. </summary> */
 class IDACEntry : public Object {
 public:
-
+	/**
+	* <summary>  Print function no implementation -->virtual. </summary>
+	*
+	* <param name="ost">   Where to print. </param>
+	*/
 	virtual void Print(std::ostream &ost) const = 0;
 	/**
 	* <summary>  Gets the type. </summary>

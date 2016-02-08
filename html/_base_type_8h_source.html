@@ -101,20 +101,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00011"></a>00011 <span class="preprocessor">#ifndef MIEC_BASETYPE_H</span>
 <a name="l00012"></a>00012 <span class="preprocessor"></span><span class="preprocessor">#define MIEC_BASETYPE_H</span>
 <a name="l00013"></a>00013 <span class="preprocessor"></span>
-<a name="l00014"></a>00014 <span class="preprocessor">#include &quot;<a class="code" href="_type_8h.html">Type.h</a>&quot;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &quot;<a class="code" href="_type_8h.html" title="Type Class.">Type.h</a>&quot;</span>
 <a name="l00015"></a>00015 
 <a name="l00016"></a><a class="code" href="_base_type_8h.html#a12f8ec8f0e7a4584b9fe481bb53fa60ea1e2f89e867cd91c3de2ea9fbd2ef96a3">00016</a> <span class="keyword">enum</span> <a class="code" href="_base_type_8h.html#a12f8ec8f0e7a4584b9fe481bb53fa60e">eType</a> {<a class="code" href="_base_type_8h.html#a12f8ec8f0e7a4584b9fe481bb53fa60ea1e2f89e867cd91c3de2ea9fbd2ef96a3">Integer</a>};
 <a name="l00017"></a>00017 
 <a name="l00018"></a>00018 <span class="keyword">class </span><a class="code" href="class_base_type.html">BaseType</a> : <span class="keyword">public</span> <a class="code" href="class_type.html">Type</a> {
 <a name="l00019"></a>00019 <span class="keyword">public</span>:
-<a name="l00020"></a><a class="code" href="class_base_type.html#a5e567264c6989231cbeebe0149b05155">00020</a>         <a class="code" href="class_base_type.html#a5e567264c6989231cbeebe0149b05155">BaseType</a>(<a class="code" href="_base_type_8h.html#a12f8ec8f0e7a4584b9fe481bb53fa60e">eType</a> type, <span class="keywordtype">size_t</span> size) : <a class="code" href="class_base_type.html#ad39fc665ac7b4dd17d5dd67032c57ed8">mType</a>(type), <a class="code" href="class_type.html">Type</a>(size) {}
-<a name="l00021"></a><a class="code" href="class_base_type.html#a59c78c2a6aab16454a3c6ff677aea792">00021</a>         <a class="code" href="_base_type_8h.html#a12f8ec8f0e7a4584b9fe481bb53fa60e">eType</a> <a class="code" href="class_base_type.html#a59c78c2a6aab16454a3c6ff677aea792">GetType</a>(){ <span class="keywordflow">return</span> <a class="code" href="class_base_type.html#ad39fc665ac7b4dd17d5dd67032c57ed8">mType</a>; }
-<a name="l00022"></a>00022 
-<a name="l00023"></a>00023 <span class="keyword">private</span>:
-<a name="l00024"></a><a class="code" href="class_base_type.html#ad39fc665ac7b4dd17d5dd67032c57ed8">00024</a>         <a class="code" href="_base_type_8h.html#a12f8ec8f0e7a4584b9fe481bb53fa60e">eType</a> <a class="code" href="class_base_type.html#ad39fc665ac7b4dd17d5dd67032c57ed8">mType</a>;
-<a name="l00025"></a>00025 };
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027 <span class="preprocessor">#endif</span>
+<a name="l00020"></a>00020 
+<a name="l00027"></a><a class="code" href="class_base_type.html#a5e567264c6989231cbeebe0149b05155">00027</a>         <a class="code" href="class_base_type.html#a5e567264c6989231cbeebe0149b05155" title="Constructor.">BaseType</a>(<a class="code" href="_base_type_8h.html#a12f8ec8f0e7a4584b9fe481bb53fa60e">eType</a> type, <span class="keywordtype">size_t</span> size) : <a class="code" href="class_base_type.html#ad39fc665ac7b4dd17d5dd67032c57ed8">mType</a>(type), <a class="code" href="class_type.html">Type</a>(size) {}
+<a name="l00028"></a>00028 
+<a name="l00034"></a><a class="code" href="class_base_type.html#a59c78c2a6aab16454a3c6ff677aea792">00034</a>         <a class="code" href="_base_type_8h.html#a12f8ec8f0e7a4584b9fe481bb53fa60e">eType</a> <a class="code" href="class_base_type.html#a59c78c2a6aab16454a3c6ff677aea792" title="get access to private mType.">GetType</a>(){ <span class="keywordflow">return</span> <a class="code" href="class_base_type.html#ad39fc665ac7b4dd17d5dd67032c57ed8">mType</a>; }
+<a name="l00035"></a>00035 
+<a name="l00036"></a>00036 <span class="keyword">private</span>:
+<a name="l00037"></a><a class="code" href="class_base_type.html#ad39fc665ac7b4dd17d5dd67032c57ed8">00037</a>         <a class="code" href="_base_type_8h.html#a12f8ec8f0e7a4584b9fe481bb53fa60e">eType</a> <a class="code" href="class_base_type.html#ad39fc665ac7b4dd17d5dd67032c57ed8">mType</a>;
+<a name="l00038"></a>00038 };
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -135,7 +137,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Sun Feb 7 2016 14:48:26 for MIEC Compiler by
+    <li class="footer">Generated on Mon Feb 8 2016 10:00:41 for MIEC Compiler by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>

@@ -99,53 +99,76 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="_register_admin_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
 <a name="l00009"></a>00009 <span class="preprocessor">#include &quot;<a class="code" href="_register_admin_8h.html" title="Register Admin header.">RegisterAdmin.h</a>&quot;</span>
-<a name="l00010"></a>00010 
-<a name="l00011"></a>00011 
-<a name="l00012"></a><a class="code" href="class_register_admin.html#a58ed7cb0ab39478b93d7b8f80589ddc0">00012</a> <a class="code" href="class_register_admin.html#a58ed7cb0ab39478b93d7b8f80589ddc0">RegisterAdmin::RegisterAdmin</a>() {
-<a name="l00013"></a>00013         <span class="comment">// fill map with register and pointers to zero</span>
-<a name="l00014"></a>00014         <span class="comment">//for (int i = 0; i &lt; PROL16_REGNUM; i++) {</span>
-<a name="l00015"></a>00015         <span class="comment">//      mRegisters.insert(std::pair&lt;Register, Symbol*&gt;(Register(i), 0));</span>
-<a name="l00016"></a>00016         <span class="comment">//}</span>
-<a name="l00017"></a>00017 }
-<a name="l00018"></a>00018 
-<a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <span class="comment">// tries to find r</span>
-<a name="l00021"></a><a class="code" href="class_register_admin.html#a47979f46579bffc2eb2d777b04bc5593">00021</a> <span class="keywordtype">int</span> <a class="code" href="class_register_admin.html#a47979f46579bffc2eb2d777b04bc5593">RegisterAdmin::GetRegister</a>() {
-<a name="l00022"></a>00022         <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="_register_admin_8h.html#a2c2044dbdaada8897e8c444364bdc98f">PROL16_REGNUM</a>; i++) {
-<a name="l00023"></a>00023                 <span class="keywordflow">if</span> (<a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[i].isFree) {
-<a name="l00024"></a>00024                         <a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[i].<a class="code" href="struct_t_register.html#a88808ddb3d03378fe968d356e22861d2">isFree</a> = <span class="keyword">false</span>;
-<a name="l00025"></a>00025                         <a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[i].<a class="code" href="struct_t_register.html#aa1b354429812e7b9264fdede304cdc53">connected</a> = <span class="keyword">nullptr</span>; <span class="comment">// ?</span>
-<a name="l00026"></a>00026                         <span class="keywordflow">return</span> i;
-<a name="l00027"></a>00027                 }
-<a name="l00028"></a>00028         }
-<a name="l00029"></a>00029 
-<a name="l00030"></a>00030 }
-<a name="l00031"></a>00031 
-<a name="l00032"></a><a class="code" href="class_register_admin.html#ae038d3c8d27b9a9826d6f3f60b14b290">00032</a> <span class="keywordtype">int</span> <a class="code" href="class_register_admin.html#a47979f46579bffc2eb2d777b04bc5593">RegisterAdmin::GetRegister</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* dacEntry) {
-<a name="l00033"></a>00033         <span class="keywordflow">return</span> -1;
+<a name="l00010"></a>00010 <span class="preprocessor">#include &quot;<a class="code" href="_const_int_symbol_8h.html" title="Spezialzation of Symbol.">ConstIntSymbol.h</a>&quot;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &quot;<a class="code" href="_var_symbol_8h.html" title="Varsymbol class.">VarSymbol.h</a>&quot;</span>
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 
+<a name="l00015"></a><a class="code" href="class_register_admin.html#a5fa4ba71e9ab9e690ff4fdedef7590b5">00015</a> <a class="code" href="class_register_admin.html#a5fa4ba71e9ab9e690ff4fdedef7590b5">RegisterAdmin::RegisterAdmin</a>(<a class="code" href="class_m_i_e_c_1_1_code_gen_prol16.html">MIEC::CodeGenProl16</a> &amp; codeGen) : mpGenProl16(codeGen) {
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017         <span class="comment">// fill map with register and pointers to zero</span>
+<a name="l00018"></a>00018         <span class="comment">//for (int i = 0; i &lt; PROL16_REGNUM; i++) {</span>
+<a name="l00019"></a>00019         <span class="comment">//      mRegisters.insert(std::pair&lt;Register, Symbol*&gt;(Register(i), 0));</span>
+<a name="l00020"></a>00020         <span class="comment">//}</span>
+<a name="l00021"></a>00021 }
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023 
+<a name="l00025"></a><a class="code" href="class_register_admin.html#a47979f46579bffc2eb2d777b04bc5593">00025</a> <span class="keywordtype">int</span> <a class="code" href="class_register_admin.html#a47979f46579bffc2eb2d777b04bc5593">RegisterAdmin::GetRegister</a>() {
+<a name="l00026"></a>00026         <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="_register_admin_8h.html#a2c2044dbdaada8897e8c444364bdc98f">PROL16_REGNUM</a>; i++) {
+<a name="l00027"></a>00027                 <span class="keywordflow">if</span> (<a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[i].isFree) {
+<a name="l00028"></a>00028                         <a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[i].<a class="code" href="struct_t_register.html#a88808ddb3d03378fe968d356e22861d2">isFree</a> = <span class="keyword">false</span>;
+<a name="l00029"></a>00029                         <a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[i].<a class="code" href="struct_t_register.html#aa1b354429812e7b9264fdede304cdc53">connected</a> = <span class="keyword">nullptr</span>; <span class="comment">// ?</span>
+<a name="l00030"></a>00030                         <span class="keywordflow">return</span> i;
+<a name="l00031"></a>00031                 }
+<a name="l00032"></a>00032         }
+<a name="l00033"></a>00033 
 <a name="l00034"></a>00034 }
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036 
-<a name="l00037"></a><a class="code" href="class_register_admin.html#a02bfcc87115994eb8fa05478b72fd867">00037</a> <span class="keywordtype">int</span> <a class="code" href="class_register_admin.html#a02bfcc87115994eb8fa05478b72fd867">RegisterAdmin::AssignRegister</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* dacEntry) {
-<a name="l00038"></a>00038         <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="_register_admin_8h.html#a2c2044dbdaada8897e8c444364bdc98f">PROL16_REGNUM</a>; i++) {
-<a name="l00039"></a>00039                 <span class="keywordflow">if</span> (<a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[i].isFree) {
-<a name="l00040"></a>00040                         <a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[i].<a class="code" href="struct_t_register.html#a88808ddb3d03378fe968d356e22861d2">isFree</a> = <span class="keyword">false</span>;
-<a name="l00041"></a>00041                         <a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[i].<a class="code" href="struct_t_register.html#aa1b354429812e7b9264fdede304cdc53">connected</a> = dacEntry;
-<a name="l00042"></a>00042                         <span class="keywordflow">return</span> i; <span class="comment">// return the reg number</span>
-<a name="l00043"></a>00043                 }
+<a name="l00036"></a><a class="code" href="class_register_admin.html#ae038d3c8d27b9a9826d6f3f60b14b290">00036</a> <span class="keywordtype">int</span> <a class="code" href="class_register_admin.html#a47979f46579bffc2eb2d777b04bc5593">RegisterAdmin::GetRegister</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* dacEntry) {
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038 
+<a name="l00040"></a>00040         <span class="keyword">auto</span> constInt = <span class="keyword">dynamic_cast&lt;</span><a class="code" href="class_const_int_symbol.html">ConstIntSymbol</a>*<span class="keyword">&gt;</span>(dacEntry);
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043         <span class="keywordtype">int</span> reg = <a class="code" href="class_register_admin.html#a47979f46579bffc2eb2d777b04bc5593">GetRegister</a>();
 <a name="l00044"></a>00044 
-<a name="l00045"></a>00045         }
-<a name="l00046"></a>00046         <span class="keywordflow">return</span> -1;
-<a name="l00047"></a>00047 }
-<a name="l00048"></a>00048 
-<a name="l00049"></a><a class="code" href="class_register_admin.html#a36393cfed82dfa6f5fba400d24427265">00049</a> <span class="keywordtype">void</span> <a class="code" href="class_register_admin.html#a36393cfed82dfa6f5fba400d24427265">RegisterAdmin::FreeRegister</a>(<span class="keywordtype">int</span> regNum) {
-<a name="l00050"></a>00050         <span class="keywordflow">if</span> (regNum &lt; 0 || regNum &gt;= <a class="code" href="_register_admin_8h.html#a2c2044dbdaada8897e8c444364bdc98f">PROL16_REGNUM</a>) {
-<a name="l00051"></a>00051                 <span class="keywordflow">throw</span> std::string(<span class="stringliteral">&quot;register num too big or too low, freeRegister&quot;</span>);
-<a name="l00052"></a>00052         }
-<a name="l00053"></a>00053         
-<a name="l00054"></a>00054         <a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[regNum].<a class="code" href="struct_t_register.html#a88808ddb3d03378fe968d356e22861d2">isFree</a> = <span class="keyword">true</span>;
-<a name="l00055"></a>00055         <a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[regNum].<a class="code" href="struct_t_register.html#aa1b354429812e7b9264fdede304cdc53">connected</a> = <span class="keyword">nullptr</span>;
-<a name="l00056"></a>00056 }
+<a name="l00045"></a>00045         <span class="keywordflow">if</span> (constInt != <span class="keyword">nullptr</span>) {
+<a name="l00046"></a>00046                 <a class="code" href="class_register_admin.html#a763095fa9a8d9065e5935f0d3009c60f">mpGenProl16</a>.<a class="code" href="class_m_i_e_c_1_1_code_gen_prol16.html#a4605cba8fdf00444bbb469bb6e9c0b93">LoadI</a>(reg, constInt-&gt;GetValue());
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048         }
+<a name="l00049"></a>00049         <span class="keywordflow">else</span> {
+<a name="l00051"></a>00051                 <span class="keyword">auto</span> Var1 = <span class="keyword">dynamic_cast&lt;</span><a class="code" href="class_var_symbol.html">VarSymbol</a>*<span class="keyword">&gt;</span>(dacEntry);
+<a name="l00052"></a>00052                 <span class="keywordflow">if</span> (Var1 == <span class="keyword">nullptr</span>){
+<a name="l00053"></a>00053                         std::cout &lt;&lt; <span class="stringliteral">&quot;RegAdmin: Error in GetRegister: no correct operand!&quot;</span>;
+<a name="l00054"></a>00054                         <span class="keywordflow">return</span> -1;
+<a name="l00055"></a>00055                 }
+<a name="l00056"></a>00056                 <span class="keywordtype">int</span> destination_reg = <a class="code" href="class_register_admin.html#a47979f46579bffc2eb2d777b04bc5593">GetRegister</a>();
+<a name="l00057"></a>00057                 <a class="code" href="class_register_admin.html#a763095fa9a8d9065e5935f0d3009c60f">mpGenProl16</a>.<a class="code" href="class_m_i_e_c_1_1_code_gen_prol16.html#a4605cba8fdf00444bbb469bb6e9c0b93">LoadI</a>(destination_reg, Var1-&gt;GetOffset());
+<a name="l00058"></a>00058                 <a class="code" href="class_register_admin.html#a763095fa9a8d9065e5935f0d3009c60f">mpGenProl16</a>.<a class="code" href="class_m_i_e_c_1_1_code_gen_prol16.html#a0e530236b9c4259270e8461ebd59fa2f">Load</a>(reg, destination_reg);
+<a name="l00059"></a>00059                 <a class="code" href="class_register_admin.html#a36393cfed82dfa6f5fba400d24427265">FreeRegister</a>(destination_reg);
+<a name="l00060"></a>00060         }
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062         <span class="keywordflow">return</span> reg;
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064 }
+<a name="l00065"></a>00065 
+<a name="l00067"></a><a class="code" href="class_register_admin.html#a02bfcc87115994eb8fa05478b72fd867">00067</a> <span class="keywordtype">int</span> <a class="code" href="class_register_admin.html#a02bfcc87115994eb8fa05478b72fd867">RegisterAdmin::AssignRegister</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* dacEntry) {
+<a name="l00068"></a>00068         <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="_register_admin_8h.html#a2c2044dbdaada8897e8c444364bdc98f">PROL16_REGNUM</a>; i++) {
+<a name="l00069"></a>00069                 <span class="keywordflow">if</span> (<a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[i].isFree) {
+<a name="l00070"></a>00070                         <a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[i].<a class="code" href="struct_t_register.html#a88808ddb3d03378fe968d356e22861d2">isFree</a> = <span class="keyword">false</span>;
+<a name="l00071"></a>00071                         <a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[i].<a class="code" href="struct_t_register.html#aa1b354429812e7b9264fdede304cdc53">connected</a> = dacEntry;
+<a name="l00072"></a>00072                         <span class="keywordflow">return</span> i; <span class="comment">// return the reg number</span>
+<a name="l00073"></a>00073                 }
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075         }
+<a name="l00076"></a>00076         <span class="keywordflow">return</span> -1;
+<a name="l00077"></a>00077 }
+<a name="l00079"></a><a class="code" href="class_register_admin.html#a36393cfed82dfa6f5fba400d24427265">00079</a> <span class="keywordtype">void</span> <a class="code" href="class_register_admin.html#a36393cfed82dfa6f5fba400d24427265">RegisterAdmin::FreeRegister</a>(<span class="keywordtype">int</span> regNum) {
+<a name="l00080"></a>00080         <span class="keywordflow">if</span> (regNum &lt; 0 || regNum &gt;= <a class="code" href="_register_admin_8h.html#a2c2044dbdaada8897e8c444364bdc98f">PROL16_REGNUM</a>) {
+<a name="l00081"></a>00081                 <span class="keywordflow">throw</span> std::string(<span class="stringliteral">&quot;register num too big or too low, freeRegister&quot;</span>);
+<a name="l00082"></a>00082         }
+<a name="l00083"></a>00083         
+<a name="l00084"></a>00084         <a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[regNum].<a class="code" href="struct_t_register.html#a88808ddb3d03378fe968d356e22861d2">isFree</a> = <span class="keyword">true</span>;
+<a name="l00085"></a>00085         <a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[regNum].<a class="code" href="struct_t_register.html#aa1b354429812e7b9264fdede304cdc53">connected</a> = <span class="keyword">nullptr</span>;
+<a name="l00086"></a>00086 }
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -166,7 +189,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Sun Feb 7 2016 14:48:27 for MIEC Compiler by
+    <li class="footer">Generated on Mon Feb 8 2016 10:00:41 for MIEC Compiler by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>

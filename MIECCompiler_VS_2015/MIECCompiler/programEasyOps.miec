@@ -6,6 +6,7 @@ END_VAR
 
 BEGIN
 	x :=  3 + y;
+	y :=  3 - y;
 	
 	print(x);
 END

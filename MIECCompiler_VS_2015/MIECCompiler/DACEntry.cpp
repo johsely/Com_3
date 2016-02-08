@@ -1,5 +1,5 @@
 /**
-* @file   DACEntry.h
+* @file   DACEntry.cpp
 * @Author Christoph Haslinger, Johannes Selymes
 * @Date   Februar , 2016
 * @brief  DACEntry Implementation
@@ -69,6 +69,7 @@ std::string GetOpKindStr(OpKind opKind) {
 }
 
 #ifdef _DEBUG
+/** Debug Code in order to print arguments of DACEntrys */
 void DACEntry::Print(std::ostream &out) const {
 	std::string s(GetOpKindStr(mOpKind));
 	out << "Op: " << s << std::endl;

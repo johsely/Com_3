@@ -20,7 +20,8 @@ CodeGenerator::CodeGenerator(TDACList dacList)
 {
 	mpGenProl16 = new MIEC::CodeGenProl16();
 	//mpGenProl16 = std::make_unique<MIEC::CodeGenProl16>(MIEC::CodeGenProl16()); // Does not work with unique pointer
-	mpRegAdmin = std::make_unique<RegisterAdmin>(RegisterAdmin());
+	RegisterAdmin regadmin(*mpGenProl16);
+	mpRegAdmin = std::make_unique<RegisterAdmin>(regadmin);
 	copy(dacList.begin(), dacList.end(), back_inserter(mDACList));
 }
 /** mandatory cleanup */
@@ -150,67 +151,37 @@ void CodeGenerator::OperationPrint(DACEntry* apDacEntry) {
 
 /** creates code for add operation */
 void CodeGenerator::OperationAdd(DACEntry* apDacEntry) {
-	auto constInt1 = dynamic_cast<ConstIntSymbol*>(apDacEntry->GetArg1());
-	auto constInt2 = dynamic_cast<ConstIntSymbol*>(apDacEntry->GetArg2());
-
-	if (constInt1 != nullptr && constInt2 != nullptr) {
-		int reg1 = mpRegAdmin->GetRegister();
-		int reg2 = mpRegAdmin->GetRegister();
-		int regResult = -1;
-
-		// load const int symbols
-		// add stuff
-		mpGenProl16->LoadI(reg1, constInt1->GetValue());
-		mpGenProl16->LoadI(reg2, constInt2->GetValue());
-		mpGenProl16->Add(reg1, reg2);
-		
 
 
-		// there is a reg where the result is in
-		regResult = mpRegAdmin->AssignRegister(apDacEntry);
-		mpGenProl16->Move(regResult, reg1);		
-		apDacEntry->SetTmpResult(regResult);
+	int reg1 = mpRegAdmin->GetRegister(apDacEntry->GetArg1());
+	int reg2 = mpRegAdmin->GetRegister(apDacEntry->GetArg2());
+	int regResult = -1;
 
-	}
-	else {
-		cout << "error add" << endl;
-	}
-
-
+	/** there is a reg where the result is in */
+	mpGenProl16->Add(reg1, reg2);
+	regResult = mpRegAdmin->AssignRegister(apDacEntry);
+	mpGenProl16->Move(regResult, reg1);		
+	apDacEntry->SetTmpResult(regResult);
 }
 
 /** creates code for sub operation */
 void CodeGenerator::OperationSubtract(DACEntry* apDacEntry) {
-	auto constInt1 = dynamic_cast<ConstIntSymbol*>(apDacEntry->GetArg1());
-	auto constInt2 = dynamic_cast<ConstIntSymbol*>(apDacEntry->GetArg2());
 
-	if (constInt1 != nullptr && constInt2 != nullptr) {
-		int reg1 = mpRegAdmin->GetRegister();
-		int reg2 = mpRegAdmin->GetRegister();
-		int regResult = -1;
+	int reg1 = mpRegAdmin->GetRegister(apDacEntry->GetArg1());
+	int reg2 = mpRegAdmin->GetRegister(apDacEntry->GetArg2());
+	int regResult = -1;
 
-		// load const int symbols
-		// add stuff
-		mpGenProl16->LoadI(reg1, constInt1->GetValue());
-		mpGenProl16->LoadI(reg2, constInt2->GetValue());
-		mpGenProl16->Sub(reg1, reg2);
+	/** there is a reg where the result is in */
+	mpGenProl16->Sub(reg1, reg2);
+	regResult = mpRegAdmin->AssignRegister(apDacEntry);
+	mpGenProl16->Move(regResult, reg1);
+	apDacEntry->SetTmpResult(regResult);
 
-
-
-		// there is a reg where the result is in
-		regResult = mpRegAdmin->AssignRegister(apDacEntry);
-		mpGenProl16->Move(regResult, reg1);
-		apDacEntry->SetTmpResult(regResult);
-
-	}
-	else {
-		cout << "error sub" << endl;
-	}
 }
  
 
 /** creates code for mult operation */
-/*void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
+void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
  {
 	 int regA = mpRegAdmin->GetRegister(apDacEntry->GetArg1()); // multiplicand
 	 int regB = mpRegAdmin->GetRegister(apDacEntry->GetArg2()); // multiplier
@@ -254,43 +225,55 @@ void CodeGenerator::OperationSubtract(DACEntry* apDacEntry) {
 
 }void CodeGenerator::OperationDivide(DACEntry* apDacEntry)
  {
- int regA = mpRegAdmin->GetRegister(apDacEntry->GetArg1()); // dividend
- int regB = mpRegAdmin->GetRegister(apDacEntry->GetArg2()); // divisor
- int regJmp = mpRegAdmin->GetRegister(); // used for jumps
- int regRemainder = mpRegAdmin->GetRegister(); // remainder
- mpGenProl16->LoadI(regRemainder, 0);
- int regBits = mpRegAdmin->GetRegister(); // bit counter
- mpGenProl16->LoadI(regBits, 16);
- WORD codePosStart = mpGenProl16->GetCodePosition();
- mpGenProl16->ShL(regA);
- mpGenProl16->ShLC(regRemainder);
- WORD jumpData1 = mpGenProl16->LoadI(regJmp, 0);
- mpGenProl16->JumpC(regJmp);
- mpGenProl16->Comp(regB, regRemainder);
- mpGenProl16->JumpC(regJmp);
- mpGenProl16->JumpZ(regJmp);
- WORD jumpData2 = mpGenProl16->LoadI(regJmp, 0);
- mpGenProl16->Jump(regJmp);
- mpGenProl16->SetAddress(jumpData1, mpGenProl16->GetCodePosition());
- mpGenProl16->Sub(regRemainder, regB);
- RegNr helpReg = mpRegAdmin->GetRegister();
- mpGenProl16->LoadI(helpReg, 1);
- mpGenProl16->Or(regA, helpReg);
- mpGenProl16->SetAddress(jumpData2, mpGenProl16->GetCodePosition());
- mpGenProl16->Dec(regBits);
- WORD jumpData3 = mpGenProl16->LoadI(regJmp, 0);
- mpGenProl16->JumpZ(regJmp);
- mpGenProl16->LoadI(regJmp, codePosStart);
- mpGenProl16->Jump(regJmp);
- mpGenProl16->SetAddress(jumpData3, mpGenProl16->GetCodePosition());
+	 int regA = mpRegAdmin->GetRegister(apDacEntry->GetArg1()); // dividend
+	 int regB = mpRegAdmin->GetRegister(apDacEntry->GetArg2()); // divisor
+	 int regJmp = mpRegAdmin->GetRegister(); // used for jumps
+	 int regRemainder = mpRegAdmin->GetRegister(); // remainder
+	 mpGenProl16->LoadI(regRemainder, 0);
+	 int regBits = mpRegAdmin->GetRegister(); // bit counter
+	 mpGenProl16->LoadI(regBits, 16);
+	 WORD codePosStart = mpGenProl16->GetCodePosition();
+	 mpGenProl16->ShL(regA);
+	 mpGenProl16->ShLC(regRemainder);
+	 WORD jumpData1 = mpGenProl16->LoadI(regJmp, 0);
+	 mpGenProl16->JumpC(regJmp);
+	 mpGenProl16->Comp(regB, regRemainder);
+	 mpGenProl16->JumpC(regJmp);
+	 mpGenProl16->JumpZ(regJmp);
+	 WORD jumpData2 = mpGenProl16->LoadI(regJmp, 0);
+	 mpGenProl16->Jump(regJmp);
+	 mpGenProl16->SetAddress(jumpData1, mpGenProl16->GetCodePosition());
+	 mpGenProl16->Sub(regRemainder, regB);
+	 int helpReg = mpRegAdmin->GetRegister();
+	 mpGenProl16->LoadI(helpReg, 1);
+	 mpGenProl16->Or(regA, helpReg);
+	 mpGenProl16->SetAddress(jumpData2, mpGenProl16->GetCodePosition());
+	 mpGenProl16->Dec(regBits);
+	 WORD jumpData3 = mpGenProl16->LoadI(regJmp, 0);
+	 mpGenProl16->JumpZ(regJmp);
+	 mpGenProl16->LoadI(regJmp, codePosStart);
+	 mpGenProl16->Jump(regJmp);
+	 mpGenProl16->SetAddress(jumpData3, mpGenProl16->GetCodePosition());
 
- // regA contains result of division -> assign to DAC-Entry
- mpRegAdmin->AssignRegister(apDacEntry);
+	 // regA contains result of division -> assign to DAC-Entry
+	 mpRegAdmin->AssignRegister(apDacEntry);
 
- // free all other registers
- mpRegAdmin->FreeRegister(regB);
- mpRegAdmin->FreeRegister(regJmp);
- mpRegAdmin->FreeRegister(regRemainder);
- mpRegAdmin->FreeRegister(regBits);
- mpRegAdmin->FreeRegister(helpReg);
-}*/
+	 // free all other registers
+	 mpRegAdmin->FreeRegister(regB);
+	 mpRegAdmin->FreeRegister(regJmp);
+	 mpRegAdmin->FreeRegister(regRemainder);
+	 mpRegAdmin->FreeRegister(regBits);
+	 mpRegAdmin->FreeRegister(helpReg);
+}
+void CodeGenerator::OperationJump(DACEntry* apDacEntry, TUnresolvedJumps& arUnresolvedJumps){
+
+	auto jumpDest = dynamic_cast<DACEntry*>(apDacEntry->GetArg1());
+	size_t address;
+	bool freeAddress = false;
+
+
+
+
+
+
+}

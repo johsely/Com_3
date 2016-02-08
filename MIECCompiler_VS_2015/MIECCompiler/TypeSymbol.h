@@ -1,3 +1,11 @@
+/**
+* @file   TypeSymbol.h
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  TypeSymbol Class
+*
+*
+*/
 #ifndef MIEC_TYPESYMBOL_H
 #define MIEC_TYPESYMBOL_H
 

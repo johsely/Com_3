@@ -1,3 +1,11 @@
+/**
+* @file   Type.h
+* @Author Christoph Haslinger, Johannes Selymes
+* @Date   Februar , 2016
+* @brief  Type Class 
+*
+*
+*/
 #ifndef MIEC_TYPE_H
 #define MIEC_TYPE_H
 
