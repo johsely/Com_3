@@ -17,6 +17,7 @@
 
 class Symbol : public IDACEntry {
 public:
+	virtual ~Symbol() {}
 	std::string GetName() { return mName; }
 	Type* GetType() { return mType; }
 	virtual void Print(std::ostream &ost) const {

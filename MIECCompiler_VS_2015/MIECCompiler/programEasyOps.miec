@@ -5,7 +5,7 @@ END_VAR
 
 BEGIN
 	
-	y :=  10 * 2 ;
+	y := 300 - 2 -3 *4 ;
 
 	print(y);
 

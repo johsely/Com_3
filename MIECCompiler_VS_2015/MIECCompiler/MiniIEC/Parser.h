@@ -1,11 +1,4 @@
-/**
-* @file   Parser.h
-* @Author Christoph Haslinger, Johannes Selymes
-* @Date   Februar , 2016
-* @brief  Parser + Errors class
-*
-*
-*/
+
 
 #if !defined(COCO_PARSER_H__)
 #define COCO_PARSER_H__
