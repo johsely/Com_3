@@ -9,7 +9,8 @@
 #ifndef MIEC_DAC_ENTRY_H
 #define MIEC_DAC_ENTRY_H
 
-
+#include "Object.h"
+#include "GlobalDef.h"
 #include "IDACEntry.h"
 #include <iostream>
 #include <string>
@@ -21,7 +22,7 @@ enum OpKind {
 };
 
 
-#include "Object.h"
+
 class DACEntry : public IDACEntry {
 public:
 	DACEntry(OpKind opKind, IDACEntry* arg1, IDACEntry* arg2) : mOpKind(opKind), mArg1(arg1), mArg2(arg2) {}
@@ -35,12 +36,16 @@ public:
 	void SetTmpResult(int reg) { indexTmpResult = reg;}
 	int GetTmpResult() { return indexTmpResult; }
 
+	void SetAdress(WORD adress) { mAdress = adress; }
+	WORD GetAdress() { return mAdress; }
+
 
 #ifdef _DEBUG
 	void Print(std::ostream &out) const;
 #endif
 
 private:
+	WORD mAdress;
 	int indexTmpResult;
 	OpKind mOpKind;
 	IDACEntry* mArg1;

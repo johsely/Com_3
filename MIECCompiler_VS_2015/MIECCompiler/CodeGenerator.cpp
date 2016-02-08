@@ -30,6 +30,8 @@ CodeGenerator::~CodeGenerator(){
 }
 /** loops through all DacEntries and Creates machineCode for each operation */
 void CodeGenerator::GenerateCode(std::ostream& os) {		
+	
+	TUnresolvedJumps unresolvedJumps;
 	for (auto x : mDACList){
 		auto opKind = x->GetOpKind();
 		switch (opKind)
@@ -61,8 +63,10 @@ void CodeGenerator::GenerateCode(std::ostream& os) {
 			OperationAssign(x);
 			break;
 		case eJump:
+			OperationJump(x, unresolvedJumps);
 			break;
 		case eIfJump:
+			OperationConditionalJump(x, unresolvedJumps);
 			break;
 		case eIfFalseJump:
 			break;
@@ -94,6 +98,9 @@ int EvaluateArgument(IDACEntry* dacEntry) {
 void CodeGenerator::OperationAssign(DACEntry* apDacEntry) {
 	assert(apDacEntry->GetOpKind() == eAssign);
 	
+	WORD codePos = mpGenProl16->GetCodePosition();
+	apDacEntry->SetAdress(codePos);
+
 
 	int regAddress = -1;
 	int regResult = -1;
@@ -118,12 +125,26 @@ void CodeGenerator::OperationAssign(DACEntry* apDacEntry) {
 	auto rightDAC = dynamic_cast<DACEntry*>(apDacEntry->GetArg2());
 	
 	if (rightVar != nullptr){
-		/** load variable */
-
-
+		// load right adress into register
+		int regRightAdress = mpRegAdmin->GetRegister();
+		size_t adress = rightVar->GetOffset();
+		mpGenProl16->LoadI(regRightAdress, adress);
+		
+		// load var from memory
+		regResult = mpRegAdmin->GetRegister();
+		mpGenProl16->Load(regResult, regRightAdress);
+		
+		mpGenProl16->Store(regResult, regAddress);
+		mpRegAdmin->FreeRegister(regResult);
+		mpRegAdmin->FreeRegister(regRightAdress);
 	}
 	else if (rightIntConst != nullptr) {
 		/** load immediate in register */
+		regResult = mpRegAdmin->GetRegister();
+		mpGenProl16->LoadI(regResult, rightIntConst->GetValue());
+		mpGenProl16->Store(regResult, regAddress);
+		mpRegAdmin->FreeRegister(regResult);
+
 	}
 	else if (rightDAC != nullptr) {
 		/** get the register where the result is stored */
@@ -142,6 +163,10 @@ void CodeGenerator::OperationAssign(DACEntry* apDacEntry) {
 /** creates code for print operation */
 void CodeGenerator::OperationPrint(DACEntry* apDacEntry) {
 	assert(apDacEntry->GetOpKind() == ePrint);
+	
+	WORD codePos = mpGenProl16->GetCodePosition();
+	apDacEntry->SetAdress(codePos);
+	
 	WORD adress = 0;
 	BYTE reg1 = 0;
 
@@ -155,6 +180,9 @@ void CodeGenerator::OperationPrint(DACEntry* apDacEntry) {
 /** creates code for add operation */
 void CodeGenerator::OperationAdd(DACEntry* apDacEntry) {
 
+
+	WORD codePos = mpGenProl16->GetCodePosition();
+	apDacEntry->SetAdress(codePos);
 
 	int reg1 = mpRegAdmin->GetRegister(apDacEntry->GetArg1());
 	int reg2 = mpRegAdmin->GetRegister(apDacEntry->GetArg2());
@@ -172,6 +200,9 @@ void CodeGenerator::OperationAdd(DACEntry* apDacEntry) {
 
 /** creates code for sub operation */
 void CodeGenerator::OperationSubtract(DACEntry* apDacEntry) {
+
+	WORD codePos = mpGenProl16->GetCodePosition();
+	apDacEntry->SetAdress(codePos);
 
 	int reg1 = mpRegAdmin->GetRegister(apDacEntry->GetArg1());
 	int reg2 = mpRegAdmin->GetRegister(apDacEntry->GetArg2());
@@ -191,6 +222,10 @@ void CodeGenerator::OperationSubtract(DACEntry* apDacEntry) {
 /** creates code for mult operation */
 void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
  {
+	WORD codePos = mpGenProl16->GetCodePosition();
+	apDacEntry->SetAdress(codePos);
+
+
 	 int regA = mpRegAdmin->GetRegister(apDacEntry->GetArg1()); // multiplicand
 	 int regB = mpRegAdmin->GetRegister(apDacEntry->GetArg2()); // multiplier
 	 int regJmp = mpRegAdmin->GetRegister(); // used for jumps
@@ -232,6 +267,9 @@ void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
 
 }void CodeGenerator::OperationDivide(DACEntry* apDacEntry)
  {
+	WORD codePos = mpGenProl16->GetCodePosition();
+	apDacEntry->SetAdress(codePos);
+
 	 int regA = mpRegAdmin->GetRegister(apDacEntry->GetArg1()); // dividend
 	 int regB = mpRegAdmin->GetRegister(apDacEntry->GetArg2()); // divisor
 	 int regJmp = mpRegAdmin->GetRegister(); // used for jumps
@@ -280,11 +318,31 @@ void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
 void CodeGenerator::OperationJump(DACEntry* apDacEntry, TUnresolvedJumps& arUnresolvedJumps){
 
 	auto jumpDest = dynamic_cast<DACEntry*>(apDacEntry->GetArg1());
-	size_t address;
-	bool freeAddress = false;
+	if (jumpDest == nullptr) { throw std::string("operationJump error, no dac entry"); }
+	
+	int regAdress = mpRegAdmin->GetRegister();
+	
+	mpGenProl16->LoadI(regAdress, jumpDest->GetAdress());
+	mpGenProl16->Jump(regAdress);
+
+	mpRegAdmin->FreeRegister(regAdress);
+}
+
+void CodeGenerator::OperationConditionalJump(DACEntry*	apDacEntry, TUnresolvedJumps& arUnresolvedJumps) {
+	assert(apDacEntry->GetOpKind() == eIfJump || apDacEntry->GetOpKind() == eIfFalseJump);
+
+	auto ifJump = dynamic_cast<DACEntry*>(apDacEntry);
+
+	if (apDacEntry->GetOpKind() == eIfJump) {
+		//ifJump->GetArg1();
 
 
 
+
+	}
+	else {
+
+	}
 
 
 
