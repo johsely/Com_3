@@ -9,7 +9,6 @@
 #ifndef MIEC_REGISTER_ADMIN
 #define MIEC_REGISTER_ADMIN
 
-#include "Register.h"
 #include "IDACEntry.h"
 #include "Symbol.h"
 #include <map>

@@ -1,19 +1,20 @@
 PROGRAM myprog
 BEGIN_VAR
 	x : Integer;
-
+	i : Integer;
 END_VAR
 
 BEGIN
 
 
-
-(*
-WHILE x != 3 DO
+WHILE x != 4 DO
 	print(x);
 	x:=x+1;
 END
-*)
+
+
+x := 10*2+3;
+print(x);
 
 print(1);
 print(10);
@@ -35,50 +36,6 @@ IF 3 >= 2 THEN
 	print(x);
 END
 
-(*
-WHILE x != 2 DO
-	IF i > 2 THEN
-		x := 2;
-	END
-END
 
-i := 10;
-
- a1 := 1*2*3; 
-x := 2;
-i := x * 2;
-testLR :=  x + y * (2 - 4);
-
- 
-WHILE x < 2 DO
-	x := 1;
-END
-*)
-(*
-IF i <= 3 THEN
-	asd := 2;
-END
-
-IF i <= 3 THEN
-	asd := 2;
-ELSE
-	asd := 3;
-END
-
-
-WHILE (i + 3) > 3 DO
-	asd := 30;
-END
-
-WHILE i < 3 DO
-	IF (i + 2) <= 3 THEN
-		asd := 2;
-	ELSE
-		asd := 3;
-	END
-END 
-
-print(2);
-*)
 
 END
