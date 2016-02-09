@@ -44,6 +44,7 @@ int RegisterAdmin::GetRegister(IDACEntry* dacEntry) {
 	int reg = GetRegister();
 
 	if (constInt != nullptr) {
+		std::cout << constInt->GetValue() << std::endl;
 		mpGenProl16->LoadI(reg, constInt->GetValue());
 		mRegisters[reg].connected = dacEntry;
 		return reg;

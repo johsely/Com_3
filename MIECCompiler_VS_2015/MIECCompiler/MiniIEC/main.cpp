@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
 				auto dacList = DACGenerator::GetInstance()->GetStatements();
 				CodeGenerator codeGen(dacList);
 					
-				ofstream hexFile(fileNameStr.substr(0, fileNameStr.rfind(".")) +".iex");
+				ofstream hexFile(fileNameStr.substr(0, fileNameStr.rfind(".")) +".iex", std::ios_base::binary);
 				codeGen.GenerateCode(hexFile);
 
 
