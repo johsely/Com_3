@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>MIEC Compiler: MIECCompiler_VS_2015/MIECCompiler/SymbolFactory.h Source File</title>
+<title>COM_MIEC: MIECCompiler_VS_2015/MIECCompiler/SymbolFactory.h Source File</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MIEC Compiler
+   <div id="projectname">COM_MIEC
    
    </div>
    
@@ -109,30 +109,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00017"></a>00017 <span class="comment">// Singleton for creating Symbols</span>
 <a name="l00018"></a>00018 <span class="keyword">class </span><a class="code" href="class_symbol_factory.html">SymbolFactory</a> : <span class="keyword">public</span> <a class="code" href="class_object.html">Object</a> {
 <a name="l00019"></a>00019 <span class="keyword">public</span>:
-<a name="l00020"></a><a class="code" href="class_symbol_factory.html#abe10443a1e94348b2156d73d53d49487">00020</a>         <span class="keyword">static</span> <a class="code" href="class_symbol_factory.html">SymbolFactory</a>* <a class="code" href="class_symbol_factory.html#abe10443a1e94348b2156d73d53d49487">GetInstance</a>() {
-<a name="l00021"></a>00021                 <span class="keywordflow">if</span> (!<a class="code" href="class_symbol_factory.html#aba6251432bc5089aea57c6f81623a42e">symbolFactory_instance</a>) {
-<a name="l00022"></a>00022                         <a class="code" href="class_symbol_factory.html#aba6251432bc5089aea57c6f81623a42e">symbolFactory_instance</a> = <span class="keyword">new</span> <a class="code" href="class_symbol_factory.html">SymbolFactory</a>();
-<a name="l00023"></a>00023                 }
-<a name="l00024"></a>00024                 <span class="keywordflow">return</span> <a class="code" href="class_symbol_factory.html#aba6251432bc5089aea57c6f81623a42e">symbolFactory_instance</a>;
-<a name="l00025"></a>00025         }
-<a name="l00026"></a>00026         
-<a name="l00027"></a><a class="code" href="class_symbol_factory.html#aa9e0c5ac006dcccdb0659a2b6ea27be2">00027</a>         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_symbol_factory.html#aa9e0c5ac006dcccdb0659a2b6ea27be2">Delete</a>() {
-<a name="l00028"></a>00028                 <span class="keywordflow">if</span> (<a class="code" href="class_symbol_factory.html#aba6251432bc5089aea57c6f81623a42e">symbolFactory_instance</a>) {
-<a name="l00029"></a>00029                         <span class="keyword">delete</span> <a class="code" href="class_symbol_factory.html#aba6251432bc5089aea57c6f81623a42e">symbolFactory_instance</a>;
-<a name="l00030"></a>00030                 }
-<a name="l00031"></a>00031         }
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033         <span class="comment">// offset is added to next level</span>
-<a name="l00034"></a>00034         <a class="code" href="class_symbol.html">Symbol</a>* <a class="code" href="class_symbol_factory.html#a8e5a54f06f4465dcb8cfcea469246127">CreateIntegerVariable</a>(<span class="keywordtype">size_t</span> &amp;offset, std::string name);
-<a name="l00035"></a>00035         <a class="code" href="class_symbol.html">Symbol</a>* <a class="code" href="class_symbol_factory.html#a0abf95a4cd44e5200087afd75d787d1d">CreateConstIntSymbol</a>(<span class="keywordtype">int</span> value);
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038 <span class="keyword">private</span>:
-<a name="l00039"></a><a class="code" href="class_symbol_factory.html#aba6251432bc5089aea57c6f81623a42e">00039</a>         <span class="keyword">static</span> <a class="code" href="class_symbol_factory.html">SymbolFactory</a>* <a class="code" href="class_symbol_factory.html#aba6251432bc5089aea57c6f81623a42e">symbolFactory_instance</a>;
-<a name="l00040"></a>00040 };
-<a name="l00041"></a>00041 
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043 <span class="preprocessor">#endif</span>
+<a name="l00024"></a><a class="code" href="class_symbol_factory.html#abe10443a1e94348b2156d73d53d49487">00024</a>         <span class="keyword">static</span> <a class="code" href="class_symbol_factory.html">SymbolFactory</a>* <a class="code" href="class_symbol_factory.html#abe10443a1e94348b2156d73d53d49487" title="GetInstance. Singleton Getter.">GetInstance</a>() {
+<a name="l00025"></a>00025                 <span class="keywordflow">if</span> (!<a class="code" href="class_symbol_factory.html#aba6251432bc5089aea57c6f81623a42e">symbolFactory_instance</a>) {
+<a name="l00026"></a>00026                         <a class="code" href="class_symbol_factory.html#aba6251432bc5089aea57c6f81623a42e">symbolFactory_instance</a> = <span class="keyword">new</span> <a class="code" href="class_symbol_factory.html">SymbolFactory</a>();
+<a name="l00027"></a>00027                 }
+<a name="l00028"></a>00028                 <span class="keywordflow">return</span> <a class="code" href="class_symbol_factory.html#aba6251432bc5089aea57c6f81623a42e">symbolFactory_instance</a>;
+<a name="l00029"></a>00029         }
+<a name="l00034"></a><a class="code" href="class_symbol_factory.html#aa9e0c5ac006dcccdb0659a2b6ea27be2">00034</a>         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_symbol_factory.html#aa9e0c5ac006dcccdb0659a2b6ea27be2" title="Delete.">Delete</a>() {
+<a name="l00035"></a>00035                 <span class="keywordflow">if</span> (<a class="code" href="class_symbol_factory.html#aba6251432bc5089aea57c6f81623a42e">symbolFactory_instance</a>) {
+<a name="l00036"></a>00036                         <span class="keyword">delete</span> <a class="code" href="class_symbol_factory.html#aba6251432bc5089aea57c6f81623a42e">symbolFactory_instance</a>;
+<a name="l00037"></a>00037                 }
+<a name="l00038"></a>00038         }
+<a name="l00039"></a>00039 
+<a name="l00046"></a>00046         <a class="code" href="class_symbol.html">Symbol</a>* <a class="code" href="class_symbol_factory.html#a8e5a54f06f4465dcb8cfcea469246127" title="CreateIntegerVariable Creater, everything added to next level.">CreateIntegerVariable</a>(<span class="keywordtype">size_t</span> &amp;offset, std::string name);
+<a name="l00052"></a>00052         <a class="code" href="class_symbol.html">Symbol</a>* <a class="code" href="class_symbol_factory.html#a0abf95a4cd44e5200087afd75d787d1d" title="CreateConstIntSymbol.">CreateConstIntSymbol</a>(<span class="keywordtype">int</span> value);
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055 <span class="keyword">private</span>:
+<a name="l00056"></a><a class="code" href="class_symbol_factory.html#aba6251432bc5089aea57c6f81623a42e">00056</a>         <span class="keyword">static</span> <a class="code" href="class_symbol_factory.html">SymbolFactory</a>* <a class="code" href="class_symbol_factory.html#aba6251432bc5089aea57c6f81623a42e">symbolFactory_instance</a>;
+<a name="l00057"></a>00057 };
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -153,7 +151,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Mon Feb 8 2016 10:00:41 for MIEC Compiler by
+    <li class="footer">Generated on Sat Feb 13 2016 04:44:39 for COM_MIEC by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>

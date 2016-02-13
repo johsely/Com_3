@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>MIEC Compiler: VarSymbol Class Reference</title>
+<title>COM_MIEC: VarSymbol Class Reference</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MIEC Compiler
+   <div id="projectname">COM_MIEC
    
    </div>
    
@@ -104,16 +104,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <!-- doxytag: class="VarSymbol" --><!-- doxytag: inherits="Symbol" -->
 <p><code>#include &lt;<a class="el" href="_var_symbol_8h_source.html">VarSymbol.h</a>&gt;</code></p>
-
-<p>Inherits <a class="el" href="class_symbol.html">Symbol</a>.</p>
+<div class="dynheader">
+Inheritance diagram for VarSymbol:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_var_symbol.png" usemap="#VarSymbol_map" alt=""/>
+  <map id="VarSymbol_map" name="VarSymbol_map">
+<area href="class_symbol.html" alt="Symbol" shape="rect" coords="0,112,74,136"/>
+<area href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols." alt="IDACEntry" shape="rect" coords="0,56,74,80"/>
+<area href="class_object.html" alt="Object" shape="rect" coords="0,0,74,24"/>
+</map>
+ </div></div>
 
 <p><a href="class_var_symbol-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_var_symbol.html#a392bb1f907fa47e2fcd918db3028e2b0">VarSymbol</a> (size_t offset, std::string name, <a class="el" href="class_type.html">Type</a> *type)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a392bb1f907fa47e2fcd918db3028e2b0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_var_symbol.html#af7fbe94760b80343360aac9efdecf03d">GetOffset</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">GetOffset.  <a href="#af7fbe94760b80343360aac9efdecf03d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_var_symbol.html#a7551c18367a36e02fa41bad5d2176c62">Print</a> (std::ostream &amp;ost) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Print Debugging purpose.  <a href="#a7551c18367a36e02fa41bad5d2176c62"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_var_symbol.html#a33ccfdcf6ab83873266bd97a7d1c9fc0">mOffset</a></td></tr>
@@ -150,7 +162,15 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_var_symbol_8h_source.html#l00016">16</a> of file <a class="el" href="_var_symbol_8h_source.html">VarSymbol.h</a>.</p>
+<p>Constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">offset</td><td>adress ofsett </td></tr>
+    <tr><td class="paramname">name</td><td>name of symbol </td></tr>
+    <tr><td class="paramname">type</td><td>type object </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -169,7 +189,7 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_var_symbol_8h_source.html#l00017">17</a> of file <a class="el" href="_var_symbol_8h_source.html">VarSymbol.h</a>.</p>
+<p>GetOffset. </p>
 
 </div>
 </div>
@@ -188,9 +208,15 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="class_symbol.html#a569e79e2db7c4760d2d297f8e95f7ce6">Symbol</a>.</p>
+<p>Print Debugging purpose. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td>stream to print on </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="_var_symbol_8h_source.html#l00018">18</a> of file <a class="el" href="_var_symbol_8h_source.html">VarSymbol.h</a>.</p>
+<p>Reimplemented from <a class="el" href="class_symbol.html#a569e79e2db7c4760d2d297f8e95f7ce6">Symbol</a>.</p>
 
 </div>
 </div>
@@ -205,8 +231,6 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Definition at line <a class="el" href="_var_symbol_8h_source.html#l00023">23</a> of file <a class="el" href="_var_symbol_8h_source.html">VarSymbol.h</a>.</p>
 
 </div>
 </div>
@@ -233,7 +257,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Mon Feb 8 2016 10:00:41 for MIEC Compiler by
+    <li class="footer">Generated on Sat Feb 13 2016 04:44:40 for COM_MIEC by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>

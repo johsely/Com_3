@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>MIEC Compiler: MIECCompiler_VS_2015/MIECCompiler/DACGenerator.h Source File</title>
+<title>COM_MIEC: MIECCompiler_VS_2015/MIECCompiler/DACGenerator.h Source File</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MIEC Compiler
+   <div id="projectname">COM_MIEC
    
    </div>
    
@@ -110,43 +110,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00018"></a>00018 
 <a name="l00019"></a>00019 <span class="keyword">class </span><a class="code" href="class_d_a_c_generator.html">DACGenerator</a> : <span class="keyword">public</span> <a class="code" href="class_object.html">Object</a> {
 <a name="l00020"></a>00020 <span class="keyword">public</span>:
-<a name="l00021"></a><a class="code" href="class_d_a_c_generator.html#a42a11ffab1b6b4d0be0a198f678523ea">00021</a>         <span class="keyword">static</span> <a class="code" href="class_d_a_c_generator.html">DACGenerator</a>* <a class="code" href="class_d_a_c_generator.html#a42a11ffab1b6b4d0be0a198f678523ea">GetInstance</a>() {
-<a name="l00022"></a>00022                 <span class="keywordflow">if</span> (!DACGenerator_instance){
-<a name="l00023"></a>00023                         DACGenerator_instance = <span class="keyword">new</span> <a class="code" href="class_d_a_c_generator.html#af1bd0d672feb339f643dc6692bb31507">DACGenerator</a>();
-<a name="l00024"></a>00024                 }
-<a name="l00025"></a>00025                 <span class="keywordflow">return</span> DACGenerator_instance;
-<a name="l00026"></a>00026         }
-<a name="l00027"></a>00027 
-<a name="l00028"></a><a class="code" href="class_d_a_c_generator.html#af0e506e927ec827abf0e3fda7131b62a">00028</a>         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_d_a_c_generator.html#af0e506e927ec827abf0e3fda7131b62a">Delete</a>() {
-<a name="l00029"></a>00029                 <span class="keywordflow">if</span> (DACGenerator_instance){
-<a name="l00030"></a>00030                         <span class="keyword">delete</span> DACGenerator_instance;
-<a name="l00031"></a>00031                 }
-<a name="l00032"></a>00032         }
-<a name="l00033"></a>00033         
-<a name="l00034"></a>00034         <a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* <a class="code" href="class_d_a_c_generator.html#a0ccf63851b792c16275d33972eb38e28">AddStatement</a>(<a class="code" href="_d_a_c_entry_8h.html#aaa3fe0830521b81926c6aa017c02e76f">OpKind</a> opKind, <a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* sym1);
-<a name="l00035"></a>00035         <a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* <a class="code" href="class_d_a_c_generator.html#a0ccf63851b792c16275d33972eb38e28">AddStatement</a>(<a class="code" href="_d_a_c_entry_8h.html#aaa3fe0830521b81926c6aa017c02e76f">OpKind</a> opKind, <a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* sym1, <a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* sym2);
-<a name="l00036"></a>00036         <a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* <a class="code" href="class_d_a_c_generator.html#a1dc1b422561d29c7494e3a8751a5e39b">GetNext</a>();
-<a name="l00037"></a>00037                 
-<a name="l00038"></a>00038         <span class="keywordtype">void</span> <a class="code" href="class_d_a_c_generator.html#a1c0fdea35ffaeba7d332d422fba9228a">Clear</a>();
-<a name="l00039"></a>00039         std::list&lt;DACEntry*&gt; <a class="code" href="class_d_a_c_generator.html#a2a73e3fd7b0c64ba9c8f65c067a9b681">GetStatements</a>();
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="preprocessor">#ifdef _DEBUG</span>
-<a name="l00042"></a>00042 <span class="preprocessor"></span>        <span class="keywordtype">void</span> Print(std::ostream&amp; out);
-<a name="l00043"></a>00043 <span class="preprocessor">#endif</span>
-<a name="l00044"></a>00044 <span class="preprocessor"></span>
-<a name="l00045"></a>00045 <span class="keyword">private</span>:
-<a name="l00046"></a><a class="code" href="class_d_a_c_generator.html#af1bd0d672feb339f643dc6692bb31507">00046</a>         <a class="code" href="class_d_a_c_generator.html#af1bd0d672feb339f643dc6692bb31507">DACGenerator</a>() { mLastEmptyStatement = <span class="keyword">false</span>; };
-<a name="l00047"></a>00047         <a class="code" href="class_d_a_c_generator.html#af1bd0d672feb339f643dc6692bb31507">DACGenerator</a>(<a class="code" href="class_d_a_c_generator.html">DACGenerator</a> <span class="keyword">const</span>&amp; obj) = <span class="keyword">delete</span>;
-<a name="l00048"></a>00048         <span class="keywordtype">void</span> operator=(<a class="code" href="class_d_a_c_generator.html">DACGenerator</a> <span class="keyword">const</span>&amp; obj) = <span class="keyword">delete</span>;
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050         <span class="keywordtype">bool</span> mLastEmptyStatement;
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052         <span class="keyword">static</span> <a class="code" href="class_d_a_c_generator.html">DACGenerator</a>* DACGenerator_instance;
-<a name="l00053"></a>00053         std::list&lt;DACEntry*&gt; mStatements;
-<a name="l00054"></a>00054 };
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057 <span class="preprocessor">#endif</span>
+<a name="l00025"></a><a class="code" href="class_d_a_c_generator.html#a42a11ffab1b6b4d0be0a198f678523ea">00025</a>         <span class="keyword">static</span> <a class="code" href="class_d_a_c_generator.html">DACGenerator</a>* <a class="code" href="class_d_a_c_generator.html#a42a11ffab1b6b4d0be0a198f678523ea" title="GetInstance Singleton Getter.">GetInstance</a>() {
+<a name="l00026"></a>00026                 <span class="keywordflow">if</span> (!<a class="code" href="class_d_a_c_generator.html#a32d576ed53ca0438323646440f4a442c">DACGenerator_instance</a>){
+<a name="l00027"></a>00027                         <a class="code" href="class_d_a_c_generator.html#a32d576ed53ca0438323646440f4a442c">DACGenerator_instance</a> = <span class="keyword">new</span> <a class="code" href="class_d_a_c_generator.html#af1bd0d672feb339f643dc6692bb31507" title="Constructor.">DACGenerator</a>();
+<a name="l00028"></a>00028                 }
+<a name="l00029"></a>00029                 <span class="keywordflow">return</span> <a class="code" href="class_d_a_c_generator.html#a32d576ed53ca0438323646440f4a442c">DACGenerator_instance</a>;
+<a name="l00030"></a>00030         }
+<a name="l00035"></a><a class="code" href="class_d_a_c_generator.html#af0e506e927ec827abf0e3fda7131b62a">00035</a>         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_d_a_c_generator.html#af0e506e927ec827abf0e3fda7131b62a" title="Delete Instance (Singleton).">Delete</a>() {
+<a name="l00036"></a>00036                 <span class="keywordflow">if</span> (<a class="code" href="class_d_a_c_generator.html#a32d576ed53ca0438323646440f4a442c">DACGenerator_instance</a>){
+<a name="l00037"></a>00037                         <span class="keyword">delete</span> <a class="code" href="class_d_a_c_generator.html#a32d576ed53ca0438323646440f4a442c">DACGenerator_instance</a>;
+<a name="l00038"></a>00038                 }
+<a name="l00039"></a>00039         }
+<a name="l00047"></a>00047         <a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* <a class="code" href="class_d_a_c_generator.html#a0ccf63851b792c16275d33972eb38e28" title="AddStatement Add next IdacEntry one argument.">AddStatement</a>(<a class="code" href="_d_a_c_entry_8h.html#aaa3fe0830521b81926c6aa017c02e76f">OpKind</a> opKind, <a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* sym1);
+<a name="l00055"></a>00055         <a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* <a class="code" href="class_d_a_c_generator.html#a0ccf63851b792c16275d33972eb38e28" title="AddStatement Add next IdacEntry one argument.">AddStatement</a>(<a class="code" href="_d_a_c_entry_8h.html#aaa3fe0830521b81926c6aa017c02e76f">OpKind</a> opKind, <a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* sym1, <a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* sym2);
+<a name="l00060"></a>00060         <a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* <a class="code" href="class_d_a_c_generator.html#a1dc1b422561d29c7494e3a8751a5e39b" title="GetNext returns next IDACEntry in list.">GetNext</a>();
+<a name="l00065"></a>00065         <span class="keywordtype">void</span> <a class="code" href="class_d_a_c_generator.html#a1c0fdea35ffaeba7d332d422fba9228a" title="Clear Cleanup.">Clear</a>();
+<a name="l00070"></a>00070         std::list&lt;DACEntry*&gt; <a class="code" href="class_d_a_c_generator.html#a2a73e3fd7b0c64ba9c8f65c067a9b681" title="GetStatements returns the list of DAC Entries.">GetStatements</a>();
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 <span class="preprocessor">#ifdef _DEBUG</span>
+<a name="l00073"></a>00073 <span class="preprocessor"></span>
+<a name="l00078"></a>00078         <span class="keywordtype">void</span> Print(std::ostream&amp; out);
+<a name="l00079"></a>00079 <span class="preprocessor">#endif</span>
+<a name="l00080"></a>00080 <span class="preprocessor"></span>
+<a name="l00081"></a>00081 <span class="keyword">private</span>:
+<a name="l00086"></a><a class="code" href="class_d_a_c_generator.html#af1bd0d672feb339f643dc6692bb31507">00086</a>         <a class="code" href="class_d_a_c_generator.html#af1bd0d672feb339f643dc6692bb31507" title="Constructor.">DACGenerator</a>() { <a class="code" href="class_d_a_c_generator.html#ac062b38bb5d560d1dfc561b4d8cd1f63">mLastEmptyStatement</a> = <span class="keyword">false</span>; };
+<a name="l00092"></a>00092         <a class="code" href="class_d_a_c_generator.html#af1bd0d672feb339f643dc6692bb31507" title="Constructor.">DACGenerator</a>(<a class="code" href="class_d_a_c_generator.html">DACGenerator</a> <span class="keyword">const</span>&amp; obj) = <span class="keyword">delete</span>;
+<a name="l00098"></a>00098         <span class="keywordtype">void</span> <a class="code" href="class_d_a_c_generator.html#a9b101204b6ec84efa858cf69f5a5a8ba" title="Assignment Operator Deleted no implementation.">operator=</a>(<a class="code" href="class_d_a_c_generator.html">DACGenerator</a> <span class="keyword">const</span>&amp; obj) = <span class="keyword">delete</span>;
+<a name="l00099"></a>00099 
+<a name="l00100"></a><a class="code" href="class_d_a_c_generator.html#ac062b38bb5d560d1dfc561b4d8cd1f63">00100</a>         <span class="keywordtype">bool</span> <a class="code" href="class_d_a_c_generator.html#ac062b38bb5d560d1dfc561b4d8cd1f63">mLastEmptyStatement</a>;
+<a name="l00101"></a>00101 
+<a name="l00102"></a><a class="code" href="class_d_a_c_generator.html#a32d576ed53ca0438323646440f4a442c">00102</a>         <span class="keyword">static</span> <a class="code" href="class_d_a_c_generator.html">DACGenerator</a>* <a class="code" href="class_d_a_c_generator.html#a32d576ed53ca0438323646440f4a442c">DACGenerator_instance</a>;
+<a name="l00103"></a><a class="code" href="class_d_a_c_generator.html#ac48e613e9262cd1df4a3f1bc63d3a8fb">00103</a>         std::list&lt;DACEntry*&gt; <a class="code" href="class_d_a_c_generator.html#ac48e613e9262cd1df4a3f1bc63d3a8fb">mStatements</a>;
+<a name="l00104"></a>00104 };
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -167,7 +165,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Mon Feb 8 2016 10:00:41 for MIEC Compiler by
+    <li class="footer">Generated on Sat Feb 13 2016 04:44:39 for COM_MIEC by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>

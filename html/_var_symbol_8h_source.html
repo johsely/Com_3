@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>MIEC Compiler: MIECCompiler_VS_2015/MIECCompiler/VarSymbol.h Source File</title>
+<title>COM_MIEC: MIECCompiler_VS_2015/MIECCompiler/VarSymbol.h Source File</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MIEC Compiler
+   <div id="projectname">COM_MIEC
    
    </div>
    
@@ -105,17 +105,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00013"></a>00013 
 <a name="l00014"></a>00014 <span class="keyword">class </span><a class="code" href="class_var_symbol.html">VarSymbol</a> : <span class="keyword">public</span> <a class="code" href="class_symbol.html">Symbol</a> {
 <a name="l00015"></a>00015 <span class="keyword">public</span>:
-<a name="l00016"></a><a class="code" href="class_var_symbol.html#a392bb1f907fa47e2fcd918db3028e2b0">00016</a>         <a class="code" href="class_var_symbol.html#a392bb1f907fa47e2fcd918db3028e2b0">VarSymbol</a>(<span class="keywordtype">size_t</span> offset, std::string name, <a class="code" href="class_type.html">Type</a>* type) : <a class="code" href="class_var_symbol.html#a33ccfdcf6ab83873266bd97a7d1c9fc0">mOffset</a>(offset), <a class="code" href="class_symbol.html">Symbol</a>(name, type) {}
-<a name="l00017"></a><a class="code" href="class_var_symbol.html#af7fbe94760b80343360aac9efdecf03d">00017</a>         <span class="keywordtype">size_t</span> <a class="code" href="class_var_symbol.html#af7fbe94760b80343360aac9efdecf03d">GetOffset</a>() { <span class="keywordflow">return</span> <a class="code" href="class_var_symbol.html#a33ccfdcf6ab83873266bd97a7d1c9fc0">mOffset</a>; }
-<a name="l00018"></a><a class="code" href="class_var_symbol.html#a7551c18367a36e02fa41bad5d2176c62">00018</a>         <span class="keywordtype">void</span> <a class="code" href="class_var_symbol.html#a7551c18367a36e02fa41bad5d2176c62">Print</a>(std::ostream &amp;ost)<span class="keyword"> const </span>{
-<a name="l00019"></a>00019                 <a class="code" href="class_var_symbol.html#a7551c18367a36e02fa41bad5d2176c62">Symbol::Print</a>(ost);
-<a name="l00020"></a>00020                 ost &lt;&lt; <span class="stringliteral">&quot; offset: &quot;</span> &lt;&lt; <a class="code" href="class_var_symbol.html#a33ccfdcf6ab83873266bd97a7d1c9fc0">mOffset</a>;
-<a name="l00021"></a>00021         }
-<a name="l00022"></a>00022 <span class="keyword">private</span>:
-<a name="l00023"></a><a class="code" href="class_var_symbol.html#a33ccfdcf6ab83873266bd97a7d1c9fc0">00023</a>         <span class="keywordtype">size_t</span> <a class="code" href="class_var_symbol.html#a33ccfdcf6ab83873266bd97a7d1c9fc0">mOffset</a>;
-<a name="l00024"></a>00024 };
-<a name="l00025"></a>00025 
-<a name="l00026"></a>00026 <span class="preprocessor">#endif</span>
+<a name="l00023"></a><a class="code" href="class_var_symbol.html#a392bb1f907fa47e2fcd918db3028e2b0">00023</a>         <a class="code" href="class_var_symbol.html#a392bb1f907fa47e2fcd918db3028e2b0" title="Constructor.">VarSymbol</a>(<span class="keywordtype">size_t</span> offset, std::string name, <a class="code" href="class_type.html">Type</a>* type) : <a class="code" href="class_var_symbol.html#a33ccfdcf6ab83873266bd97a7d1c9fc0">mOffset</a>(offset), <a class="code" href="class_symbol.html">Symbol</a>(name, type) {}
+<a name="l00027"></a><a class="code" href="class_var_symbol.html#af7fbe94760b80343360aac9efdecf03d">00027</a>         <span class="keywordtype">size_t</span> <a class="code" href="class_var_symbol.html#af7fbe94760b80343360aac9efdecf03d" title="GetOffset.">GetOffset</a>() { <span class="keywordflow">return</span> <a class="code" href="class_var_symbol.html#a33ccfdcf6ab83873266bd97a7d1c9fc0">mOffset</a>; }
+<a name="l00033"></a><a class="code" href="class_var_symbol.html#a7551c18367a36e02fa41bad5d2176c62">00033</a>         <span class="keywordtype">void</span> <a class="code" href="class_var_symbol.html#a7551c18367a36e02fa41bad5d2176c62" title="Print Debugging purpose.">Print</a>(std::ostream &amp;ost)<span class="keyword"> const </span>{
+<a name="l00034"></a>00034                 <a class="code" href="class_var_symbol.html#a7551c18367a36e02fa41bad5d2176c62" title="Print Debugging purpose.">Symbol::Print</a>(ost);
+<a name="l00035"></a>00035                 ost &lt;&lt; <span class="stringliteral">&quot; offset: &quot;</span> &lt;&lt; <a class="code" href="class_var_symbol.html#a33ccfdcf6ab83873266bd97a7d1c9fc0">mOffset</a>;
+<a name="l00036"></a>00036         }
+<a name="l00037"></a>00037 <span class="keyword">private</span>:
+<a name="l00038"></a><a class="code" href="class_var_symbol.html#a33ccfdcf6ab83873266bd97a7d1c9fc0">00038</a>         <span class="keywordtype">size_t</span> <a class="code" href="class_var_symbol.html#a33ccfdcf6ab83873266bd97a7d1c9fc0">mOffset</a>;
+<a name="l00039"></a>00039 };
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -136,7 +136,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Mon Feb 8 2016 10:00:41 for MIEC Compiler by
+    <li class="footer">Generated on Sat Feb 13 2016 04:44:39 for COM_MIEC by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>

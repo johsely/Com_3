@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>MIEC Compiler: MIECCompiler_VS_2015/MIECCompiler/RegisterAdmin.h Source File</title>
+<title>COM_MIEC: MIECCompiler_VS_2015/MIECCompiler/RegisterAdmin.h Source File</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MIEC Compiler
+   <div id="projectname">COM_MIEC
    
    </div>
    
@@ -101,41 +101,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00009"></a>00009 <span class="preprocessor">#ifndef MIEC_REGISTER_ADMIN</span>
 <a name="l00010"></a>00010 <span class="preprocessor"></span><span class="preprocessor">#define MIEC_REGISTER_ADMIN</span>
 <a name="l00011"></a>00011 <span class="preprocessor"></span>
-<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;<a class="code" href="_register_8h.html" title="Register class.">Register.h</a>&quot;</span>
-<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;<a class="code" href="_i_d_a_c_entry_8h.html" title="IDACEntry base class for DAC and Symbols.">IDACEntry.h</a>&quot;</span>
-<a name="l00014"></a>00014 <span class="preprocessor">#include &quot;<a class="code" href="_symbol_8h.html" title="Specialization of IDACEntry and Baseclass for other symbols.">Symbol.h</a>&quot;</span>
-<a name="l00015"></a>00015 <span class="preprocessor">#include &lt;map&gt;</span>
-<a name="l00016"></a>00016 <span class="preprocessor">#include &quot;<a class="code" href="_code_gen_prol16_8h.html">CodeGenProl16.h</a>&quot;</span>
-<a name="l00017"></a><a class="code" href="_register_admin_8h.html#a2c2044dbdaada8897e8c444364bdc98f">00017</a> <span class="keywordtype">size_t</span> <span class="keyword">const</span> <a class="code" href="_register_admin_8h.html#a2c2044dbdaada8897e8c444364bdc98f">PROL16_REGNUM</a> = 8;
+<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;<a class="code" href="_i_d_a_c_entry_8h.html" title="IDACEntry base class for DAC and Symbols.">IDACEntry.h</a>&quot;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;<a class="code" href="_symbol_8h.html" title="Specialization of IDACEntry and Baseclass for other symbols.">Symbol.h</a>&quot;</span>
+<a name="l00014"></a>00014 <span class="preprocessor">#include &lt;map&gt;</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &quot;<a class="code" href="_code_gen_prol16_8h.html">CodeGenProl16.h</a>&quot;</span>
+<a name="l00016"></a><a class="code" href="_register_admin_8h.html#a2c2044dbdaada8897e8c444364bdc98f">00016</a> <span class="keywordtype">size_t</span> <span class="keyword">const</span> <a class="code" href="_register_admin_8h.html#a2c2044dbdaada8897e8c444364bdc98f">PROL16_REGNUM</a> = 8;
+<a name="l00017"></a>00017 
 <a name="l00018"></a>00018 
-<a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <span class="keyword">struct </span><a class="code" href="struct_t_register.html">TRegister</a> {
-<a name="l00021"></a><a class="code" href="struct_t_register.html#aa1b354429812e7b9264fdede304cdc53">00021</a>         <a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* <a class="code" href="struct_t_register.html#aa1b354429812e7b9264fdede304cdc53">connected</a>;
-<a name="l00022"></a><a class="code" href="struct_t_register.html#a88808ddb3d03378fe968d356e22861d2">00022</a>         <span class="keywordtype">bool</span> <a class="code" href="struct_t_register.html#a88808ddb3d03378fe968d356e22861d2">isFree</a>;
-<a name="l00023"></a>00023 };
+<a name="l00019"></a>00019 <span class="keyword">struct </span><a class="code" href="struct_t_register.html">TRegister</a> {
+<a name="l00020"></a><a class="code" href="struct_t_register.html#aa1b354429812e7b9264fdede304cdc53">00020</a>         <a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* <a class="code" href="struct_t_register.html#aa1b354429812e7b9264fdede304cdc53">connected</a>;
+<a name="l00021"></a><a class="code" href="struct_t_register.html#a88808ddb3d03378fe968d356e22861d2">00021</a>         <span class="keywordtype">bool</span> <a class="code" href="struct_t_register.html#a88808ddb3d03378fe968d356e22861d2">isFree</a>;
+<a name="l00022"></a>00022 };
+<a name="l00023"></a>00023 
 <a name="l00024"></a>00024 
-<a name="l00025"></a>00025 
-<a name="l00026"></a>00026 <span class="keyword">class </span><a class="code" href="class_register_admin.html">RegisterAdmin</a> : <span class="keyword">public</span> <a class="code" href="class_object.html">Object</a> {
-<a name="l00027"></a>00027 <span class="keyword">public</span>:
-<a name="l00028"></a>00028         <a class="code" href="class_register_admin.html#a5fa4ba71e9ab9e690ff4fdedef7590b5">RegisterAdmin</a>(<a class="code" href="class_m_i_e_c_1_1_code_gen_prol16.html">MIEC::CodeGenProl16</a> &amp;codeGen);
-<a name="l00029"></a>00029         
-<a name="l00030"></a>00030         <span class="keywordtype">int</span> <a class="code" href="class_register_admin.html#a47979f46579bffc2eb2d777b04bc5593">GetRegister</a>();
-<a name="l00031"></a>00031         <span class="keywordtype">int</span> <a class="code" href="class_register_admin.html#a47979f46579bffc2eb2d777b04bc5593">GetRegister</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* dacEntry);
-<a name="l00032"></a>00032         <span class="keywordtype">int</span> <a class="code" href="class_register_admin.html#a02bfcc87115994eb8fa05478b72fd867">AssignRegister</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* dacEntry);
-<a name="l00033"></a>00033         <span class="keywordtype">void</span> <a class="code" href="class_register_admin.html#a36393cfed82dfa6f5fba400d24427265">FreeRegister</a>(<span class="keywordtype">int</span> regNum);
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035 <span class="keyword">private</span>:
-<a name="l00036"></a><a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">00036</a>         <a class="code" href="struct_t_register.html">TRegister</a> <a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[<a class="code" href="_register_admin_8h.html#a2c2044dbdaada8897e8c444364bdc98f">PROL16_REGNUM</a>];
-<a name="l00037"></a>00037 
-<a name="l00038"></a><a class="code" href="class_register_admin.html#a763095fa9a8d9065e5935f0d3009c60f">00038</a>         MIEC::CodeGenProl16 &amp; <a class="code" href="class_register_admin.html#a763095fa9a8d9065e5935f0d3009c60f">mpGenProl16</a>;
-<a name="l00039"></a>00039         <span class="comment">//std::map&lt;Register, Symbol*&gt; mRegisters;</span>
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041 };
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="preprocessor">#endif</span>
+<a name="l00025"></a>00025 <span class="keyword">class </span><a class="code" href="class_register_admin.html">RegisterAdmin</a> : <span class="keyword">public</span> <a class="code" href="class_object.html">Object</a> {
+<a name="l00026"></a>00026 <span class="keyword">public</span>:
+<a name="l00033"></a>00033         <a class="code" href="class_register_admin.html#a9b4fd94064f18612a4ee8249296ddeb6" title="Constructor.">RegisterAdmin</a>(<a class="code" href="class_m_i_e_c_1_1_code_gen_prol16.html">MIEC::CodeGenProl16</a> *codeGen);
+<a name="l00034"></a>00034         
+<a name="l00039"></a>00039         <span class="keywordtype">int</span> <a class="code" href="class_register_admin.html#a47979f46579bffc2eb2d777b04bc5593" title="Get Register without Dac Entry mostly internally used .">GetRegister</a>();
+<a name="l00045"></a>00045         <span class="keywordtype">int</span> <a class="code" href="class_register_admin.html#a47979f46579bffc2eb2d777b04bc5593" title="Get Register without Dac Entry mostly internally used .">GetRegister</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* dacEntry);
+<a name="l00046"></a>00046 
+<a name="l00052"></a>00052         <span class="keywordtype">int</span> <a class="code" href="class_register_admin.html#a02bfcc87115994eb8fa05478b72fd867" title="Assigns Register to Address.">AssignRegister</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* dacEntry);
+<a name="l00053"></a>00053 
+<a name="l00059"></a>00059         <span class="keywordtype">void</span> <a class="code" href="class_register_admin.html#a36393cfed82dfa6f5fba400d24427265" title="Free Register to Address.">FreeRegister</a>(<span class="keywordtype">int</span> regNum);
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061 <span class="keyword">private</span>:
+<a name="l00062"></a><a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">00062</a>         <a class="code" href="struct_t_register.html">TRegister</a> <a class="code" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a>[<a class="code" href="_register_admin_8h.html#a2c2044dbdaada8897e8c444364bdc98f">PROL16_REGNUM</a>];
+<a name="l00063"></a>00063 
+<a name="l00064"></a><a class="code" href="class_register_admin.html#a83cb00e7e01abfebf7b8fbc7635fa7b4">00064</a>         MIEC::CodeGenProl16 * <a class="code" href="class_register_admin.html#a83cb00e7e01abfebf7b8fbc7635fa7b4">mpGenProl16</a>;
+<a name="l00065"></a>00065         <span class="comment">//std::map&lt;Register, Symbol*&gt; mRegisters;</span>
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067 };
+<a name="l00068"></a>00068 
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -156,7 +157,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Mon Feb 8 2016 10:00:41 for MIEC Compiler by
+    <li class="footer">Generated on Sat Feb 13 2016 04:44:39 for COM_MIEC by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>

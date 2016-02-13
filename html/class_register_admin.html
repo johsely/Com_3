@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>MIEC Compiler: RegisterAdmin Class Reference</title>
+<title>COM_MIEC: RegisterAdmin Class Reference</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MIEC Compiler
+   <div id="projectname">COM_MIEC
    
    </div>
    
@@ -104,41 +104,59 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <!-- doxytag: class="RegisterAdmin" --><!-- doxytag: inherits="Object" -->
 <p><code>#include &lt;<a class="el" href="_register_admin_8h_source.html">RegisterAdmin.h</a>&gt;</code></p>
-
-<p>Inherits <a class="el" href="class_object.html">Object</a>.</p>
+<div class="dynheader">
+Inheritance diagram for RegisterAdmin:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_register_admin.png" usemap="#RegisterAdmin_map" alt=""/>
+  <map id="RegisterAdmin_map" name="RegisterAdmin_map">
+<area href="class_object.html" alt="Object" shape="rect" coords="0,0,93,24"/>
+</map>
+ </div></div>
 
 <p><a href="class_register_admin-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_register_admin.html#a5fa4ba71e9ab9e690ff4fdedef7590b5">RegisterAdmin</a> (<a class="el" href="class_m_i_e_c_1_1_code_gen_prol16.html">MIEC::CodeGenProl16</a> &amp;codeGen)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_register_admin.html#a9b4fd94064f18612a4ee8249296ddeb6">RegisterAdmin</a> (<a class="el" href="class_m_i_e_c_1_1_code_gen_prol16.html">MIEC::CodeGenProl16</a> *codeGen)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a9b4fd94064f18612a4ee8249296ddeb6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_register_admin.html#a47979f46579bffc2eb2d777b04bc5593">GetRegister</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Register without Dac Entry mostly internally used .  <a href="#a47979f46579bffc2eb2d777b04bc5593"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_register_admin.html#ae038d3c8d27b9a9826d6f3f60b14b290">GetRegister</a> (<a class="el" href="class_i_d_a_c_entry.html">IDACEntry</a> *dacEntry)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Normal GetRegister from <a class="el" href="class_d_a_c_entry.html">DACEntry</a>.  <a href="#ae038d3c8d27b9a9826d6f3f60b14b290"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_register_admin.html#a02bfcc87115994eb8fa05478b72fd867">AssignRegister</a> (<a class="el" href="class_i_d_a_c_entry.html">IDACEntry</a> *dacEntry)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns Register to Address.  <a href="#a02bfcc87115994eb8fa05478b72fd867"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_register_admin.html#a36393cfed82dfa6f5fba400d24427265">FreeRegister</a> (int regNum)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Free Register to Address.  <a href="#a36393cfed82dfa6f5fba400d24427265"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_t_register.html">TRegister</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_register_admin.html#a0b06b0cd448213694e605944f6b7fbc5">mRegisters</a> [<a class="el" href="_register_admin_8h.html#a2c2044dbdaada8897e8c444364bdc98f">PROL16_REGNUM</a>]</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_m_i_e_c_1_1_code_gen_prol16.html">MIEC::CodeGenProl16</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_register_admin.html#a763095fa9a8d9065e5935f0d3009c60f">mpGenProl16</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_m_i_e_c_1_1_code_gen_prol16.html">MIEC::CodeGenProl16</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_register_admin.html#a83cb00e7e01abfebf7b8fbc7635fa7b4">mpGenProl16</a></td></tr>
 </table>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a5fa4ba71e9ab9e690ff4fdedef7590b5"></a><!-- doxytag: member="RegisterAdmin::RegisterAdmin" ref="a5fa4ba71e9ab9e690ff4fdedef7590b5" args="(MIEC::CodeGenProl16 &amp;codeGen)" -->
+<a class="anchor" id="a9b4fd94064f18612a4ee8249296ddeb6"></a><!-- doxytag: member="RegisterAdmin::RegisterAdmin" ref="a9b4fd94064f18612a4ee8249296ddeb6" args="(MIEC::CodeGenProl16 *codeGen)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">RegisterAdmin::RegisterAdmin </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_m_i_e_c_1_1_code_gen_prol16.html">MIEC::CodeGenProl16</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="class_m_i_e_c_1_1_code_gen_prol16.html">MIEC::CodeGenProl16</a> *&#160;</td>
           <td class="paramname"><em>codeGen</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>constructor </p>
 
-<p>Definition at line <a class="el" href="_register_admin_8cpp_source.html#l00015">15</a> of file <a class="el" href="_register_admin_8cpp_source.html">RegisterAdmin.cpp</a>.</p>
+<p>Constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">codeGen</td><td>Register Admin needs the codegen for getRegister. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>constructor </p>
 
 </div>
 </div>
@@ -157,9 +175,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>AssignRegister searches for a free register and connects the <a class="el" href="class_d_a_c_entry.html">DACEntry</a> with it, returns the register number -1 if error </p>
 
-<p>Definition at line <a class="el" href="_register_admin_8cpp_source.html#l00067">67</a> of file <a class="el" href="_register_admin_8cpp_source.html">RegisterAdmin.cpp</a>.</p>
+<p>Assigns Register to Address. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dacEntry</td><td><a class="el" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>AssignRegister searches for a free register and connects the <a class="el" href="class_d_a_c_entry.html">DACEntry</a> with it, returns the register number -1 if error </p>
 
 </div>
 </div>
@@ -177,9 +201,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>release used register </p>
 
-<p>Definition at line <a class="el" href="_register_admin_8cpp_source.html#l00079">79</a> of file <a class="el" href="_register_admin_8cpp_source.html">RegisterAdmin.cpp</a>.</p>
+<p>Free Register to Address. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">regNum</td><td>Register Number. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>release used register </p>
 
 </div>
 </div>
@@ -196,9 +226,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>tries to find r </p>
 
-<p>Definition at line <a class="el" href="_register_admin_8cpp_source.html#l00025">25</a> of file <a class="el" href="_register_admin_8cpp_source.html">RegisterAdmin.cpp</a>.</p>
+<p>Get Register without Dac Entry mostly internally used . </p>
+<p>tries to find r </p>
 
 </div>
 </div>
@@ -216,27 +246,32 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Normal GetRegister from <a class="el" href="class_d_a_c_entry.html">DACEntry</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dacEntry</td><td><a class="el" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
 <p>getregister with <a class="el" href="class_d_a_c_entry.html">DACEntry</a> </p>
 <p>try const int cast</p>
-<p>try variable cast </p>
-
-<p>Definition at line <a class="el" href="_register_admin_8cpp_source.html#l00036">36</a> of file <a class="el" href="_register_admin_8cpp_source.html">RegisterAdmin.cpp</a>.</p>
+<p>try variable cast</p>
+<p>try dacEntry cast </p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a763095fa9a8d9065e5935f0d3009c60f"></a><!-- doxytag: member="RegisterAdmin::mpGenProl16" ref="a763095fa9a8d9065e5935f0d3009c60f" args="" -->
+<a class="anchor" id="a83cb00e7e01abfebf7b8fbc7635fa7b4"></a><!-- doxytag: member="RegisterAdmin::mpGenProl16" ref="a83cb00e7e01abfebf7b8fbc7635fa7b4" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_m_i_e_c_1_1_code_gen_prol16.html">MIEC::CodeGenProl16</a>&amp; <a class="el" href="class_register_admin.html#a763095fa9a8d9065e5935f0d3009c60f">RegisterAdmin::mpGenProl16</a><code> [private]</code></td>
+          <td class="memname"><a class="el" href="class_m_i_e_c_1_1_code_gen_prol16.html">MIEC::CodeGenProl16</a>* <a class="el" href="class_register_admin.html#a83cb00e7e01abfebf7b8fbc7635fa7b4">RegisterAdmin::mpGenProl16</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Definition at line <a class="el" href="_register_admin_8h_source.html#l00038">38</a> of file <a class="el" href="_register_admin_8h_source.html">RegisterAdmin.h</a>.</p>
 
 </div>
 </div>
@@ -251,13 +286,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_register_admin_8h_source.html#l00036">36</a> of file <a class="el" href="_register_admin_8h_source.html">RegisterAdmin.h</a>.</p>
-
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>MIECCompiler_VS_2015/MIECCompiler/<a class="el" href="_register_admin_8h_source.html">RegisterAdmin.h</a></li>
-<li>MIECCompiler_VS_2015/MIECCompiler/<a class="el" href="_register_admin_8cpp_source.html">RegisterAdmin.cpp</a></li>
+<li>MIECCompiler_VS_2015/MIECCompiler/<a class="el" href="_register_admin_8cpp.html">RegisterAdmin.cpp</a></li>
 </ul>
 </div>
 </div>
@@ -279,7 +312,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Mon Feb 8 2016 10:00:41 for MIEC Compiler by
+    <li class="footer">Generated on Sat Feb 13 2016 04:44:40 for COM_MIEC by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>

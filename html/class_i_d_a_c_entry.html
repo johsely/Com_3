@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>MIEC Compiler: IDACEntry Class Reference</title>
+<title>COM_MIEC: IDACEntry Class Reference</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MIEC Compiler
+   <div id="projectname">COM_MIEC
    
    </div>
    
@@ -96,7 +96,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a>  </div>
   <div class="headertitle">
 <div class="title">IDACEntry Class Reference</div>  </div>
 </div>
@@ -106,20 +107,73 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <a href="class_i_d_a_c_entry.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_i_d_a_c_entry_8h_source.html">IDACEntry.h</a>&gt;</code></p>
-
-<p>Inherits <a class="el" href="class_object.html">Object</a>.</p>
-
-<p>Inherited by <a class="el" href="class_d_a_c_entry.html">DACEntry</a>, and <a class="el" href="class_symbol.html">Symbol</a>.</p>
+<div class="dynheader">
+Inheritance diagram for IDACEntry:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_i_d_a_c_entry.png" usemap="#IDACEntry_map" alt=""/>
+  <map id="IDACEntry_map" name="IDACEntry_map">
+<area href="class_object.html" alt="Object" shape="rect" coords="54,0,152,24"/>
+<area href="class_d_a_c_entry.html" alt="DACEntry" shape="rect" coords="0,112,98,136"/>
+<area href="class_symbol.html" alt="Symbol" shape="rect" coords="108,112,206,136"/>
+<area href="class_const_int_symbol.html" alt="ConstIntSymbol" shape="rect" coords="0,168,98,192"/>
+<area href="class_type_symbol.html" alt="TypeSymbol" shape="rect" coords="108,168,206,192"/>
+<area href="class_var_symbol.html" alt="VarSymbol" shape="rect" coords="216,168,314,192"/>
+</map>
+ </div></div>
 
 <p><a href="class_i_d_a_c_entry-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_d_a_c_entry.html#a7104bff0d9c60a1f1f27ac42299f25df">~IDACEntry</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_d_a_c_entry.html#a63a5013b468bb5021d1a9be40a04148c">Print</a> (std::ostream &amp;ost) const =0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Print function no implementation --&gt;virtual.  <a href="#a63a5013b468bb5021d1a9be40a04148c"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_i_d_a_c_entry.html#a5d2c263892fc09e5970a024a88c9d8aa">IDACEntry</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type.  <a href="#a5d2c263892fc09e5970a024a88c9d8aa"></a><br/></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The base class for DAC entries and Symbols. </p>
-</div><hr/><h2>Member Function Documentation</h2>
+</div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a7104bff0d9c60a1f1f27ac42299f25df"></a><!-- doxytag: member="IDACEntry::~IDACEntry" ref="a7104bff0d9c60a1f1f27ac42299f25df" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual IDACEntry::~IDACEntry </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5d2c263892fc09e5970a024a88c9d8aa"></a><!-- doxytag: member="IDACEntry::IDACEntry" ref="a5d2c263892fc09e5970a024a88c9d8aa" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IDACEntry::IDACEntry </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the type. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The type. </dd></dl>
+<p>Default constructor. </p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a63a5013b468bb5021d1a9be40a04148c"></a><!-- doxytag: member="IDACEntry::Print" ref="a63a5013b468bb5021d1a9be40a04148c" args="(std::ostream &amp;ost) const =0" -->
 <div class="memitem">
 <div class="memproto">
@@ -134,6 +188,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Print function no implementation --&gt;virtual. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ost</td><td>Where to print. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="class_symbol.html#a569e79e2db7c4760d2d297f8e95f7ce6">Symbol</a>, <a class="el" href="class_var_symbol.html#a7551c18367a36e02fa41bad5d2176c62">VarSymbol</a>, and <a class="el" href="class_type_symbol.html#afd7726c32621ca0c5c3733263d7dae7b">TypeSymbol</a>.</p>
 
@@ -162,7 +224,7 @@ Public Member Functions</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Mon Feb 8 2016 10:00:41 for MIEC Compiler by
+    <li class="footer">Generated on Sat Feb 13 2016 04:44:40 for COM_MIEC by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>

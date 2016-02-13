@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>MIEC Compiler: MIECCompiler_VS_2015/MIECCompiler/CodeGenerator.h Source File</title>
+<title>COM_MIEC: MIECCompiler_VS_2015/MIECCompiler/CodeGenerator.h Source File</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MIEC Compiler
+   <div id="projectname">COM_MIEC
    
    </div>
    
@@ -117,23 +117,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00027"></a>00027 <span class="keyword">private</span>:
 <a name="l00028"></a><a class="code" href="class_code_generator.html#a11150c06f2d3785d3faa8f6219045015">00028</a>         <span class="keyword">typedef</span> std::list &lt; std::pair &lt; WORD, DACEntry const*&gt; &gt; <a class="code" href="class_code_generator.html#a11150c06f2d3785d3faa8f6219045015">TUnresolvedJumps</a>;
 <a name="l00029"></a>00029         
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a8b1ee0f3bd65a386edf0101076df3c91">OperationAdd</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry);
-<a name="l00032"></a>00032         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a8e14af14743316d7cc64c393ded33bc5">OperationSubtract</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry);
-<a name="l00033"></a>00033         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a2f75d8ab94173b6a54eabe51c5b973f3">OperationMultiply</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry);
-<a name="l00034"></a>00034         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a4b9f8a94099fca5dc563446fce7f529a">OperationDivide</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry);
-<a name="l00035"></a>00035         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a7e95a19f0b20d8ce7b67d76722d827e5">OperationAssign</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry);
-<a name="l00036"></a>00036         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a37cf96cbfd4edeeac10deea45a2d81f0">OperationJump</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry, <a class="code" href="class_code_generator.html#a11150c06f2d3785d3faa8f6219045015">TUnresolvedJumps</a>&amp; arUnresolvedJumps);
-<a name="l00037"></a>00037         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#aee54081c989169f8585582d126e6f6ad">OperationConditionalJump</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry, <a class="code" href="class_code_generator.html#a11150c06f2d3785d3faa8f6219045015">TUnresolvedJumps</a>&amp; arUnresolvedJumps);
-<a name="l00038"></a>00038         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a82035a6e6e001207fb2b6b40ec1401e4">OperationPrint</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry);
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041         <span class="comment">//std::unique_ptr&lt;MIEC::CodeGenProl16&gt; mpGenProl16;</span>
-<a name="l00042"></a><a class="code" href="class_code_generator.html#af09743b3e3c3f7cbf9a5754c143f38d7">00042</a>         MIEC::CodeGenProl16* <a class="code" href="class_code_generator.html#af09743b3e3c3f7cbf9a5754c143f38d7">mpGenProl16</a>;
-<a name="l00043"></a><a class="code" href="class_code_generator.html#ab11c500a7e6162f830436acf5c3afe48">00043</a>         std::unique_ptr&lt;RegisterAdmin&gt; <a class="code" href="class_code_generator.html#ab11c500a7e6162f830436acf5c3afe48">mpRegAdmin</a>;
-<a name="l00044"></a><a class="code" href="class_code_generator.html#a5deaee2a4ba9281f2e425ca07e85a4ab">00044</a>         TDACList <a class="code" href="class_code_generator.html#a5deaee2a4ba9281f2e425ca07e85a4ab">mDACList</a>;
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 };
+<a name="l00035"></a>00035         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a8b1ee0f3bd65a386edf0101076df3c91" title="Creates Add Operation Machine Code.">OperationAdd</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry);
+<a name="l00041"></a>00041         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a8e14af14743316d7cc64c393ded33bc5" title="Creates Subtract Operation Machine Code.">OperationSubtract</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry);
+<a name="l00047"></a>00047         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a2f75d8ab94173b6a54eabe51c5b973f3" title="Creates Multiply Operation Machine Code.">OperationMultiply</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry);
+<a name="l00053"></a>00053         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a4b9f8a94099fca5dc563446fce7f529a" title="Creates Divide Operation Machine Code.">OperationDivide</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry);
+<a name="l00059"></a>00059         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a7e95a19f0b20d8ce7b67d76722d827e5" title="Creates Assign Operation Machine Code.">OperationAssign</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry);
+<a name="l00066"></a>00066         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a37cf96cbfd4edeeac10deea45a2d81f0" title="Creates Jump Operation Machine Code.">OperationJump</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry, <a class="code" href="class_code_generator.html#a11150c06f2d3785d3faa8f6219045015">TUnresolvedJumps</a>&amp; arUnresolvedJumps);
+<a name="l00067"></a>00067 
+<a name="l00074"></a>00074         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#aee54081c989169f8585582d126e6f6ad" title="Creates Jump Operation Machine Code.">OperationConditionalJump</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry, <a class="code" href="class_code_generator.html#a11150c06f2d3785d3faa8f6219045015">TUnresolvedJumps</a>&amp; arUnresolvedJumps);
+<a name="l00080"></a>00080         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a82035a6e6e001207fb2b6b40ec1401e4" title="Creates Print Operation Machine Code.">OperationPrint</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* apDacEntry);
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#a31e1c8b1b0b32b6579870278bff17920">Compare</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* dacEntry);
+<a name="l00085"></a>00085         <span class="keywordtype">void</span> <a class="code" href="class_code_generator.html#ac26273d2681be3265008476935efb75c">CompareInverse</a>(<a class="code" href="class_d_a_c_entry.html">DACEntry</a>* dacEntry);
+<a name="l00086"></a>00086 
+<a name="l00087"></a><a class="code" href="class_code_generator.html#af09743b3e3c3f7cbf9a5754c143f38d7">00087</a>         MIEC::CodeGenProl16* <a class="code" href="class_code_generator.html#af09743b3e3c3f7cbf9a5754c143f38d7">mpGenProl16</a>;
+<a name="l00088"></a><a class="code" href="class_code_generator.html#ab11c500a7e6162f830436acf5c3afe48">00088</a>         std::unique_ptr&lt;RegisterAdmin&gt; <a class="code" href="class_code_generator.html#ab11c500a7e6162f830436acf5c3afe48">mpRegAdmin</a>;
+<a name="l00089"></a><a class="code" href="class_code_generator.html#a5deaee2a4ba9281f2e425ca07e85a4ab">00089</a>         TDACList <a class="code" href="class_code_generator.html#a5deaee2a4ba9281f2e425ca07e85a4ab">mDACList</a>;
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091 };
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -154,7 +157,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Mon Feb 8 2016 10:00:41 for MIEC Compiler by
+    <li class="footer">Generated on Sat Feb 13 2016 04:44:39 for COM_MIEC by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>

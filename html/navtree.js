@@ -1,6 +1,6 @@
 var NAVTREE =
 [
-  [ "MIEC Compiler", "index.html", [
+  [ "COM_MIEC", "index.html", [
     [ "Class List", "annotated.html", [
       [ "BaseType", "class_base_type.html", null ],
       [ "MIEC::Buffer", "class_m_i_e_c_1_1_buffer.html", null ],
@@ -16,14 +16,12 @@ var NAVTREE =
       [ "MIEC::KeywordMap", "class_m_i_e_c_1_1_keyword_map.html", null ],
       [ "Object", "class_object.html", null ],
       [ "MIEC::Parser", "class_m_i_e_c_1_1_parser.html", null ],
-      [ "Register", "class_register.html", null ],
       [ "RegisterAdmin", "class_register_admin.html", null ],
       [ "MIEC::Scanner", "class_m_i_e_c_1_1_scanner.html", null ],
       [ "MIEC::StartStates", "class_m_i_e_c_1_1_start_states.html", null ],
       [ "Symbol", "class_symbol.html", null ],
       [ "SymbolFactory", "class_symbol_factory.html", null ],
       [ "SymbolTable", "class_symbol_table.html", null ],
-      [ "TempSymbol", "class_temp_symbol.html", null ],
       [ "MIEC::Token", "class_m_i_e_c_1_1_token.html", null ],
       [ "TRegister", "struct_t_register.html", null ],
       [ "Type", "class_type.html", null ],
@@ -48,12 +46,10 @@ var NAVTREE =
           [ "DACEntry", "class_d_a_c_entry.html", null ],
           [ "Symbol", "class_symbol.html", [
             [ "ConstIntSymbol", "class_const_int_symbol.html", null ],
-            [ "TempSymbol", "class_temp_symbol.html", null ],
             [ "TypeSymbol", "class_type_symbol.html", null ],
             [ "VarSymbol", "class_var_symbol.html", null ]
           ] ]
         ] ],
-        [ "Register", "class_register.html", null ],
         [ "RegisterAdmin", "class_register_admin.html", null ],
         [ "SymbolFactory", "class_symbol_factory.html", null ],
         [ "SymbolTable", "class_symbol_table.html", null ],
@@ -69,16 +65,9 @@ var NAVTREE =
     ] ],
     [ "Class Members", "functions.html", null ],
     [ "Namespace List", "namespaces.html", [
-      [ "DACEntryTest", "namespace_d_a_c_entry_test.html", null ],
       [ "MIEC", "namespace_m_i_e_c.html", null ]
     ] ],
-    [ "Namespace Members", "namespacemembers.html", null ],
     [ "File List", "files.html", [
-      [ "MIECCompiler_VS_2015/DACEntryTest/DACEntryTest.cpp", "_d_a_c_entry_test_8cpp.html", null ],
-      [ "MIECCompiler_VS_2015/DACEntryTest/RegisterAdminTest.cpp", "_register_admin_test_8cpp.html", null ],
-      [ "MIECCompiler_VS_2015/DACEntryTest/stdafx.cpp", "stdafx_8cpp.html", null ],
-      [ "MIECCompiler_VS_2015/DACEntryTest/stdafx.h", "stdafx_8h.html", null ],
-      [ "MIECCompiler_VS_2015/DACEntryTest/targetver.h", "targetver_8h.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/BaseType.h", "_base_type_8h.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/CodeGenerator.cpp", "_code_generator_8cpp.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/CodeGenerator.h", "_code_generator_8h.html", null ],
@@ -92,7 +81,6 @@ var NAVTREE =
       [ "MIECCompiler_VS_2015/MIECCompiler/GlobalDef.h", "_global_def_8h.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/IDACEntry.h", "_i_d_a_c_entry_8h.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/Object.h", "_object_8h.html", null ],
-      [ "MIECCompiler_VS_2015/MIECCompiler/Register.h", "_register_8h.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/RegisterAdmin.cpp", "_register_admin_8cpp.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/RegisterAdmin.h", "_register_admin_8h.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/Symbol.cpp", "_symbol_8cpp.html", null ],
@@ -101,16 +89,14 @@ var NAVTREE =
       [ "MIECCompiler_VS_2015/MIECCompiler/SymbolFactory.h", "_symbol_factory_8h.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/SymbolTable.cpp", "_symbol_table_8cpp.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/SymbolTable.h", "_symbol_table_8h.html", null ],
-      [ "MIECCompiler_VS_2015/MIECCompiler/TempSymbol.h", "_temp_symbol_8h.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/Type.h", "_type_8h.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/TypeSymbol.h", "_type_symbol_8h.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/VarSymbol.h", "_var_symbol_8h.html", null ],
-      [ "MIECCompiler_VS_2015/MIECCompiler/MiniIEC/main.cpp", "_m_i_e_c_compiler_2_mini_i_e_c_2main_8cpp.html", null ],
+      [ "MIECCompiler_VS_2015/MIECCompiler/MiniIEC/main.cpp", "main_8cpp.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/MiniIEC/Parser.cpp", "_parser_8cpp.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/MiniIEC/Parser.h", "_parser_8h.html", null ],
       [ "MIECCompiler_VS_2015/MIECCompiler/MiniIEC/Scanner.cpp", "_scanner_8cpp.html", null ],
-      [ "MIECCompiler_VS_2015/MIECCompiler/MiniIEC/Scanner.h", "_scanner_8h.html", null ],
-      [ "MIECCompiler_VS_2015/TestSymbolTable/main.cpp", "_test_symbol_table_2main_8cpp.html", null ]
+      [ "MIECCompiler_VS_2015/MIECCompiler/MiniIEC/Scanner.h", "_scanner_8h.html", null ]
     ] ],
     [ "File Members", "globals.html", null ]
   ] ]

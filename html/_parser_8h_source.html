@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>MIEC Compiler: MIECCompiler_VS_2015/MIECCompiler/MiniIEC/Parser.h Source File</title>
+<title>COM_MIEC: MIECCompiler_VS_2015/MIECCompiler/MiniIEC/Parser.h Source File</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MIEC Compiler
+   <div id="projectname">COM_MIEC
    
    </div>
    
@@ -98,88 +98,89 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="contents">
 <a href="_parser_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
-<a name="l00010"></a>00010 <span class="preprocessor">#if !defined(COCO_PARSER_H__)</span>
-<a name="l00011"></a>00011 <span class="preprocessor"></span><span class="preprocessor">#define COCO_PARSER_H__</span>
-<a name="l00012"></a>00012 <span class="preprocessor"></span>
-<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;..\SymbolTable.h&quot;</span>
-<a name="l00014"></a>00014 <span class="preprocessor">#include &quot;..\SymbolFactory.h&quot;</span>
-<a name="l00015"></a>00015 <span class="preprocessor">#include &quot;..\DACGenerator.h&quot;</span>
-<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;string&gt;</span>
-<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;iostream&gt;</span>
-<a name="l00018"></a>00018 
-<a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <span class="preprocessor">#include &quot;<a class="code" href="_scanner_8h.html">Scanner.h</a>&quot;</span>
+<a name="l00002"></a>00002 
+<a name="l00003"></a>00003 <span class="preprocessor">#if !defined(COCO_PARSER_H__)</span>
+<a name="l00004"></a>00004 <span class="preprocessor"></span><span class="preprocessor">#define COCO_PARSER_H__</span>
+<a name="l00005"></a>00005 <span class="preprocessor"></span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &quot;..\SymbolTable.h&quot;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &quot;..\SymbolFactory.h&quot;</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;..\DACGenerator.h&quot;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;<a class="code" href="_scanner_8h.html">Scanner.h</a>&quot;</span>
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 <span class="keyword">namespace </span>MIEC {
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017 
+<a name="l00018"></a>00018 <span class="keyword">class </span>Errors {
+<a name="l00019"></a>00019 <span class="keyword">public</span>:
+<a name="l00020"></a><a class="code" href="class_m_i_e_c_1_1_errors.html#ac205fc3cbd87b4719da9cfec2e59b3bb">00020</a>         <span class="keywordtype">int</span> <a class="code" href="class_m_i_e_c_1_1_errors.html#ac205fc3cbd87b4719da9cfec2e59b3bb">count</a>;                      <span class="comment">// number of errors detected</span>
 <a name="l00021"></a>00021 
-<a name="l00022"></a>00022 <span class="keyword">namespace </span>MIEC {
-<a name="l00023"></a>00023 
-<a name="l00024"></a>00024 
-<a name="l00025"></a>00025 <span class="keyword">class </span>Errors {
-<a name="l00026"></a>00026 <span class="keyword">public</span>:
-<a name="l00027"></a><a class="code" href="class_m_i_e_c_1_1_errors.html#ac205fc3cbd87b4719da9cfec2e59b3bb">00027</a>         <span class="keywordtype">int</span> <a class="code" href="class_m_i_e_c_1_1_errors.html#ac205fc3cbd87b4719da9cfec2e59b3bb">count</a>;                      <span class="comment">// number of errors detected</span>
+<a name="l00022"></a>00022         <a class="code" href="class_m_i_e_c_1_1_errors.html#a72430e0a397f763517923478f30fdac0">Errors</a>();
+<a name="l00023"></a>00023         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_errors.html#adb09ceb4182483d5a402a9616ac7c45b">SynErr</a>(<span class="keywordtype">int</span> line, <span class="keywordtype">int</span> col, <span class="keywordtype">int</span> n);
+<a name="l00024"></a>00024         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_errors.html#a5be8f27ee7ae2654be6dd1518000eee4">Error</a>(<span class="keywordtype">int</span> line, <span class="keywordtype">int</span> col, <span class="keyword">const</span> <span class="keywordtype">wchar_t</span> *s);
+<a name="l00025"></a>00025         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_errors.html#aca199aa72aea052b2004ea3a212e4372">Warning</a>(<span class="keywordtype">int</span> line, <span class="keywordtype">int</span> col, <span class="keyword">const</span> <span class="keywordtype">wchar_t</span> *s);
+<a name="l00026"></a>00026         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_errors.html#aca199aa72aea052b2004ea3a212e4372">Warning</a>(<span class="keyword">const</span> <span class="keywordtype">wchar_t</span> *s);
+<a name="l00027"></a>00027         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_errors.html#a925beb52e44bea64e2a84c460a69a40a">Exception</a>(<span class="keyword">const</span> <span class="keywordtype">wchar_t</span> *s);
 <a name="l00028"></a>00028 
-<a name="l00029"></a>00029         <a class="code" href="class_m_i_e_c_1_1_errors.html#a72430e0a397f763517923478f30fdac0">Errors</a>();
-<a name="l00030"></a>00030         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_errors.html#adb09ceb4182483d5a402a9616ac7c45b">SynErr</a>(<span class="keywordtype">int</span> line, <span class="keywordtype">int</span> col, <span class="keywordtype">int</span> n);
-<a name="l00031"></a>00031         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_errors.html#a5be8f27ee7ae2654be6dd1518000eee4">Error</a>(<span class="keywordtype">int</span> line, <span class="keywordtype">int</span> col, <span class="keyword">const</span> <span class="keywordtype">wchar_t</span> *s);
-<a name="l00032"></a>00032         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_errors.html#aca199aa72aea052b2004ea3a212e4372">Warning</a>(<span class="keywordtype">int</span> line, <span class="keywordtype">int</span> col, <span class="keyword">const</span> <span class="keywordtype">wchar_t</span> *s);
-<a name="l00033"></a>00033         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_errors.html#aca199aa72aea052b2004ea3a212e4372">Warning</a>(<span class="keyword">const</span> <span class="keywordtype">wchar_t</span> *s);
-<a name="l00034"></a>00034         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_errors.html#a925beb52e44bea64e2a84c460a69a40a">Exception</a>(<span class="keyword">const</span> <span class="keywordtype">wchar_t</span> *s);
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036 }; <span class="comment">// Errors</span>
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038 <span class="keyword">class </span><a class="code" href="class_m_i_e_c_1_1_parser.html">Parser</a> {
-<a name="l00039"></a>00039 <span class="keyword">private</span>:
-<a name="l00040"></a>00040         <span class="keyword">enum</span> {
-<a name="l00041"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a1876a3eb446ab8c2499c579187d3d420a8a64419825c325190c51a16ba80fae62">00041</a>                 <a class="code" href="class_m_i_e_c_1_1_parser.html#a1876a3eb446ab8c2499c579187d3d420a8a64419825c325190c51a16ba80fae62">_EOF</a>=0,
-<a name="l00042"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a1876a3eb446ab8c2499c579187d3d420a67fb4bc01c8127ee535d3653c2acdb14">00042</a>                 <a class="code" href="class_m_i_e_c_1_1_parser.html#a1876a3eb446ab8c2499c579187d3d420a67fb4bc01c8127ee535d3653c2acdb14">_ident</a>=1,
-<a name="l00043"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a1876a3eb446ab8c2499c579187d3d420a7e3c9935c35fab78cefc7bac5b199d7a">00043</a>                 <a class="code" href="class_m_i_e_c_1_1_parser.html#a1876a3eb446ab8c2499c579187d3d420a7e3c9935c35fab78cefc7bac5b199d7a">_number</a>=2
-<a name="l00044"></a>00044         };
-<a name="l00045"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#aa755dc0076dc817e8077a42a0a7fb7a9">00045</a>         <span class="keywordtype">int</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#aa755dc0076dc817e8077a42a0a7fb7a9">maxT</a>;
-<a name="l00046"></a>00046 
-<a name="l00047"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a16e5d34156c29c01c772297bd155af8c">00047</a>         <a class="code" href="class_m_i_e_c_1_1_token.html">Token</a> *<a class="code" href="class_m_i_e_c_1_1_parser.html#a16e5d34156c29c01c772297bd155af8c">dummyToken</a>;
-<a name="l00048"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a8e8a48689ba1284e133aa32ec4fd9c46">00048</a>         <span class="keywordtype">int</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a8e8a48689ba1284e133aa32ec4fd9c46">errDist</a>;
-<a name="l00049"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#aaa72ba995209f87a4eb069ea7ea6ef9a">00049</a>         <span class="keywordtype">int</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#aaa72ba995209f87a4eb069ea7ea6ef9a">minErrDist</a>;
+<a name="l00029"></a>00029 }; <span class="comment">// Errors</span>
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031 <span class="keyword">class </span><a class="code" href="class_m_i_e_c_1_1_parser.html">Parser</a> {
+<a name="l00032"></a>00032 <span class="keyword">private</span>:
+<a name="l00033"></a>00033         <span class="keyword">enum</span> {
+<a name="l00034"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a1876a3eb446ab8c2499c579187d3d420a8a64419825c325190c51a16ba80fae62">00034</a>                 <a class="code" href="class_m_i_e_c_1_1_parser.html#a1876a3eb446ab8c2499c579187d3d420a8a64419825c325190c51a16ba80fae62">_EOF</a>=0,
+<a name="l00035"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a1876a3eb446ab8c2499c579187d3d420a67fb4bc01c8127ee535d3653c2acdb14">00035</a>                 <a class="code" href="class_m_i_e_c_1_1_parser.html#a1876a3eb446ab8c2499c579187d3d420a67fb4bc01c8127ee535d3653c2acdb14">_ident</a>=1,
+<a name="l00036"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a1876a3eb446ab8c2499c579187d3d420a7e3c9935c35fab78cefc7bac5b199d7a">00036</a>                 <a class="code" href="class_m_i_e_c_1_1_parser.html#a1876a3eb446ab8c2499c579187d3d420a7e3c9935c35fab78cefc7bac5b199d7a">_number</a>=2
+<a name="l00037"></a>00037         };
+<a name="l00038"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#aa755dc0076dc817e8077a42a0a7fb7a9">00038</a>         <span class="keywordtype">int</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#aa755dc0076dc817e8077a42a0a7fb7a9">maxT</a>;
+<a name="l00039"></a>00039 
+<a name="l00040"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a16e5d34156c29c01c772297bd155af8c">00040</a>         <a class="code" href="class_m_i_e_c_1_1_token.html">Token</a> *<a class="code" href="class_m_i_e_c_1_1_parser.html#a16e5d34156c29c01c772297bd155af8c">dummyToken</a>;
+<a name="l00041"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a8e8a48689ba1284e133aa32ec4fd9c46">00041</a>         <span class="keywordtype">int</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a8e8a48689ba1284e133aa32ec4fd9c46">errDist</a>;
+<a name="l00042"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#aaa72ba995209f87a4eb069ea7ea6ef9a">00042</a>         <span class="keywordtype">int</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#aaa72ba995209f87a4eb069ea7ea6ef9a">minErrDist</a>;
+<a name="l00043"></a>00043 
+<a name="l00044"></a>00044         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a839fa5c9968e94201b3493d4062196ab">SynErr</a>(<span class="keywordtype">int</span> n);
+<a name="l00045"></a>00045         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a394ab71fa66b75365b08807a3af35885">Get</a>();
+<a name="l00046"></a>00046         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a13e375399d378718411ed19146d8cb7c">Expect</a>(<span class="keywordtype">int</span> n);
+<a name="l00047"></a>00047         <span class="keywordtype">bool</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#ac039e9daeafb4a4f7e321e387852dbde">StartOf</a>(<span class="keywordtype">int</span> s);
+<a name="l00048"></a>00048         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a2e75922e7c7d63924607fa2c9e38a349">ExpectWeak</a>(<span class="keywordtype">int</span> n, <span class="keywordtype">int</span> follow);
+<a name="l00049"></a>00049         <span class="keywordtype">bool</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a447b3047666248411f825247e3883f46">WeakSeparator</a>(<span class="keywordtype">int</span> n, <span class="keywordtype">int</span> syFol, <span class="keywordtype">int</span> repFol);
 <a name="l00050"></a>00050 
-<a name="l00051"></a>00051         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a839fa5c9968e94201b3493d4062196ab">SynErr</a>(<span class="keywordtype">int</span> n);
-<a name="l00052"></a>00052         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a394ab71fa66b75365b08807a3af35885">Get</a>();
-<a name="l00053"></a>00053         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a13e375399d378718411ed19146d8cb7c">Expect</a>(<span class="keywordtype">int</span> n);
-<a name="l00054"></a>00054         <span class="keywordtype">bool</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#ac039e9daeafb4a4f7e321e387852dbde">StartOf</a>(<span class="keywordtype">int</span> s);
-<a name="l00055"></a>00055         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a2e75922e7c7d63924607fa2c9e38a349">ExpectWeak</a>(<span class="keywordtype">int</span> n, <span class="keywordtype">int</span> follow);
-<a name="l00056"></a>00056         <span class="keywordtype">bool</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a447b3047666248411f825247e3883f46">WeakSeparator</a>(<span class="keywordtype">int</span> n, <span class="keywordtype">int</span> syFol, <span class="keywordtype">int</span> repFol);
+<a name="l00051"></a>00051 <span class="keyword">public</span>:
+<a name="l00052"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a4f287e05cdec208335efc6c8e75b7cb2">00052</a>         <a class="code" href="class_m_i_e_c_1_1_scanner.html">Scanner</a> *<a class="code" href="class_m_i_e_c_1_1_parser.html#a4f287e05cdec208335efc6c8e75b7cb2">scanner</a>;
+<a name="l00053"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a062a448038b5f4aa1b2a5ac02a4a45f2">00053</a>         <a class="code" href="class_m_i_e_c_1_1_errors.html">Errors</a>  *<a class="code" href="class_m_i_e_c_1_1_parser.html#a062a448038b5f4aa1b2a5ac02a4a45f2">errors</a>;
+<a name="l00054"></a>00054 
+<a name="l00055"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#abe9ee17c79e1729d38057b0dcd0c7716">00055</a>         <a class="code" href="class_m_i_e_c_1_1_token.html">Token</a> *<a class="code" href="class_m_i_e_c_1_1_parser.html#abe9ee17c79e1729d38057b0dcd0c7716">t</a>;                       <span class="comment">// last recognized token</span>
+<a name="l00056"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a8e8c5c86cc43421b50475dc8eec5bb6c">00056</a>         <a class="code" href="class_m_i_e_c_1_1_token.html">Token</a> *<a class="code" href="class_m_i_e_c_1_1_parser.html#a8e8c5c86cc43421b50475dc8eec5bb6c">la</a>;                      <span class="comment">// lookahead token</span>
 <a name="l00057"></a>00057 
-<a name="l00058"></a>00058 <span class="keyword">public</span>:
-<a name="l00059"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a4f287e05cdec208335efc6c8e75b7cb2">00059</a>         <a class="code" href="class_m_i_e_c_1_1_scanner.html">Scanner</a> *<a class="code" href="class_m_i_e_c_1_1_parser.html#a4f287e05cdec208335efc6c8e75b7cb2">scanner</a>;
-<a name="l00060"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a062a448038b5f4aa1b2a5ac02a4a45f2">00060</a>         <a class="code" href="class_m_i_e_c_1_1_errors.html">Errors</a>  *<a class="code" href="class_m_i_e_c_1_1_parser.html#a062a448038b5f4aa1b2a5ac02a4a45f2">errors</a>;
-<a name="l00061"></a>00061 
-<a name="l00062"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#abe9ee17c79e1729d38057b0dcd0c7716">00062</a>         <a class="code" href="class_m_i_e_c_1_1_token.html">Token</a> *<a class="code" href="class_m_i_e_c_1_1_parser.html#abe9ee17c79e1729d38057b0dcd0c7716">t</a>;                       <span class="comment">// last recognized token</span>
-<a name="l00063"></a><a class="code" href="class_m_i_e_c_1_1_parser.html#a8e8c5c86cc43421b50475dc8eec5bb6c">00063</a>         <a class="code" href="class_m_i_e_c_1_1_token.html">Token</a> *<a class="code" href="class_m_i_e_c_1_1_parser.html#a8e8c5c86cc43421b50475dc8eec5bb6c">la</a>;                      <span class="comment">// lookahead token</span>
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065 
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067         <a class="code" href="class_m_i_e_c_1_1_parser.html#a94910bcf2ee0dc3e58ac6f236bca0e2c">Parser</a>(<a class="code" href="class_m_i_e_c_1_1_scanner.html">Scanner</a> *<a class="code" href="class_m_i_e_c_1_1_parser.html#a4f287e05cdec208335efc6c8e75b7cb2">scanner</a>);
-<a name="l00068"></a>00068         <a class="code" href="class_m_i_e_c_1_1_parser.html#a4c6989e41ddc55c87099c8accef68f6b">~Parser</a>();
-<a name="l00069"></a>00069         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a234e7de7e1478383082d6d1577a2c116">SemErr</a>(<span class="keyword">const</span> <span class="keywordtype">wchar_t</span>* msg);
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#ac4db9531f875709b815c56e4ff081df4">Ident</a>(std::string &amp;name);
-<a name="l00072"></a>00072         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a213698039ffbdc2be72e2706d39f3c45">Number</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* &amp;dacEntry);
-<a name="l00073"></a>00073         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a32afe1f52347f8e884c93bc934fecd37">MIEC</a>();
-<a name="l00074"></a>00074         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a1595eeb223d0368fbd0a30808ba222b5">VarDecl</a>();
-<a name="l00075"></a>00075         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a1c240b90edd009c472128260cc7d84be">Statements</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* &amp;retIDACEntry);
-<a name="l00076"></a>00076         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#ab5f3d66c4cc3889e2049d76cb9a10a44">Stat</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* &amp;retIDACEntry);
-<a name="l00077"></a>00077         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a1d6be9536b5ede86729ddfd1cdb15753">Expr</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* &amp;result);
-<a name="l00078"></a>00078         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a31fea3eb6d2d2092791e3e2c4a06f44e">Condition</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* &amp;result);
-<a name="l00079"></a>00079         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a94be0b8657cfb79cf1bdbcb57a8a05fe">Term</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* &amp;result);
-<a name="l00080"></a>00080         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a7fdbb50d4a9133aac9e460a033bdf1ec">Fact</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* &amp;result);
-<a name="l00081"></a>00081         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a3ecc23e7ccfa5d169f7eb402ce7db323">Relop</a>(<a class="code" href="_d_a_c_entry_8h.html#aaa3fe0830521b81926c6aa017c02e76f">OpKind</a> &amp; opKind);
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060         <a class="code" href="class_m_i_e_c_1_1_parser.html#a94910bcf2ee0dc3e58ac6f236bca0e2c">Parser</a>(<a class="code" href="class_m_i_e_c_1_1_scanner.html">Scanner</a> *<a class="code" href="class_m_i_e_c_1_1_parser.html#a4f287e05cdec208335efc6c8e75b7cb2">scanner</a>);
+<a name="l00061"></a>00061         <a class="code" href="class_m_i_e_c_1_1_parser.html#a4c6989e41ddc55c87099c8accef68f6b">~Parser</a>();
+<a name="l00062"></a>00062         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a234e7de7e1478383082d6d1577a2c116">SemErr</a>(<span class="keyword">const</span> <span class="keywordtype">wchar_t</span>* msg);
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#ac4db9531f875709b815c56e4ff081df4">Ident</a>(std::string &amp;name);
+<a name="l00065"></a>00065         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a213698039ffbdc2be72e2706d39f3c45">Number</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* &amp;dacEntry);
+<a name="l00066"></a>00066         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a32afe1f52347f8e884c93bc934fecd37">MIEC</a>();
+<a name="l00067"></a>00067         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a1595eeb223d0368fbd0a30808ba222b5">VarDecl</a>();
+<a name="l00068"></a>00068         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a1c240b90edd009c472128260cc7d84be">Statements</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* &amp;retIDACEntry);
+<a name="l00069"></a>00069         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#ab5f3d66c4cc3889e2049d76cb9a10a44">Stat</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* &amp;retIDACEntry);
+<a name="l00070"></a>00070         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a1d6be9536b5ede86729ddfd1cdb15753">Expr</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* &amp;result);
+<a name="l00071"></a>00071         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a31fea3eb6d2d2092791e3e2c4a06f44e">Condition</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* &amp;result);
+<a name="l00072"></a>00072         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a94be0b8657cfb79cf1bdbcb57a8a05fe">Term</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* &amp;result);
+<a name="l00073"></a>00073         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a7fdbb50d4a9133aac9e460a033bdf1ec">Fact</a>(<a class="code" href="class_i_d_a_c_entry.html" title="The base class for DAC entries and Symbols.">IDACEntry</a>* &amp;result);
+<a name="l00074"></a>00074         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a3ecc23e7ccfa5d169f7eb402ce7db323">Relop</a>(<a class="code" href="_d_a_c_entry_8h.html#aaa3fe0830521b81926c6aa017c02e76f">OpKind</a> &amp; opKind);
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a8dcfb67393dab0b4172f4940fb01fc3a">Parse</a>();
+<a name="l00077"></a>00077 
+<a name="l00078"></a>00078 }; <span class="comment">// end Parser</span>
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080 } <span class="comment">// namespace</span>
+<a name="l00081"></a>00081 
 <a name="l00082"></a>00082 
-<a name="l00083"></a>00083         <span class="keywordtype">void</span> <a class="code" href="class_m_i_e_c_1_1_parser.html#a8dcfb67393dab0b4172f4940fb01fc3a">Parse</a>();
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085 }; <span class="comment">// end Parser</span>
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087 } <span class="comment">// namespace</span>
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090 <span class="preprocessor">#endif // !defined(COCO_PARSER_H__)</span>
-<a name="l00091"></a>00091 <span class="preprocessor"></span>
+<a name="l00083"></a>00083 <span class="preprocessor">#endif // !defined(COCO_PARSER_H__)</span>
+<a name="l00084"></a>00084 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -200,7 +201,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Mon Feb 8 2016 10:00:41 for MIEC Compiler by
+    <li class="footer">Generated on Sat Feb 13 2016 04:44:39 for COM_MIEC by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>MIEC Compiler: CodeGenerator Class Reference</title>
+<title>COM_MIEC: CodeGenerator Class Reference</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MIEC Compiler
+   <div id="projectname">COM_MIEC
    
    </div>
    
@@ -106,8 +106,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <!-- doxytag: class="CodeGenerator" --><!-- doxytag: inherits="Object" -->
 <p><code>#include &lt;<a class="el" href="_code_generator_8h_source.html">CodeGenerator.h</a>&gt;</code></p>
-
-<p>Inherits <a class="el" href="class_object.html">Object</a>.</p>
+<div class="dynheader">
+Inheritance diagram for CodeGenerator:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_code_generator.png" usemap="#CodeGenerator_map" alt=""/>
+  <map id="CodeGenerator_map" name="CodeGenerator_map">
+<area href="class_object.html" alt="Object" shape="rect" coords="0,0,99,24"/>
+</map>
+ </div></div>
 
 <p><a href="class_code_generator-members.html">List of all members.</a></p>
 <table class="memberdecls">
@@ -123,13 +130,23 @@ Private Types</h2></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_code_generator.html#a8b1ee0f3bd65a386edf0101076df3c91">OperationAdd</a> (<a class="el" href="class_d_a_c_entry.html">DACEntry</a> *apDacEntry)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates Add Operation Machine Code.  <a href="#a8b1ee0f3bd65a386edf0101076df3c91"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_code_generator.html#a8e14af14743316d7cc64c393ded33bc5">OperationSubtract</a> (<a class="el" href="class_d_a_c_entry.html">DACEntry</a> *apDacEntry)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates Subtract Operation Machine Code.  <a href="#a8e14af14743316d7cc64c393ded33bc5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_code_generator.html#a2f75d8ab94173b6a54eabe51c5b973f3">OperationMultiply</a> (<a class="el" href="class_d_a_c_entry.html">DACEntry</a> *apDacEntry)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates Multiply Operation Machine Code.  <a href="#a2f75d8ab94173b6a54eabe51c5b973f3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_code_generator.html#a4b9f8a94099fca5dc563446fce7f529a">OperationDivide</a> (<a class="el" href="class_d_a_c_entry.html">DACEntry</a> *apDacEntry)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates Divide Operation Machine Code.  <a href="#a4b9f8a94099fca5dc563446fce7f529a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_code_generator.html#a7e95a19f0b20d8ce7b67d76722d827e5">OperationAssign</a> (<a class="el" href="class_d_a_c_entry.html">DACEntry</a> *apDacEntry)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates Assign Operation Machine Code.  <a href="#a7e95a19f0b20d8ce7b67d76722d827e5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_code_generator.html#a37cf96cbfd4edeeac10deea45a2d81f0">OperationJump</a> (<a class="el" href="class_d_a_c_entry.html">DACEntry</a> *apDacEntry, <a class="el" href="class_code_generator.html#a11150c06f2d3785d3faa8f6219045015">TUnresolvedJumps</a> &amp;arUnresolvedJumps)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates Jump Operation Machine Code.  <a href="#a37cf96cbfd4edeeac10deea45a2d81f0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_code_generator.html#aee54081c989169f8585582d126e6f6ad">OperationConditionalJump</a> (<a class="el" href="class_d_a_c_entry.html">DACEntry</a> *apDacEntry, <a class="el" href="class_code_generator.html#a11150c06f2d3785d3faa8f6219045015">TUnresolvedJumps</a> &amp;arUnresolvedJumps)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates Jump Operation Machine Code.  <a href="#aee54081c989169f8585582d126e6f6ad"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_code_generator.html#a82035a6e6e001207fb2b6b40ec1401e4">OperationPrint</a> (<a class="el" href="class_d_a_c_entry.html">DACEntry</a> *apDacEntry)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates Print Operation Machine Code.  <a href="#a82035a6e6e001207fb2b6b40ec1401e4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_code_generator.html#a31e1c8b1b0b32b6579870278bff17920">Compare</a> (<a class="el" href="class_d_a_c_entry.html">DACEntry</a> *dacEntry)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_code_generator.html#ac26273d2681be3265008476935efb75c">CompareInverse</a> (<a class="el" href="class_d_a_c_entry.html">DACEntry</a> *dacEntry)</td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_m_i_e_c_1_1_code_gen_prol16.html">MIEC::CodeGenProl16</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_code_generator.html#af09743b3e3c3f7cbf9a5754c143f38d7">mpGenProl16</a></td></tr>
@@ -148,8 +165,6 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_code_generator_8h_source.html#l00028">28</a> of file <a class="el" href="_code_generator_8h_source.html">CodeGenerator.h</a>.</p>
-
 </div>
 </div>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
@@ -167,9 +182,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>initialize <a class="el" href="class_register.html">Register</a> admin and copy daclist </p>
-
-<p>Definition at line <a class="el" href="_code_generator_8cpp_source.html#l00019">19</a> of file <a class="el" href="_code_generator_8cpp_source.html">CodeGenerator.cpp</a>.</p>
+<p>initialize Register admin and copy daclist </p>
 
 </div>
 </div>
@@ -188,11 +201,43 @@ Private Attributes</h2></td></tr>
 <div class="memdoc">
 <p>mandatory cleanup </p>
 
-<p>Definition at line <a class="el" href="_code_generator_8cpp_source.html#l00028">28</a> of file <a class="el" href="_code_generator_8cpp_source.html">CodeGenerator.cpp</a>.</p>
-
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a31e1c8b1b0b32b6579870278bff17920"></a><!-- doxytag: member="CodeGenerator::Compare" ref="a31e1c8b1b0b32b6579870278bff17920" args="(DACEntry *dacEntry)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CodeGenerator::Compare </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_d_a_c_entry.html">DACEntry</a> *&#160;</td>
+          <td class="paramname"><em>dacEntry</em></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac26273d2681be3265008476935efb75c"></a><!-- doxytag: member="CodeGenerator::CompareInverse" ref="ac26273d2681be3265008476935efb75c" args="(DACEntry *dacEntry)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CodeGenerator::CompareInverse </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_d_a_c_entry.html">DACEntry</a> *&#160;</td>
+          <td class="paramname"><em>dacEntry</em></td><td>)</td>
+          <td><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ae18af244341eeb92adbbd47632556dba"></a><!-- doxytag: member="CodeGenerator::GenerateCode" ref="ae18af244341eeb92adbbd47632556dba" args="(std::ostream &amp;os)" -->
 <div class="memitem">
 <div class="memproto">
@@ -208,8 +253,6 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>loops through all DacEntries and Creates machineCode for each operation </p>
-
-<p>Definition at line <a class="el" href="_code_generator_8cpp_source.html#l00032">32</a> of file <a class="el" href="_code_generator_8cpp_source.html">CodeGenerator.cpp</a>.</p>
 
 </div>
 </div>
@@ -227,9 +270,16 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>creates code for add operation </p>
 
-<p>Definition at line <a class="el" href="_code_generator_8cpp_source.html#l00153">153</a> of file <a class="el" href="_code_generator_8cpp_source.html">CodeGenerator.cpp</a>.</p>
+<p>Creates Add Operation Machine Code. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">apDacEntry</td><td>DAcEntry with Operands and operation. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>creates code for add operation </p>
+<p>there is a reg where the result is in </p>
 
 </div>
 </div>
@@ -247,16 +297,20 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Creates Assign Operation Machine Code. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">apDacEntry</td><td>DAcEntry with Operands and operation. </td></tr>
+  </table>
+  </dd>
+</dl>
 <p>creates code for assign operation </p>
 <p>get left side, must be variable!</p>
 <p>get the variable from a register or have to load it?</p>
-<p>maybe just getregister</p>
 <p>get the right side, we need a register where the calculated value is inside</p>
-<p>load variable</p>
 <p>load immediate in register</p>
 <p>get the register where the result is stored </p>
-
-<p>Definition at line <a class="el" href="_code_generator_8cpp_source.html#l00091">91</a> of file <a class="el" href="_code_generator_8cpp_source.html">CodeGenerator.cpp</a>.</p>
 
 </div>
 </div>
@@ -285,6 +339,15 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Creates Jump Operation Machine Code. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">apDacEntry</td><td>DAcEntry with Operands and operation. </td></tr>
+    <tr><td class="paramname">arUnresolvedJumps</td><td>Unresolved jumps available. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a4b9f8a94099fca5dc563446fce7f529a"></a><!-- doxytag: member="CodeGenerator::OperationDivide" ref="a4b9f8a94099fca5dc563446fce7f529a" args="(DACEntry *apDacEntry)" -->
@@ -302,7 +365,13 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_code_generator_8cpp_source.html#l00231">231</a> of file <a class="el" href="_code_generator_8cpp_source.html">CodeGenerator.cpp</a>.</p>
+<p>Creates Divide Operation Machine Code. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">apDacEntry</td><td>DAcEntry with Operands and operation. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -331,7 +400,14 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_code_generator_8cpp_source.html#l00275">275</a> of file <a class="el" href="_code_generator_8cpp_source.html">CodeGenerator.cpp</a>.</p>
+<p>Creates Jump Operation Machine Code. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">apDacEntry</td><td>DAcEntry with Operands and operation. </td></tr>
+    <tr><td class="paramname">arUnresolvedJumps</td><td>Unresolved jumps available. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -349,9 +425,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>creates code for mult operation </p>
 
-<p>Definition at line <a class="el" href="_code_generator_8cpp_source.html#l00186">186</a> of file <a class="el" href="_code_generator_8cpp_source.html">CodeGenerator.cpp</a>.</p>
+<p>Creates Multiply Operation Machine Code. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">apDacEntry</td><td>DAcEntry with Operands and operation. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>creates code for mult operation </p>
 
 </div>
 </div>
@@ -369,9 +451,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>creates code for print operation </p>
 
-<p>Definition at line <a class="el" href="_code_generator_8cpp_source.html#l00140">140</a> of file <a class="el" href="_code_generator_8cpp_source.html">CodeGenerator.cpp</a>.</p>
+<p>Creates Print Operation Machine Code. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">apDacEntry</td><td>DAcEntry with Operands and operation. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>creates code for print operation </p>
 
 </div>
 </div>
@@ -389,9 +477,16 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<p>creates code for sub operation </p>
 
-<p>Definition at line <a class="el" href="_code_generator_8cpp_source.html#l00169">169</a> of file <a class="el" href="_code_generator_8cpp_source.html">CodeGenerator.cpp</a>.</p>
+<p>Creates Subtract Operation Machine Code. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">apDacEntry</td><td>DAcEntry with Operands and operation. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>creates code for sub operation </p>
+<p>there is a reg where the result is in </p>
 
 </div>
 </div>
@@ -407,8 +502,6 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_code_generator_8h_source.html#l00044">44</a> of file <a class="el" href="_code_generator_8h_source.html">CodeGenerator.h</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="af09743b3e3c3f7cbf9a5754c143f38d7"></a><!-- doxytag: member="CodeGenerator::mpGenProl16" ref="af09743b3e3c3f7cbf9a5754c143f38d7" args="" -->
@@ -421,8 +514,6 @@ Private Attributes</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Definition at line <a class="el" href="_code_generator_8h_source.html#l00042">42</a> of file <a class="el" href="_code_generator_8h_source.html">CodeGenerator.h</a>.</p>
 
 </div>
 </div>
@@ -437,13 +528,11 @@ Private Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_code_generator_8h_source.html#l00043">43</a> of file <a class="el" href="_code_generator_8h_source.html">CodeGenerator.h</a>.</p>
-
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>MIECCompiler_VS_2015/MIECCompiler/<a class="el" href="_code_generator_8h_source.html">CodeGenerator.h</a></li>
-<li>MIECCompiler_VS_2015/MIECCompiler/<a class="el" href="_code_generator_8cpp_source.html">CodeGenerator.cpp</a></li>
+<li>MIECCompiler_VS_2015/MIECCompiler/<a class="el" href="_code_generator_8cpp.html">CodeGenerator.cpp</a></li>
 </ul>
 </div>
 </div>
@@ -465,7 +554,7 @@ Private Attributes</h2></td></tr>
 </div>
 
 
-    <li class="footer">Generated on Mon Feb 8 2016 10:00:41 for MIEC Compiler by
+    <li class="footer">Generated on Sat Feb 13 2016 04:44:40 for COM_MIEC by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>

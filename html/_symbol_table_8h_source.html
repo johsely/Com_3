@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>MIEC Compiler: MIECCompiler_VS_2015/MIECCompiler/SymbolTable.h Source File</title>
+<title>COM_MIEC: MIECCompiler_VS_2015/MIECCompiler/SymbolTable.h Source File</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MIEC Compiler
+   <div id="projectname">COM_MIEC
    
    </div>
    
@@ -108,41 +108,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00016"></a>00016 
 <a name="l00017"></a>00017 <span class="keyword">class </span><a class="code" href="class_symbol_table.html">SymbolTable</a> : <span class="keyword">public</span> <a class="code" href="class_object.html">Object</a> {
 <a name="l00018"></a>00018 <span class="keyword">public</span>:
-<a name="l00019"></a>00019         
-<a name="l00020"></a><a class="code" href="class_symbol_table.html#aa1931d3aa5a8d8af9ffdcfff44c348ef">00020</a>         <span class="keyword">static</span> <a class="code" href="class_symbol_table.html">SymbolTable</a>* <a class="code" href="class_symbol_table.html#aa1931d3aa5a8d8af9ffdcfff44c348ef">GetInstance</a>() {
-<a name="l00021"></a>00021                 <span class="keywordflow">if</span> (!symbolTable_instance){
-<a name="l00022"></a>00022                         symbolTable_instance = <span class="keyword">new</span> <a class="code" href="class_symbol_table.html#a1fbe6cec5594463b766db0ac58c9aa1d">SymbolTable</a>();
-<a name="l00023"></a>00023                 }
-<a name="l00024"></a>00024                 <span class="keywordflow">return</span> symbolTable_instance;
-<a name="l00025"></a>00025         }
-<a name="l00026"></a>00026 
-<a name="l00027"></a><a class="code" href="class_symbol_table.html#a57103af58ffafbb755e4378eafcdde12">00027</a>         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_symbol_table.html#a57103af58ffafbb755e4378eafcdde12">Delete</a>() {
-<a name="l00028"></a>00028                 <span class="keywordflow">if</span> (symbolTable_instance){
-<a name="l00029"></a>00029                         <span class="keyword">delete</span> symbolTable_instance;
-<a name="l00030"></a>00030                 }
-<a name="l00031"></a>00031         }
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033         <span class="keywordtype">bool</span> <a class="code" href="class_symbol_table.html#aac7f40c2d8cac892aa3cc8a5befd53fa">AddSymbol</a>(<a class="code" href="class_symbol.html">Symbol</a>* symbol);
-<a name="l00034"></a>00034         <a class="code" href="class_symbol.html">Symbol</a>* <a class="code" href="class_symbol_table.html#acce67c233a31fb796e528da2d76c88d0">Find</a>(std::string str);
-<a name="l00035"></a>00035         <span class="keywordtype">void</span> <a class="code" href="class_symbol_table.html#a53e19c5f9c88b95a9fb4e6f41930377b">Clear</a>();
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038 <span class="preprocessor">#ifdef _DEBUG</span>
-<a name="l00039"></a>00039 <span class="preprocessor"></span>        <span class="keywordtype">void</span> PrintTable() <span class="keyword">const</span>;
-<a name="l00040"></a>00040 <span class="preprocessor">#endif</span>
-<a name="l00041"></a>00041 <span class="preprocessor"></span>
-<a name="l00042"></a>00042 <span class="keyword">private</span>:
-<a name="l00043"></a>00043         <a class="code" href="class_symbol_table.html#a1fbe6cec5594463b766db0ac58c9aa1d">SymbolTable</a>();
-<a name="l00044"></a>00044         <a class="code" href="class_symbol_table.html#a1fbe6cec5594463b766db0ac58c9aa1d">SymbolTable</a>(<a class="code" href="class_symbol_table.html">SymbolTable</a> <span class="keyword">const</span>&amp; obj) = <span class="keyword">delete</span>;
-<a name="l00045"></a>00045         <span class="keywordtype">void</span> operator=(<a class="code" href="class_symbol_table.html">SymbolTable</a> <span class="keyword">const</span>&amp; obj) = <span class="keyword">delete</span>;
-<a name="l00046"></a>00046         
-<a name="l00047"></a>00047         <span class="comment">// Singleton</span>
-<a name="l00048"></a>00048         <span class="keyword">static</span> <a class="code" href="class_symbol_table.html">SymbolTable</a>* symbolTable_instance;
-<a name="l00049"></a>00049         std::map&lt;std::string, Symbol*&gt; mMap;
-<a name="l00050"></a>00050 };
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 <span class="preprocessor">#endif</span>
+<a name="l00023"></a><a class="code" href="class_symbol_table.html#aa1931d3aa5a8d8af9ffdcfff44c348ef">00023</a>         <span class="keyword">static</span> <a class="code" href="class_symbol_table.html">SymbolTable</a>* <a class="code" href="class_symbol_table.html#aa1931d3aa5a8d8af9ffdcfff44c348ef" title="GetInstance Singleton getter.">GetInstance</a>() {
+<a name="l00024"></a>00024                 <span class="keywordflow">if</span> (!<a class="code" href="class_symbol_table.html#a5b5f8f4e5c202a9e4cfcde2f00b19107">symbolTable_instance</a>){
+<a name="l00025"></a>00025                         <a class="code" href="class_symbol_table.html#a5b5f8f4e5c202a9e4cfcde2f00b19107">symbolTable_instance</a> = <span class="keyword">new</span> <a class="code" href="class_symbol_table.html#a1fbe6cec5594463b766db0ac58c9aa1d" title="Constructor.">SymbolTable</a>();
+<a name="l00026"></a>00026                 }
+<a name="l00027"></a>00027                 <span class="keywordflow">return</span> <a class="code" href="class_symbol_table.html#a5b5f8f4e5c202a9e4cfcde2f00b19107">symbolTable_instance</a>;
+<a name="l00028"></a>00028         }
+<a name="l00033"></a><a class="code" href="class_symbol_table.html#a57103af58ffafbb755e4378eafcdde12">00033</a>         <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_symbol_table.html#a57103af58ffafbb755e4378eafcdde12" title="Delete.">Delete</a>() {
+<a name="l00034"></a>00034                 <span class="keywordflow">if</span> (<a class="code" href="class_symbol_table.html#a5b5f8f4e5c202a9e4cfcde2f00b19107">symbolTable_instance</a>){
+<a name="l00035"></a>00035                         <span class="keyword">delete</span> <a class="code" href="class_symbol_table.html#a5b5f8f4e5c202a9e4cfcde2f00b19107">symbolTable_instance</a>;
+<a name="l00036"></a>00036                 }
+<a name="l00037"></a>00037         }
+<a name="l00043"></a>00043         <span class="keywordtype">bool</span> <a class="code" href="class_symbol_table.html#aac7f40c2d8cac892aa3cc8a5befd53fa" title="Addsymbol.">AddSymbol</a>(<a class="code" href="class_symbol.html">Symbol</a>* symbol);
+<a name="l00049"></a>00049         <a class="code" href="class_symbol.html">Symbol</a>* <a class="code" href="class_symbol_table.html#acce67c233a31fb796e528da2d76c88d0" title="Find s symbol in Table by string name.">Find</a>(std::string str);
+<a name="l00054"></a>00054         <span class="keywordtype">void</span> <a class="code" href="class_symbol_table.html#a53e19c5f9c88b95a9fb4e6f41930377b" title="Clear Cleanup.">Clear</a>();
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 
+<a name="l00057"></a>00057 <span class="preprocessor">#ifdef _DEBUG</span>
+<a name="l00058"></a>00058 <span class="preprocessor"></span>
+<a name="l00062"></a>00062         <span class="keywordtype">void</span> PrintTable() <span class="keyword">const</span>;
+<a name="l00063"></a>00063 <span class="preprocessor">#endif</span>
+<a name="l00064"></a>00064 <span class="preprocessor"></span>
+<a name="l00065"></a>00065 <span class="keyword">private</span>:
+<a name="l00070"></a>00070         <a class="code" href="class_symbol_table.html#a1fbe6cec5594463b766db0ac58c9aa1d" title="Constructor.">SymbolTable</a>();
+<a name="l00076"></a>00076         <a class="code" href="class_symbol_table.html#a1fbe6cec5594463b766db0ac58c9aa1d" title="Constructor.">SymbolTable</a>(<a class="code" href="class_symbol_table.html">SymbolTable</a> <span class="keyword">const</span>&amp; obj) = <span class="keyword">delete</span>;
+<a name="l00082"></a>00082         <span class="keywordtype">void</span> <a class="code" href="class_symbol_table.html#aedd1d9608ab38dde5516953820a109f0" title="Assignment Operator deleted.">operator=</a>(<a class="code" href="class_symbol_table.html">SymbolTable</a> <span class="keyword">const</span>&amp; obj) = <span class="keyword">delete</span>;
+<a name="l00083"></a>00083         
+<a name="l00084"></a>00084         <span class="comment">// Singleton</span>
+<a name="l00085"></a><a class="code" href="class_symbol_table.html#a5b5f8f4e5c202a9e4cfcde2f00b19107">00085</a>         <span class="keyword">static</span> <a class="code" href="class_symbol_table.html">SymbolTable</a>* <a class="code" href="class_symbol_table.html#a5b5f8f4e5c202a9e4cfcde2f00b19107">symbolTable_instance</a>;
+<a name="l00086"></a><a class="code" href="class_symbol_table.html#a3861169f167fe24b683588ae860bf765">00086</a>         std::map&lt;std::string, Symbol*&gt; <a class="code" href="class_symbol_table.html#a3861169f167fe24b683588ae860bf765">mMap</a>;
+<a name="l00087"></a>00087 };
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
   <div id="nav-path" class="navpath">
@@ -163,7 +161,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 
-    <li class="footer">Generated on Mon Feb 8 2016 10:00:41 for MIEC Compiler by
+    <li class="footer">Generated on Sat Feb 13 2016 04:44:39 for COM_MIEC by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.5 </li>
    </ul>
