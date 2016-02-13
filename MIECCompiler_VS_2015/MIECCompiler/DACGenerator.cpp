@@ -25,10 +25,8 @@ IDACEntry* DACGenerator::AddStatement(OpKind opKind, IDACEntry* sym1) {
 }
 
 /** Adds Statement and returns DACEntry, two Operand e.g. add */
-IDACEntry* DACGenerator::AddStatement(OpKind opKind, IDACEntry* sym1, IDACEntry* sym2) {
-	
-	if (mLastEmptyStatement) {
-		
+IDACEntry* DACGenerator::AddStatement(OpKind opKind, IDACEntry* sym1, IDACEntry* sym2) {	
+	if (mLastEmptyStatement) {	
 		mStatements.back()->ChangeArg1(sym1);
 		mStatements.back()->ChangeArg2(sym2);
 		mStatements.back()->ChangeOpKind(opKind);

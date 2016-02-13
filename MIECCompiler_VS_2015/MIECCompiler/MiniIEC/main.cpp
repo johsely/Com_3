@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 				/*parser->gen = new MIEC::CodeGenerator();*/
 				
 			
-					parser->Parse();				
+				parser->Parse();				
 				
 
 				SymbolTable::GetInstance()->PrintTable();
@@ -59,8 +59,6 @@ int main(int argc, char* argv[])
 					
 				ofstream hexFile(fileNameStr.substr(0, fileNameStr.rfind(".")) +".iex", std::ios_base::binary);
 				codeGen.GenerateCode(hexFile);
-
-
 
 				fileStream << fileNameStr;
 				if (parser->errors->count == 0) {

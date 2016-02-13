@@ -96,3 +96,26 @@ void DACEntry::Print(std::ostream &out) const {
 	out << std::endl;
 }
 #endif
+
+
+void DACEntry::ChangeArg1(IDACEntry* arg1) { mArg1 = arg1; }
+
+void DACEntry::ChangeArg2(IDACEntry* arg2) { mArg2 = arg2; }
+
+void DACEntry::ChangeOpKind(OpKind op) { mOpKind = op; }
+
+IDACEntry* DACEntry::GetArg1() { return mArg1; }
+
+IDACEntry* DACEntry::GetArg2() { return mArg2; }
+
+OpKind DACEntry::GetOpKind() { return mOpKind; }
+
+void DACEntry::SetTmpResult(int reg) { indexTmpResult = reg; }
+
+int DACEntry::GetTmpResult() { return indexTmpResult; }
+
+void DACEntry::SetAdress(WORD adress) { mAdress = adress; isAdressSet = true; }
+
+WORD DACEntry::GetAdress() { return mAdress; }
+
+bool DACEntry::IsAdressSet() { return isAdressSet; }

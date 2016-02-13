@@ -62,7 +62,6 @@ private:
 	TRegister mRegisters[PROL16_REGNUM];
 
 	MIEC::CodeGenProl16 * mpGenProl16;
-	//std::map<Register, Symbol*> mRegisters;
 
 };
 

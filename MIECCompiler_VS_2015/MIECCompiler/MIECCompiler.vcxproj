@@ -114,12 +114,10 @@
     <ClInclude Include="MiniIEC\Parser.h" />
     <ClInclude Include="MiniIEC\Scanner.h" />
     <ClInclude Include="Object.h" />
-    <ClInclude Include="Register.h" />
     <ClInclude Include="RegisterAdmin.h" />
     <ClInclude Include="Symbol.h" />
     <ClInclude Include="SymbolFactory.h" />
     <ClInclude Include="SymbolTable.h" />
-    <ClInclude Include="TempSymbol.h" />
     <ClInclude Include="Type.h" />
     <ClInclude Include="TypeSymbol.h" />
     <ClInclude Include="VarSymbol.h" />

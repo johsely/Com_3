@@ -39,61 +39,61 @@ public:
 	*
 	* <param name="arg1">  IDAC Entry Argument to Change </param>
 	*/
-	void ChangeArg1(IDACEntry* arg1) { mArg1 = arg1; }
+	void ChangeArg1(IDACEntry* arg1);
 	/**
 	* <summary>  ChangeArg2. </summary>
 	*
 	* <param name="arg2">  IDAC Entry Argument to Change </param>
 	*/
-	void ChangeArg2(IDACEntry* arg2) { mArg2 = arg2; }
+	void ChangeArg2(IDACEntry* arg2);
 	/**
 	* <summary>  ChangeOpKind. </summary>
 	*
 	* <param name="opkind">  Opcode to Change </param>
 	*/
-	void ChangeOpKind(OpKind op) { mOpKind = op; }
+	void ChangeOpKind(OpKind op);
 	/**
 	* <summary>  GetArg1 Getter for Arg1. </summary>
 	*
 	*/
-	IDACEntry* GetArg1() { return mArg1; }
+	IDACEntry* GetArg1();
 	/**
 	* <summary>  GetArg2 Getter for Arg2. </summary>
 	*
 	*/
-	IDACEntry* GetArg2() { return mArg2; }
+	IDACEntry* GetArg2();
 	/**
 	* <summary>  GetOpKind Getter for Opkind. </summary>
 	*
 	*/
-	OpKind GetOpKind() { return mOpKind; }
+	OpKind GetOpKind();
 	/**
 	* <summary>  SetTmpResult Setter for TempResult Used for tmp variables indexing. </summary>
 	*
 	* <param name="reg">  Tmp Index change </param>
 	*/
-	void SetTmpResult(int reg) { indexTmpResult = reg;}
+	void SetTmpResult(int reg);
 	/**
 	* <summary>  GetTmpResult Getter for Tmp index. </summary>
 	*
 	*/
-	int GetTmpResult() { return indexTmpResult; }
+	int GetTmpResult();
 	/**
 	* <summary>  SetAdress Setter for Adress. </summary>
 	*
 	* <param name="adress">  new adress value </param>
 	*/
-	void SetAdress(WORD adress) { mAdress = adress; isAdressSet = true; }
+	void SetAdress(WORD adress);
 	/**
 	* <summary>  GetAdress Getter for Adress. </summary>
 	*
 	*/
-	WORD GetAdress() { return mAdress; }
+	WORD GetAdress();
 	/**
 	* <summary>  IsAdressSet Check if adress has a valid value. </summary>
 	*
 	*/
-	bool IsAdressSet() { return isAdressSet; }
+	bool IsAdressSet();
 	
 
 

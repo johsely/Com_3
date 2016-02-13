@@ -111,8 +111,6 @@ void CodeGenerator::GenerateCode(std::ostream& os) {
 			OperationPrint(x);
 			break;
 		case eExit:
-		
-			
 			mpGenProl16->Sleep();
 			break;
 		default:
@@ -125,20 +123,10 @@ void CodeGenerator::GenerateCode(std::ostream& os) {
 
 }
 
-/** returns the register number, where the result is stored */
-int EvaluateArgument(IDACEntry* dacEntry) {
-	
 
-
-	return 1;
-
-}
 /** creates code for assign operation */
 void CodeGenerator::OperationAssign(DACEntry* apDacEntry) {
-
-
 	assert(apDacEntry->GetOpKind() == eAssign);
-
 
 	int regAddress = -1;
 	int regResult = -1;
@@ -156,8 +144,6 @@ void CodeGenerator::OperationAssign(DACEntry* apDacEntry) {
 	}
 
 	/** get the right side, we need a register where the calculated value is inside */
-
-
 	auto rightVar = dynamic_cast<VarSymbol*>(apDacEntry->GetArg2());
 	auto rightIntConst = dynamic_cast<ConstIntSymbol*>(apDacEntry->GetArg2());
 	auto rightDAC = dynamic_cast<DACEntry*>(apDacEntry->GetArg2());
@@ -193,9 +179,6 @@ void CodeGenerator::OperationAssign(DACEntry* apDacEntry) {
 	}
 
 	mpRegAdmin->FreeRegister(regAddress);
-	
-	
-
 }
 
 /** creates code for print operation */
@@ -205,7 +188,7 @@ void CodeGenerator::OperationPrint(DACEntry* apDacEntry) {
 	auto var = dynamic_cast<VarSymbol*>(apDacEntry->GetArg1());
 	auto constInt = dynamic_cast<ConstIntSymbol*>(apDacEntry->GetArg1());
 	
-	if (var == nullptr && constInt == nullptr) { throw std::string("print can only varSymbol"); }
+	if (var == nullptr && constInt == nullptr) { throw std::string("print can only varSymbol and constInt"); }
 
 	BYTE reg1 = mpRegAdmin->GetRegister();
 	if (var != nullptr) {
@@ -236,12 +219,10 @@ void CodeGenerator::OperationAdd(DACEntry* apDacEntry) {
 	apDacEntry->SetTmpResult(regResult);
 	mpRegAdmin->FreeRegister(reg1);
 	mpRegAdmin->FreeRegister(reg2);
-
 }
 
 /** creates code for sub operation */
 void CodeGenerator::OperationSubtract(DACEntry* apDacEntry) {
-
 	int reg1 = mpRegAdmin->GetRegister(apDacEntry->GetArg1());
 	int reg2 = mpRegAdmin->GetRegister(apDacEntry->GetArg2());
 	int regResult = -1;
@@ -253,15 +234,12 @@ void CodeGenerator::OperationSubtract(DACEntry* apDacEntry) {
 	apDacEntry->SetTmpResult(regResult);
 	mpRegAdmin->FreeRegister(reg1);
 	mpRegAdmin->FreeRegister(reg2);
-
 }
  
 
 /** creates code for mult operation */
 void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
  {
-
-
 	 int regA = mpRegAdmin->GetRegister(apDacEntry->GetArg1()); // multiplicand
 	 int regB = mpRegAdmin->GetRegister(apDacEntry->GetArg2()); // multiplier
 	 int regJmp = mpRegAdmin->GetRegister(); // used for jumps
@@ -300,14 +278,11 @@ void CodeGenerator::OperationMultiply(DACEntry* apDacEntry)
 	 mpRegAdmin->FreeRegister(regJmp);
 	 mpRegAdmin->FreeRegister(helpReg);
 	 apDacEntry->SetTmpResult(regResult);
-
 }
 
 
 void CodeGenerator::OperationDivide(DACEntry* apDacEntry)
  {
-	
-
 	 int regA = mpRegAdmin->GetRegister(apDacEntry->GetArg1()); // dividend
 	 int regB = mpRegAdmin->GetRegister(apDacEntry->GetArg2()); // divisor
 	 int regJmp = mpRegAdmin->GetRegister(); // used for jumps
@@ -349,14 +324,11 @@ void CodeGenerator::OperationDivide(DACEntry* apDacEntry)
 	 mpRegAdmin->FreeRegister(regJmp);
 	 mpRegAdmin->FreeRegister(regRemainder);
 	 mpRegAdmin->FreeRegister(regBits);
-	 mpRegAdmin->FreeRegister(helpReg);
-
-	 
+	 mpRegAdmin->FreeRegister(helpReg);	 
 }
 
 
 void CodeGenerator::OperationJump(DACEntry* apDacEntry, TUnresolvedJumps& arUnresolvedJumps){
-
 	auto jumpDest = dynamic_cast<DACEntry*>(apDacEntry->GetArg1());
 	if (jumpDest == nullptr) { throw std::string("operationJump error, no dac entry"); }
 	
@@ -421,6 +393,5 @@ void CodeGenerator::OperationConditionalJump(DACEntry*	apDacEntry, TUnresolvedJu
 		if (!jumpDst->IsAdressSet()) {
 			arUnresolvedJumps.push_back(std::pair<WORD, DACEntry* const>(codePos + 1, jumpDst));
 		}
-
 	}
 }
